@@ -1,9 +1,9 @@
 import './App.css';
+import Foodrouter from "./router/router"
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Foodrouter/>
   );
 }
 
