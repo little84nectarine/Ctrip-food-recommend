@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import HomePage from "../pages/Home/Home"
-import FoodPage from "../pages/Food/Food"
+import FoodPage from "../pages/Restaurant/Restaurant"
 
 const router = () => {
   return <div className="page" >
