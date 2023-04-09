@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router'
 const Restcard = ({ data }) => {
   const navigate = useNavigate()
   useEffect(() => {
+    console.log(data);
   })
 
   //跳转到对应商店详情页

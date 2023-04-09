@@ -6,6 +6,7 @@ import Banner from '../../components/banner/banner'
 import Filter from '../../components/filter/filter'
 import Restcard from "../../components/card/restcard/restcard"
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
+import { restaruantApi } from '../../request/api'
 
 import { PullToRefresh } from 'antd-mobile'
 import { sleep } from 'antd-mobile/es/utils/sleep'
@@ -21,7 +22,7 @@ const statusRecord = {
   refreshing: '玩命加载中...',
   complete: '加载完毕',
 }
-import { restaruantApi } from '../../request/api'
+
 
 
 const Home = () => {
