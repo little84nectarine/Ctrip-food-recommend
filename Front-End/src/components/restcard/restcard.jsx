@@ -27,7 +27,7 @@ const Restcard = ({ data }) => {
         <div className={styles.tag}>美食林黑钻</div>
         <div className={styles.lastRow}>
           <div >
-            <span style={{display: "inline-block" , marginRight: "0.3rem"}}>{data.style}</span>
+            <span style={{ display: "inline-block", marginRight: "0.3rem" }}>{data.style}</span>
             <span className={styles}>{data.generalPosition}</span>
           </div>
           <div className={styles}>距市中心{1.5}km</div>
