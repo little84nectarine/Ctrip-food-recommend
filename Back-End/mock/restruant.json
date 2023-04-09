@@ -1,0 +1,112 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "imgs": [
+                "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
+                "https://youimg1.c-ctrip.com/target/10090q000000gc0wr3753_D_750_562_Q90.jpg?proc=autoorient",
+                "https://youimg1.c-ctrip.com/target/100l0q000000gndqr589A_D_750_562_Q90.jpg?proc=autoorient"
+            ],
+            "name": "甬府（黄浦店）",
+            "score": 4.7,
+            "reviews": 12340,
+            "avgPrice": 964,
+            "exactPosition": "茂名南路59号锦江饭店锦北楼12层(近长乐路)距地铁1号线陕西南路站(3口)467m，步行6min",
+            "generalPosition": "淮海路/新天地地区",
+            "style": "江浙菜",
+            "duration": [
+                [
+                    11,
+                    13.5
+                ],
+                [
+                    17,
+                    21
+                ]
+            ],
+            "tel": "13327220630",
+            "video": ""
+        },
+        {
+            "id": 2,
+            "imgs": [
+                "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
+                "https://youimg1.c-ctrip.com/target/10090q000000gc0wr3753_D_750_562_Q90.jpg?proc=autoorient",
+                "https://youimg1.c-ctrip.com/target/100l0q000000gndqr589A_D_750_562_Q90.jpg?proc=autoorient"
+            ],
+            "name": "甬府（黄浦店）",
+            "score": 4.7,
+            "reviews": 12340,
+            "avgPrice": 964,
+            "exactPosition": "茂名南路59号锦江饭店锦北楼12层(近长乐路)距地铁1号线陕西南路站(3口)467m，步行6min",
+            "generalPosition": "淮海路/新天地地区",
+            "style": "江浙菜",
+            "duration": [
+                [
+                    11,
+                    13.5
+                ],
+                [
+                    17,
+                    21
+                ]
+            ],
+            "tel": "13327220630",
+            "video": ""
+        },
+        {
+            "id": 3,
+            "imgs": [
+                "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
+                "https://youimg1.c-ctrip.com/target/10090q000000gc0wr3753_D_750_562_Q90.jpg?proc=autoorient",
+                "https://youimg1.c-ctrip.com/target/100l0q000000gndqr589A_D_750_562_Q90.jpg?proc=autoorient"
+            ],
+            "name": "甬府（黄浦店）",
+            "score": 4.7,
+            "reviews": 12340,
+            "avgPrice": 964,
+            "exactPosition": "茂名南路59号锦江饭店锦北楼12层(近长乐路)距地铁1号线陕西南路站(3口)467m，步行6min",
+            "generalPosition": "淮海路/新天地地区",
+            "style": "江浙菜",
+            "duration": [
+                [
+                    11,
+                    13.5
+                ],
+                [
+                    17,
+                    21
+                ]
+            ],
+            "tel": "13327220630",
+            "video": ""
+        },
+        {
+            "id": 4,
+            "imgs": [
+                "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
+                "https://youimg1.c-ctrip.com/target/10090q000000gc0wr3753_D_750_562_Q90.jpg?proc=autoorient",
+                "https://youimg1.c-ctrip.com/target/100l0q000000gndqr589A_D_750_562_Q90.jpg?proc=autoorient"
+            ],
+            "name": "甬府（黄浦店）",
+            "score": 4.7,
+            "reviews": 12340,
+            "avgPrice": 964,
+            "exactPosition": "茂名南路59号锦江饭店锦北楼12层(近长乐路)距地铁1号线陕西南路站(3口)467m，步行6min",
+            "generalPosition": "淮海路/新天地地区",
+            "style": "江浙菜",
+            "duration": [
+                [
+                    11,
+                    13.5
+                ],
+                [
+                    17,
+                    21
+                ]
+            ],
+            "tel": "13327220630",
+            "video": ""
+        }
+    ]
+}
