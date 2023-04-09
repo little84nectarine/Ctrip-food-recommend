@@ -62,7 +62,7 @@ const Home = () => {
       <div className={styles.content}>
         <Banner />
         <Filter />
-        <div style={{ backgroundColor: 'rgb(244, 244, 244)', height: '200rem', padding: '0 0.7rem' }}>
+        <div style={{ backgroundColor: 'rgb(250, 250, 250)', height: '200rem', padding: '0 0.7rem' }}>
           {
             restData.map((i) => {
               return <Restcard data={i} key={i.id} />
