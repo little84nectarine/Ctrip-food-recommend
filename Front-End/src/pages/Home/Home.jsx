@@ -21,8 +21,19 @@ const statusRecord = {
   refreshing: '玩命加载中...',
   complete: '加载完毕',
 }
+import { restaruantApi } from '../../request/api'
+
 
 const Home = () => {
+  let [restData, setRestData] = useState([])
+  
+  useEffect(() => {
+    restaruantApi().then(res => {
+      setRestData(res.data.data)
+    })
+
+  }, [])
+
   const [data, setData] = useState(() => getNextData())
   const [headercolor, setHeadercolor] = useState("transparent")
   const addheader = useThrottle(() => {
@@ -50,45 +61,12 @@ const Home = () => {
       <div className={styles.content}>
         <Banner />
         <Filter />
-        <div style={{ backgroundColor: 'rgb(250,250,250)', height: '200rem', padding: '0 0.7rem' }}>
-          <PullToRefresh
-            onRefresh={async () => {
-              await sleep(1000)
-              setData([...getNextData(), ...data])
-            }}
-            renderText={status => {
-              return <div>{statusRecord[status]}</div>
-            }}
-          >
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-            <Restcard />
-          </PullToRefresh>
+        <div style={{ backgroundColor: 'rgb(244, 244, 244)', height: '200rem', padding: '0 0.7rem' }}>
+          {
+            restData.map((i) => {
+              return <Restcard data={i} key={i.id} />
+            })
+          }
         </div>
       </div>
 
