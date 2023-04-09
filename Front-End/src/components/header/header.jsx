@@ -8,7 +8,14 @@ const Header = () => {
 
   return (
     <div className={styles.headerbox}>
-      header搜索
+      <div className={styles.fixedheader}></div>
+      <div className={styles.headerbottom}>
+        <span>热搜：寻味会</span>
+        <span>伯爵</span>
+        <span>尚嘉</span>
+        <span>mikihouse</span>
+        <span>佛罗伦萨小镇</span>
+      </div>
     </div>
   )
 }

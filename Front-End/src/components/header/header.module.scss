@@ -1,4 +1,21 @@
 .headerbox{
-    height: 5.5rem;
-    background: #bfa;
+    height: 5.7rem;
+    background: url("../../assets/images/Flying_High.png");
+    display: flex;
+    flex-direction: column;
+}
+
+.fixedheader{
+    width: 100%;
+    height: 3.2rem;
+}
+
+.headerbottom{
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    color:#fff;
+    font-family: PingFangSC-Regular;
+    font-size: 0.7rem;
 }
