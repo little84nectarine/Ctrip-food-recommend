@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./restcard.module.scss"
 import { useNavigate } from 'react-router'
-
+import { StarFill} from 'antd-mobile-icons'
 import { useDispatch } from 'react-redux'
 import { changeCurr } from '../../../store/currRest.slice'
 
@@ -33,13 +33,16 @@ const Restcard = ({ data }) => {
           <span className={styles.split}> | </span>
           <span className={styles.secondRow}>￥{data.avgPrice}/人</span>
         </div>
-        <div className={styles.tag}>美食林黑钻</div>
+        <div className={styles.tag}>
+          <StarFill style={{marginRight:'0.1rem'}}/>
+          美食林黑钻
+        </div>
         <div className={styles.lastRow}>
-          <div >
+          <div style={{textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap'}}>
             <span style={{ display: "inline-block", marginRight: "0.3rem" }}>{data.style}</span>
-            <span className={styles}>{data.generalPosition}</span>
+            <span>{data.generalPosition}</span>
           </div>
-          <div className={styles}>距市中心{1.5}km</div>
+          <div style={{flexBasis:'5.2rem',flexShrink:'0'}}>距市中心{1.5}km</div>
         </div>
       </div>
     </div>
