@@ -1,8 +1,9 @@
 {
-    "data": [
-        {
+    "data": {
+        "1":{
             "id": 1,
             "imgs": [
+                "https://ak-v.tripcdn.com/videos/1A091t000001i1av39C52.mp4?ts=1622898856678",
                 "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
                 "https://youimg1.c-ctrip.com/target/10090q000000gc0wr3753_D_750_562_Q90.jpg?proc=autoorient",
                 "https://youimg1.c-ctrip.com/target/100l0q000000gndqr589A_D_750_562_Q90.jpg?proc=autoorient"
@@ -27,7 +28,7 @@
             "tel": "13327220630",
             "video": ""
         },
-        {
+        "2":{
             "id": 2,
             "imgs": [
                 "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
@@ -54,7 +55,7 @@
             "tel": "13327220630",
             "video": ""
         },
-        {
+        "3":{
             "id": 3,
             "imgs": [
                 "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
@@ -81,7 +82,7 @@
             "tel": "13327220630",
             "video": ""
         },
-        {
+        "4":{
             "id": 4,
             "imgs": [
                 "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
@@ -108,7 +109,7 @@
             "tel": "13327220630",
             "video": ""
         },
-        {
+        "5":{
             "id": 5,
             "imgs": [
                 "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
@@ -135,7 +136,7 @@
             "tel": "13327220630",
             "video": ""
         },
-        {
+        "6":{
             "id": 6,
             "imgs": [
                 "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
@@ -162,7 +163,7 @@
             "tel": "13327220630",
             "video": ""
         },
-        {
+        "7":{
             "id": 7,
             "imgs": [
                 "https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
@@ -189,5 +190,5 @@
             "tel": "13327220630",
             "video": ""
         }
-    ]
+    }
 }

@@ -12,6 +12,7 @@ service.interceptors.request.use(config => {
     config.headers = {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
     }
+    
     return config
 }, error => {
     return error;
@@ -24,6 +25,7 @@ service.interceptors.response.use(response => {
     } else {
         return response;
     }
+
 })
 
 export default service

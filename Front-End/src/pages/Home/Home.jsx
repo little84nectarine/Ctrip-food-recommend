@@ -8,7 +8,6 @@ import Restcard from "../../components/card/restcard/restcard"
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
 import { restaruantApi } from '../../request/api'
 
-
 const Home = () => {
   let [restData, setRestData] = useState([])
   const [headercolor, setHeadercolor] = useState("transparent")
@@ -25,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     restaruantApi().then(res => {
-      setRestData(res.data.data)
+      setRestData(res.data)
     })
     
     document.body.scrollTop = 0

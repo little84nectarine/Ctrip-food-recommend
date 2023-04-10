@@ -30,12 +30,9 @@ const Food = () => {
 
   //清除页面跳转后滚动条位置缓存
   useEffect(() => {
-    console.log(param);
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
     window.addEventListener("scroll", addheader)
-
-    console.log(restData);
 
     return () => {
       window.removeEventListener('scroll', addheader);
