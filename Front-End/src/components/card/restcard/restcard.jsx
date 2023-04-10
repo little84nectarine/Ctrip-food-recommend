@@ -1,15 +1,24 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from "./restcard.module.scss"
 import { useNavigate } from 'react-router'
 
+import { useDispatch } from 'react-redux'
+import { changeCurr } from '../../../store/currRest.slice'
+
 const Restcard = ({ data }) => {
   const navigate = useNavigate()
-  useEffect(() => {
-    console.log(data);
-  })
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   console.log(value);
+  // })
 
   //跳转到对应商店详情页
-  const toRestaurant = () => navigate('/food', { state: 'aaaa' })
+  const toRestaurant = () => {
+    navigate('/food', { state: 'aaaa' })
+
+    dispatch(changeCurr(data))
+  }
   return (
     <div className={styles.restcardbox} onClick={toRestaurant}>
       <div className={styles.imgBox}>
@@ -27,7 +36,7 @@ const Restcard = ({ data }) => {
         <div className={styles.tag}>美食林黑钻</div>
         <div className={styles.lastRow}>
           <div >
-            <span style={{display: "inline-block" , marginRight: "0.3rem"}}>{data.style}</span>
+            <span style={{ display: "inline-block", marginRight: "0.3rem" }}>{data.style}</span>
             <span className={styles}>{data.generalPosition}</span>
           </div>
           <div className={styles}>距市中心{1.5}km</div>

@@ -8,6 +8,7 @@ import Restcard from "../../components/card/restcard/restcard"
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
 import { restaruantApi } from '../../request/api'
 
+<<<<<<< HEAD
 import { PullToRefresh } from 'antd-mobile'
 import { sleep } from 'antd-mobile/es/utils/sleep'
 // eslint-disable-next-line
@@ -22,19 +23,13 @@ const statusRecord = {
   refreshing: '玩命加载中...',
   complete: '加载完毕',
 }
+=======
+>>>>>>> fd4636db381295a275dd26b10d4e567a22faf03d
 
 const Home = () => {
   let [restData, setRestData] = useState([])
-  
-  useEffect(() => {
-    restaruantApi().then(res => {
-      setRestData(res.data.data)
-    })
-
-  }, [])
-
-  const [data, setData] = useState(() => getNextData())
   const [headercolor, setHeadercolor] = useState("transparent")
+
   const addheader = useThrottle(() => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
     //滚动超过70则显示header，小于70隐藏
@@ -44,7 +39,12 @@ const Home = () => {
       setHeadercolor("transparent")
     }
   }, 100)
+
   useEffect(() => {
+    restaruantApi().then(res => {
+      setRestData(res.data.data)
+    })
+    
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
     window.addEventListener("scroll", addheader)
@@ -61,6 +61,14 @@ const Home = () => {
         <Banner />
         <Filter />
         <div style={{ backgroundColor: 'rgb(250, 250, 250)', padding: '0 0.7rem' }}>
+<<<<<<< HEAD
+=======
+          {
+            restData.map((i) => {
+              return <Restcard data={i} key={i.id} />
+            })
+          }
+>>>>>>> fd4636db381295a275dd26b10d4e567a22faf03d
           {
             restData.map((i) => {
               return <Restcard data={i} key={i.id} />
