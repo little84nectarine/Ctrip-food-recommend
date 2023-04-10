@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./restcard.module.scss"
 import { useNavigate } from 'react-router'
-
+ 
 import { useDispatch } from 'react-redux'
 import { changeCurr } from '../../../store/currRest.slice'
 
@@ -9,13 +9,11 @@ const Restcard = ({ data }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   console.log(value);
-  // })
-
   //跳转到对应商店详情页
   const toRestaurant = () => {
-    navigate('/food', { state: 'aaaa' })
+    navigate('/food', { state: {
+      aad:1
+    }})
 
     dispatch(changeCurr(data))
   }
