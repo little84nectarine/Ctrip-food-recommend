@@ -23,8 +23,6 @@ const statusRecord = {
   complete: '加载完毕',
 }
 
-
-
 const Home = () => {
   let [restData, setRestData] = useState([])
   
@@ -62,7 +60,7 @@ const Home = () => {
       <div className={styles.content}>
         <Banner />
         <Filter />
-        <div style={{ backgroundColor: 'rgb(250, 250, 250)', height: '200rem', padding: '0 0.7rem' }}>
+        <div style={{ backgroundColor: 'rgb(250, 250, 250)', padding: '0 0.7rem' }}>
           {
             restData.map((i) => {
               return <Restcard data={i} key={i.id} />
