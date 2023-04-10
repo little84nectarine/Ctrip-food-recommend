@@ -42,7 +42,7 @@ const Restcard = ({ data }) => {
             <span style={{ display: "inline-block", marginRight: "0.3rem" }}>{data.style}</span>
             <span>{data.generalPosition}</span>
           </div>
-          <div style={{flexBasis:'5.2rem',flexShrink:'0'}}>距市中心{1.5}km</div>
+          <div style={{flexBasis:'5.2rem',flexShrink:'0'}}>距市中心{data.distance>=1000?(data.distance/1000).toFixed(1)+"k":data.distance}m</div>
         </div>
       </div>
     </div>

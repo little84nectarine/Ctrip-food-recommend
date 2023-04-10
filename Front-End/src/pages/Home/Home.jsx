@@ -41,7 +41,7 @@ const Home = () => {
       <HeaderFixed color={headercolor} />
       <div className={styles.content}>
         <Banner />
-        <Filter />
+        <Filter setHeadercolor={setHeadercolor}/>
         <div style={{ backgroundColor: 'rgb(250, 250, 250)', padding: '0 0.7rem' }}>
           {
             restData.map((i) => {
