@@ -8,23 +8,6 @@ import Restcard from "../../components/card/restcard/restcard"
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
 import { restaruantApi } from '../../request/api'
 
-<<<<<<< HEAD
-import { PullToRefresh } from 'antd-mobile'
-import { sleep } from 'antd-mobile/es/utils/sleep'
-// eslint-disable-next-line
-import { PullStatus } from 'antd-mobile/es/components/pull-to-refresh'
-
-function getNextData() {
-  const ret = []
-  return ret
-}
-const statusRecord = {
-  canRelease: '下拉刷新',
-  refreshing: '玩命加载中...',
-  complete: '加载完毕',
-}
-=======
->>>>>>> fd4636db381295a275dd26b10d4e567a22faf03d
 
 const Home = () => {
   let [restData, setRestData] = useState([])
@@ -61,14 +44,11 @@ const Home = () => {
         <Banner />
         <Filter />
         <div style={{ backgroundColor: 'rgb(250, 250, 250)', padding: '0 0.7rem' }}>
-<<<<<<< HEAD
-=======
           {
             restData.map((i) => {
               return <Restcard data={i} key={i.id} />
             })
           }
->>>>>>> fd4636db381295a275dd26b10d4e567a22faf03d
           {
             restData.map((i) => {
               return <Restcard data={i} key={i.id} />
