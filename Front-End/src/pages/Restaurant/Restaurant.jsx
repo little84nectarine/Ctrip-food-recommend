@@ -7,6 +7,8 @@ import { LeftOutline} from 'antd-mobile-icons'
 import { useNavigate } from 'react-router'
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
 
+import { useSelector } from 'react-redux'
+
 const Food = () => {
   const [headerv,setHeaderv] = useState("hidden")
   const navigate = useNavigate()
@@ -19,16 +21,22 @@ const Food = () => {
       setHeaderv("hidden")
     }
   },100)
+
+  const restData = useSelector( store =>store.currRest )
+  
   //清除页面跳转后滚动条位置缓存
   useEffect(() => {
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
     window.addEventListener("scroll", addheader)
+
+    console.log(restData);
+    
     return () => {
       window.removeEventListener('scroll', addheader);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
   return (
     <div style={{ backgroundColor: 'rgb(240,243,246)' }}>
       <Swiper />

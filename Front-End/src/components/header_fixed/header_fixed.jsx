@@ -7,7 +7,7 @@ const textlist = ["和平饭店", "上海老饭店", "大董", "炳胜公馆"]
 
 const verticalItems = textlist.map((text, index) => (
     <Swiper.Item key={index}>
-        <div style={{ lineHeight: '2rem' ,color:'#aaa'}}>
+        <div style={{ lineHeight: '2rem', color: '#aaa' }}>
             {text}
         </div>
     </Swiper.Item>
@@ -15,9 +15,10 @@ const verticalItems = textlist.map((text, index) => (
 
 const Header_fixed = (props) => {
     const { color } = props
-    const [heart,setHeart] = useState(false)
+    const [heart, setHeart] = useState(false)
+    
     return (
-        <div className={styles.fixedheader} style={{ backgroundColor: color==="white"?"rgb(250,250,250)":color, color: color === "white" ? "#444" : 'white' }}>
+        <div className={styles.fixedheader} style={{ backgroundColor: color === "white" ? "rgb(250,250,250)" : color, color: color === "white" ? "#444" : 'white' }}>
             <div className={styles.fixedheaderleft}>
                 <LeftOutline style={{ marginTop: '0.02rem', marginLeft: '0.7rem', fontSize: '10px', transform: ["scale(2.2)"] }} />
                 <span style={{ fontSize: '20px', fontWeight: 'bold', marginLeft: '0.6rem' }}>美食</span>
@@ -41,8 +42,8 @@ const Header_fixed = (props) => {
             </div>
             {/* 爱心，点击后改实心爱心的样式 */}
             <div className={styles.fixedheaderright}>
-                <HeartOutline style={{ marginTop: '-0.2rem', marginLeft: '0.5rem', fontSize: '28px' }} onClick={()=>setHeart(!heart)}/>
-                <HeartFill className={heart?styles.heartfill:styles.heartnotfill} onClick={()=>setHeart(!heart)}/>
+                <HeartOutline style={{ marginTop: '-0.2rem', marginLeft: '0.5rem', fontSize: '28px' }} onClick={() => setHeart(!heart)} />
+                <HeartFill className={heart ? styles.heartfill : styles.heartnotfill} onClick={() => setHeart(!heart)} />
             </div>
         </div>
     )
