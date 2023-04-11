@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "./restcard.module.scss"
 import { useNavigate } from 'react-router'
+ 
 import { StarFill} from 'antd-mobile-icons'
 import { useDispatch } from 'react-redux'
 import { changeCurr } from '../../../store/currRest.slice'
@@ -9,20 +10,18 @@ const Restcard = ({ data }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   console.log(value);
-  // })
-
   //跳转到对应商店详情页
   const toRestaurant = () => {
-    navigate('/food', { state: 'aaaa' })
+    navigate('/food', { state: {
+      "aad":"1"
+    }})
 
     dispatch(changeCurr(data))
   }
   return (
     <div className={styles.restcardbox} onClick={toRestaurant}>
       <div className={styles.imgBox}>
-        <img height={"100%"} src={data.imgs[0]} alt="" />
+        <img height={"100%"} src={data.imgs[1]} alt="" />
       </div>
       <div className={styles.details}>
         <div className={styles.name}>{data.name}</div>
