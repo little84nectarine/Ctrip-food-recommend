@@ -1,6 +1,80 @@
-.infobox{
+.infobox {
     background-color: #fff;
-    height:14rem;
+    height: fit-content;
     border-radius: 0.7rem 0.7rem 0 0;
     margin-top: -0.7rem;
+    padding: 1rem 0.6rem;
+
+    .title {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .firstRow {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        font-size: 0.6rem;
+        margin-top: 0.5rem;
+
+        .tag1 {
+            border: 1px #eebbbb solid;
+            border-radius: 0.3rem;
+            padding: 0rem 0.4rem;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin-top: 0.3rem;
+
+            .score {
+                color: #c82c2c;
+                font-size: 1rem;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .secondRow {
+        margin: 1.5rem 0rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+            margin-right: 0.6rem;
+        }
+
+        .tail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.5rem;
+
+            >span {
+                line-height: 2rem;
+                font-size: 1.5rem;
+                color: rgb(212, 212, 212);
+                font-weight: 100;
+                transform: scale(0.8, 2);
+            }
+            div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                font-size: 0.6rem;
+
+                .icon{
+                    transform: scale(2.5);
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+    }
+
+    .thirdRow{
+        display: flex;
+        justify-content: space-between;
+    }
 }

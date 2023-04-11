@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./swiper.module.scss"
 import { Swiper } from 'antd-mobile'
-import { restaurantdetailApi } from '../../request/api'
+import { DownFill } from 'antd-mobile-icons'
 
 
-
-
-const Myswiper = () => {
-  const [data, setData] = useState({})
+const Myswiper = ({data}) => {
 
   useEffect(() => {
-    restaurantdetailApi({ id: 1 }).
-      then(res => {
-        console.log(res.data.imgs);
-        setData({ ...res.data })
-      })
   }, [])
 
   return (
     <div className={styles.swiperbox}>
       <Swiper loop>
         {
-          data.imgs?.map((img, index) => {
+          data.map((img, index) => {
             return index === 0 ?
               <Swiper.Item key={index} >
                 <div className={styles.content}>1</div>
@@ -35,6 +27,12 @@ const Myswiper = () => {
           })
         }
       </Swiper>
+
+      <div className={styles.tag}>
+        <span>相册{data.length} </span><span className={styles.icon}> <DownFill/></span>
+        <span style={{paddingRight: '0.3rem', paddingLeft: '0.3rem', color: "rgb(162, 162, 162)"}}> | </span>
+        <span>达人晒图 </span><span className={styles.icon}><DownFill/></span>
+      </div>
     </div>
   )
 }

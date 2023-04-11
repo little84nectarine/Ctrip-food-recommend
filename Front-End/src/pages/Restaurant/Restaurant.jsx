@@ -6,14 +6,16 @@ import Waterfall from '../../components/waterfall/waterfall'
 import { LeftOutline } from 'antd-mobile-icons'
 import { useNavigate } from 'react-router'
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
-import { useLocation } from 'react-router-dom'
+import { restaurantdetailApi } from '../../request/api'
 
 import { useSelector } from 'react-redux'
 
 const Food = () => {
   const [headerv, setHeaderv] = useState("hidden")
   const navigate = useNavigate()
-  const param = useLocation()
+  const [data, setData] = useState({})
+
+  // const param = useLocation()
 
 
   const addheader = useThrottle(() => {
@@ -26,13 +28,22 @@ const Food = () => {
     }
   }, 100)
 
-  const restData = useSelector(store => store.currRest)
+  const id = (useSelector(store => store.currRest))?.id
+  console.log('====================================');
+  console.log(id);
+  console.log('====================================');
 
   //清除页面跳转后滚动条位置缓存
   useEffect(() => {
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
     window.addEventListener("scroll", addheader)
+
+    restaurantdetailApi({ id: id }).
+      then(res => {
+        setData({ ...res.data })
+
+      })
 
     return () => {
       window.removeEventListener('scroll', addheader);
@@ -42,10 +53,10 @@ const Food = () => {
   return (
     <div style={{ backgroundColor: 'rgb(240,243,246)' }}>
       <div style={{ zIndex: '-10' }}>
-        <Myswiper />
+        <Myswiper data={data.imgs? [data.video, ...data.imgs] : []} />
 
       </div>
-      <Restinfo />
+      <Restinfo data={data} />
       <Usercomment />
       <Waterfall />
       <div style={{ position: "fixed", top: '0px', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '2.8rem', width: "100%", backgroundColor: '#fff', visibility: headerv }}>

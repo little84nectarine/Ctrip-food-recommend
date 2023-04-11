@@ -1,13 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const initialState = {};
+const initialState = {id: 1};
 
 const todoSlice = createSlice({
     name: 'currRest',
     initialState,
     reducers: {
         changeCurr: (state, action) => {
-            state.currRest = {...action.payload}
+            state.currRest = {id: action.payload}
         }
     }
 });
