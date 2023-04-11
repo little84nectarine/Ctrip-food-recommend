@@ -11,4 +11,33 @@
         font-size: 48px;
         user-select: none;
     }
+
+    .tag{
+        width: fit-content;
+        background-color: #000000;
+        position: relative;
+        top: -2rem;
+        left: 2rem;
+        height: 1.2rem;
+        color: white;
+        font-size: 0.5rem;
+        border-radius: 0.75rem;
+        line-height: 1.23rem;
+        padding: 0 0.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+
+        .icon{
+            // display: inline-block;
+            // background-color: white;
+            // width: 0.7rem;
+            // height: 0.7rem;
+            // margin: 0 0.3rem;
+            transform: rotateZ(-90deg);
+        }
+    }
+
+    
 }

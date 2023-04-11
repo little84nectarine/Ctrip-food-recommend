@@ -13,15 +13,14 @@ const Restcard = ({ data }) => {
   //跳转到对应商店详情页
   const toRestaurant = () => {
     navigate('/food', { state: {
-      "aad":"1"
+      "aad":1
     }})
-
-    dispatch(changeCurr(data))
+    dispatch(changeCurr(data.id))
   }
   return (
     <div className={styles.restcardbox} onClick={toRestaurant}>
       <div className={styles.imgBox}>
-        <img height={"100%"} src={data.imgs[1]} alt="" />
+        <img height={"100%"} src={data.imgs[0]} alt="" />
       </div>
       <div className={styles.details}>
         <div className={styles.name}>{data.name}</div>

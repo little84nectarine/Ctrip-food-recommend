@@ -48,11 +48,6 @@ const Home = () => {
               return <Restcard data={i} key={i.id} />
             })
           }
-          {
-            restData.map((i) => {
-              return <Restcard data={i} key={i.id} />
-            })
-          }
         </div>
       </div>
 
