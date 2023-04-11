@@ -26,10 +26,14 @@
     height: 22rem;
     width: 100%;
     background-color: rgb(255, 255, 255);
+    overflow-y: scroll;
     display: flex;
-
     span {
         margin-left: 1.5rem;
+    }
+    .sortbox{
+        margin: 1rem 0rem 1rem 1rem;
+        flex-direction: column;
     }
 }
 
