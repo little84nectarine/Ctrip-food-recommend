@@ -3,9 +3,6 @@ import styles from "./swiper.module.scss"
 import { Swiper } from 'antd-mobile'
 import { restaurantdetailApi } from '../../request/api'
 
-
-
-
 const Myswiper = () => {
   const [data, setData] = useState({})
 

@@ -3,7 +3,7 @@ import Foodrouter from "./router/router"
 
 function App() {
   return (
-    <Foodrouter/>
+    <Foodrouter />
   );
 }
 

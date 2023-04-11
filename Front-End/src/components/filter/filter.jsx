@@ -35,8 +35,8 @@ const Filter = (props) => {
 
   const scrolltofilter = () => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
-    if (curTop < 145) {
-      document.documentElement.scrollTop = 145
+    if (curTop < 149) {
+      document.documentElement.scrollTop = 149
       setHeadercolor("white")
     }
   }

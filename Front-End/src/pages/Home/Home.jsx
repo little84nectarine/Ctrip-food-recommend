@@ -26,7 +26,7 @@ const Home = () => {
     restaruantApi().then(res => {
       setRestData(res.data)
     })
-    
+
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
     window.addEventListener("scroll", addheader)
@@ -41,7 +41,7 @@ const Home = () => {
       <HeaderFixed color={headercolor} />
       <div className={styles.content}>
         <Banner />
-        <Filter setHeadercolor={setHeadercolor}/>
+        <Filter setHeadercolor={setHeadercolor} />
         <div style={{ backgroundColor: 'rgb(250, 250, 250)', padding: '0 0.7rem' }}>
           {
             restData.map((i) => {
