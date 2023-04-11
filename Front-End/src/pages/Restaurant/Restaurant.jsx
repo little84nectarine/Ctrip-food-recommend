@@ -28,7 +28,7 @@ const Food = () => {
     }
   }, 100)
 
-  const id = (useSelector(store => store.currRest))?.id
+  const id = (useSelector(store => store.currRest)).id
   console.log('====================================');
   console.log(id);
   console.log('====================================');

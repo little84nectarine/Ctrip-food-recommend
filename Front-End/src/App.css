@@ -7,3 +7,8 @@
   width: 100vw;
   height: 100vh;
 }
+
+/* 修改antd下拉框选中颜色 */
+.adm-dropdown-item-highlight {
+  color: rgb(200,55,55) !important;
+}

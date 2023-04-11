@@ -42,7 +42,7 @@ const Header_fixed = (props) => {
             </div>
             {/* 爱心，点击后改实心爱心的样式 */}
             <div className={styles.fixedheaderright}>
-                <HeartOutline style={{ marginTop: '-0.2rem', marginLeft: '0.5rem', fontSize: '28px' }} onClick={() => setHeart(!heart)} />
+                <HeartOutline style={{ marginTop: '-0.2rem', fontSize: '28px',marginLeft:'-0.1rem' }} onClick={() => setHeart(!heart)} />
                 <HeartFill className={heart ? styles.heartfill : styles.heartnotfill} onClick={() => setHeart(!heart)} />
             </div>
         </div>

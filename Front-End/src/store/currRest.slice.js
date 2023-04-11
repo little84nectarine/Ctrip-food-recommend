@@ -7,7 +7,7 @@ const todoSlice = createSlice({
     initialState,
     reducers: {
         changeCurr: (state, action) => {
-            state.currRest = {id: action.payload}
+            state.id = action.payload
         }
     }
 });
