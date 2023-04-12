@@ -12,9 +12,7 @@ const Restcard = ({ data }) => {
 
   //跳转到对应商店详情页
   const toRestaurant = () => {
-    navigate('/food', { state: {
-      "aad":1
-    }})
+    navigate('/food')
     dispatch(changeCurr(data.id))
   }
   return (

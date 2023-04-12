@@ -51,7 +51,8 @@ const Food = () => {
   }, [])
 
   return (
-    <div style={{ backgroundColor: 'rgb(240,243,246)' }}>
+    <>
+    {id===0?404:<div style={{ backgroundColor: 'rgb(240,243,246)' }}>
       <div style={{ zIndex: '-10' }}>
         <Myswiper data={data.imgs? [data.video, ...data.imgs] : []} />
 
@@ -63,7 +64,8 @@ const Food = () => {
         <LeftOutline style={{ position: 'absolute', top: '1rem', left: '1rem', fontSize: '16px', visibility: 'visible' }} onClick={() => navigate('/')} />
         <span style={{ fontSize: '17px' }}>餐厅详情</span>
       </div>
-    </div>
+    </div>}
+    </>
   )
 }
 

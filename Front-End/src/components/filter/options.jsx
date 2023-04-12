@@ -26,15 +26,15 @@ export const rankoptions = [
 ]
 export const priceoptions = [
     {
-        label: '300以上',
+        label: '500以上',
         value: 'price1',
     },
     {
-        label: '200-300',
+        label: '300-500',
         value: 'price2',
     },
     {
-        label: '100-200',
+        label: '100-300',
         value: 'price3',
     },
     {

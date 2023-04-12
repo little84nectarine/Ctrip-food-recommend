@@ -7,9 +7,12 @@ import Filter from '../../components/filter/filter'
 import Restcard from "../../components/card/restcard/restcard"
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
 import { restaruantApi } from '../../request/api'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeList } from '../../store/currList.slice'
 
 const Home = () => {
-  let [restData, setRestData] = useState([])
+  const restlist = useSelector((state) => state.currList.restList)
+  const dispatch = useDispatch()
   const [headercolor, setHeadercolor] = useState("transparent")
 
   const addheader = useThrottle(() => {
@@ -24,7 +27,7 @@ const Home = () => {
 
   useEffect(() => {
     restaruantApi().then(res => {
-      setRestData(res.data)
+      dispatch(changeList([...res.data]))
     })
 
     document.body.scrollTop = 0
@@ -44,7 +47,7 @@ const Home = () => {
         <Filter setHeadercolor={setHeadercolor} />
         <div style={{ backgroundColor: 'rgb(250, 250, 250)', padding: '0 0.7rem' }}>
           {
-            restData.map((i) => {
+            restlist.map((i) => {
               return <Restcard data={i} key={i.id} />
             })
           }
