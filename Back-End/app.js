@@ -1,4 +1,7 @@
 const express = require('express')
+const locationfilter = require('./locationfilter')
+const stylefilter = require('./stylefilter')
+const sortfilter = require('./sortfilter')
 const app = new express()
 
 //导入餐厅列表json
@@ -7,17 +10,25 @@ const restaruant = require('./mock/restruant.json')
 const bannerlist = require('./mock/banner.json')
 //非菜系叶子节点列表
 const notleafstyle = ["火锅系列", "外国菜", "粉面", "地方菜", "快餐简餐", "火锅", "西餐", "日本料理", "小吃", "韩国料理"]
-
-
+//当前筛选是否在用
+let currentfilter = ["不限", "不限", "不限", "默认"]
+//所有项列表
+let list = Object.values(restaruant.data)
+const filterfunc = ()=>{
+    let result = list;
+    result = locationfilter(currentfilter[0],result)
+    result = stylefilter(currentfilter[1],result)
+    result = sortfilter(currentfilter[3],result)
+    return result
+}
 //返回餐厅列表
 app.get("/restaurantList", function (req, res) {
-    let list = Object.values(restaruant.data)
     res.json(list);
 })
 
 //返回餐厅详情页
 app.post("/restaurantdetail", express.json(), function (req, res) {
-    let restlen = Object.keys(restaruant.data).length
+    let restlen = list.length
     let id = req.body.id
     if (id > 0 && id <= restlen) {
         let result = restaruant.data[id]
@@ -36,99 +47,21 @@ app.get("/bannerList", function (req, res) {
 //单选筛选
 //位置
 app.get("/locationfilter", function (req, res) {
-    let list = Object.values(restaruant.data)
     let str = req.query.filter
-    if (str === "不限") {
-        res.json(list);
-        return
-    } else if (str.includes("区")) {
-        let result = list.filter(item => {
-            return item.generalPosition.startsWith(str)
-        })
-        res.json(result)
-        return
-    } else {
-        let dis = 0;
-        if (str.includes("公里")) {
-            dis = parseFloat(str) * 1000
-        } else {
-            dis = parseFloat(str)
-        }
-        let result = list.filter(item => {
-            return item.distance <= dis
-        })
-        res.json(result);
-        return
-    }
+    currentfilter[0] = str
+    res.json(filterfunc())
 })
 //菜系
 app.get("/stylefilter", function (req, res) {
-    let list = Object.values(restaruant.data)
     let str = req.query.filter
-    if (str === "不限") {
-        res.json(list);
-        return
-    } else if (notleafstyle.includes(str)) {
-        //根据具体的一级菜系去判断
-        switch (str) {
-            case "火锅系列" || "火锅":
-                res.json(list.filter(item=>{
-                    return item.style.includes("火锅")
-                }));
-                break;
-            case "外国菜":
-                res.json(list.filter(item=>{
-                    return ["法国菜","意大利菜","披萨","俄罗斯菜","寿司","居酒屋","日式火锅","韩国烤肉","韩式火锅","西式快餐"].includes(item.style)
-                }));
-                break;
-            case "粉面":
-                res.json(list.filter(item=>{
-                    return ["面食","米粉/米线"].includes(item.style)
-                }));
-                break;
-            case "地方菜":
-                res.json(list.filter(item=>{
-                    return ["江浙菜","川菜","粤菜","湘菜"].includes(item.style)
-                }));
-                break;
-            case "快餐简餐":
-                res.json(list.filter(item=>{
-                    return ["西式快餐","中式快餐"].includes(item.style)
-                }));
-                break;
-            case "西餐":
-                res.json(list.filter(item=>{
-                    return ["法国菜","意大利菜","披萨","俄罗斯菜"].includes(item.style)
-                }));
-                break;
-            case "日本料理":
-                res.json(list.filter(item=>{
-                    return ["寿司","居酒屋","日式火锅"].includes(item.style)
-                }));
-                break;
-            case "小吃":
-                res.json(list.filter(item=>{
-                    return ["面食","麻辣烫","小龙虾","米粉/米线"].includes(item.style)
-                }));
-                break;
-            case "韩国料理":
-                res.json(list.filter(item=>{
-                    return ["韩国烤肉","韩式火锅"].includes(item.style)
-                }));
-                break;
-        }
-        return
-    } else {
-        let result = list.filter(item => {
-            return item.style === str
-        })
-        res.json(result);
-        return
-    }
+    currentfilter[1] = str
+    res.json(filterfunc())
 })
 //排序
 app.get("/sortfilter", function (req, res) {
-
+    let str = req.query.filter
+    currentfilter[3] = str
+    res.json(filterfunc())
 })
 
 //多选筛选
