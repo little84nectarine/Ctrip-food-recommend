@@ -2,9 +2,12 @@ import React from 'react'
 import styles from "./restinfo.module.scss"
 import { DownFill, DownOutline, PhoneFill } from 'antd-mobile-icons'
 
+const timeMapper = function(arr){
+  
+}
 
 const Restinfo = ({ data }) => {
-  console.log(data.duration);
+  // console.log(data.duration);
 
   return (
     <div className={styles.infobox}>
