@@ -12,3 +12,7 @@
 .adm-dropdown-item-highlight {
   color: rgb(200,55,55) !important;
 }
+
+.adm-space-item{
+  margin-right: 10px !important;
+}
