@@ -4,9 +4,7 @@ import { DownFill, DownOutline, PhoneFill } from 'antd-mobile-icons'
 
 
 const Restinfo = ({ data }) => {
-  // console.log('====================================');
-  console.log(data);
-  // console.log('====================================');
+  console.log(data.duration);
 
   return (
     <div className={styles.infobox}>

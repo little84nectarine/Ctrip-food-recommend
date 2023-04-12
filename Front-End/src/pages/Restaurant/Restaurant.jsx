@@ -21,7 +21,7 @@ const Food = () => {
   const addheader = useThrottle(() => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
     //滚动超过70则显示header，小于70隐藏
-    if (curTop > 70) {
+    if (curTop > 20) {
       setHeaderv("visible")
     } else if (curTop <= 70) {
       setHeaderv("hidden")
@@ -29,9 +29,6 @@ const Food = () => {
   }, 100)
 
   const id = (useSelector(store => store.currRest)).id
-  console.log('====================================');
-  console.log(id);
-  console.log('====================================');
 
   //清除页面跳转后滚动条位置缓存
   useEffect(() => {
