@@ -39,7 +39,7 @@ const Food = () => {
       }
     }
     setActiveKey(currentKey)
-  }, 100)
+  }, 300)
 
   const addheader = useThrottle(() => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -89,9 +89,9 @@ const Food = () => {
   return (
     <>
     {/* tab栏 */}
-      <div className={styles.tabsContainer}>
+      <div className={styles.tabsContainer} style={{ visibility: "hidden"}}>
         <Tabs
-          style={{'--active-line-color':'red', "--active-title-color": "red", visibility: headerv}
+          style={{'--active-line-color':'red', "--active-title-color": "red"}
           }
           activeKey={activeKey}
           onChange={key => {

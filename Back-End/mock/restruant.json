@@ -12,7 +12,7 @@
 			"reviews": 201,
 			"avgPrice": 521,
 			"exactPosition": "天钥桥路333号",
-			"generalPosition": "天钥桥路",
+			"generalPosition": "徐汇区/天钥桥路",
 			"style": "小龙虾",
 			"duration": [
 				[
@@ -40,7 +40,7 @@
 			"reviews": 982,
 			"avgPrice": 468,
 			"exactPosition": "天钥桥路580号星游城4层409A",
-			"generalPosition": "天钥桥路",
+			"generalPosition": "徐汇区/天钥桥路",
 			"style": "鱼火锅",
 			"duration": [
 				[
@@ -66,9 +66,9 @@
 			"name": "阿娘面",
 			"score": 4.8,
 			"reviews": 627,
-			"avgPrice": 424,
+			"avgPrice": 50,
 			"exactPosition": "卢湾区思南路36号2",
-			"generalPosition": "卢湾区/思南路",
+			"generalPosition": "黄浦区/思南路",
 			"style": "面食",
 			"duration": [
 				[
@@ -96,7 +96,7 @@
 			"reviews": 819,
 			"avgPrice": 353,
 			"exactPosition": "奉贤路288号2楼",
-			"generalPosition": "奉贤路",
+			"generalPosition": "静安区/奉贤路",
 			"style": "居酒屋",
 			"duration": [
 				[
@@ -124,7 +124,7 @@
 			"reviews": 192,
 			"avgPrice": 694,
 			"exactPosition": "淮海中路138号上海广场5楼503商铺",
-			"generalPosition": "淮海中路",
+			"generalPosition": "黄浦区/淮海中路",
 			"style": "江浙菜",
 			"duration": [
 				[
@@ -150,7 +150,7 @@
 			"name": "老地方面馆",
 			"score": 4.4,
 			"reviews": 791,
-			"avgPrice": 751,
+			"avgPrice": 20,
 			"exactPosition": "徐汇区襄阳南路233号",
 			"generalPosition": "徐汇区/襄阳南路",
 			"style": "面食",
@@ -180,7 +180,7 @@
 			"reviews": 535,
 			"avgPrice": 268,
 			"exactPosition": "淮海中路988-1临",
-			"generalPosition": "淮海中路",
+			"generalPosition": "黄浦区/淮海中路",
 			"style": "中式快餐",
 			"duration": [
 				[
@@ -208,7 +208,7 @@
 			"reviews": 313,
 			"avgPrice": 160,
 			"exactPosition": "太仓路181弄新天地北里235号02单元",
-			"generalPosition": "太仓路/新天地地区",
+			"generalPosition": "黄浦区/太仓路",
 			"style": "川菜",
 			"duration": [
 				[
@@ -236,7 +236,7 @@
 			"reviews": 614,
 			"avgPrice": 341,
 			"exactPosition": "南汇路73号",
-			"generalPosition": "南汇路",
+			"generalPosition": "静安区/南汇路",
 			"style": "披萨",
 			"duration": [
 				[
@@ -292,7 +292,7 @@
 			"reviews": 41,
 			"avgPrice": 281,
 			"exactPosition": "淮海中路438号2楼",
-			"generalPosition": "淮海中路",
+			"generalPosition": "黄浦区/淮海中路",
 			"style": "小龙虾",
 			"duration": [
 				[
@@ -318,9 +318,9 @@
 			"name": "Joe's Pizza",
 			"score": 4.7,
 			"reviews": 835,
-			"avgPrice": 668,
+			"avgPrice": 80,
 			"exactPosition": "南京西路1788号梅龙镇广场B1楼",
-			"generalPosition": "南京西路/梅龙镇广场",
+			"generalPosition": "静安区/南京西路",
 			"style": "披萨",
 			"duration": [
 				[
@@ -348,7 +348,7 @@
 			"reviews": 767,
 			"avgPrice": 828,
 			"exactPosition": "浦江镇新浜路555号万达广场1楼",
-			"generalPosition": "新浜路",
+			"generalPosition": "浦东新区/新浜路",
 			"style": "西式快餐",
 			"duration": [
 				[
@@ -404,7 +404,7 @@
 			"reviews": 945,
 			"avgPrice": 448,
 			"exactPosition": "打浦路11号",
-			"generalPosition": "打浦路",
+			"generalPosition": "黄浦区/打浦路",
 			"style": "重庆火锅",
 			"duration": [
 				[
@@ -542,7 +542,7 @@
 			"name": "三姐米粉王",
 			"score": 4.4,
 			"reviews": 146,
-			"avgPrice": 584,
+			"avgPrice": 16,
 			"exactPosition": "黄浦区肇嘉浜路16号",
 			"generalPosition": "黄浦区/肇嘉浜路",
 			"style": "米粉/米线",
@@ -740,7 +740,7 @@
 			"reviews": 902,
 			"avgPrice": 205,
 			"exactPosition": "斜土二路111号",
-			"generalPosition": "徐汇区",
+			"generalPosition": "徐汇区/斜土二路",
 			"style": "小龙虾",
 			"duration": [
 				[
@@ -878,7 +878,7 @@
 			"name": "祥和面馆",
 			"score": 4.6,
 			"reviews": 742,
-			"avgPrice": 240,
+			"avgPrice": 100,
 			"exactPosition": "长宁区定西路1235弄1号",
 			"generalPosition": "长宁区/定西路",
 			"style": "面食",
@@ -1186,7 +1186,7 @@
 			"name": "知味面馆",
 			"score": 3.7,
 			"reviews": 119,
-			"avgPrice": 341,
+			"avgPrice": 40,
 			"exactPosition": "四川中路香港路路口",
 			"generalPosition": "黄浦区/四川中路",
 			"style": "面食",
@@ -1578,7 +1578,7 @@
 			"name": "依水园寿司屋",
 			"score": 4.1,
 			"reviews": 377,
-			"avgPrice": 743,
+			"avgPrice": 200,
 			"exactPosition": "浦东新区林展路380号",
 			"generalPosition": "浦东新区/林展路",
 			"style": "寿司",
@@ -1746,7 +1746,7 @@
 			"name": "张亮麻辣烫",
 			"score": 4.3,
 			"reviews": 307,
-			"avgPrice": 524,
+			"avgPrice": 80,
 			"exactPosition": "黄浦区天津路128号",
 			"generalPosition": "黄浦区/天津路",
 			"style": "麻辣烫",
@@ -2168,7 +2168,7 @@
 			"reviews": 676,
 			"avgPrice": 603,
 			"exactPosition": "卢湾区雁荡路14号",
-			"generalPosition": "卢湾区/雁荡路",
+			"generalPosition": "黄浦区/雁荡路",
 			"style": "面食",
 			"duration": [
 				[

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const initialState = {id: 1};
+const initialState = {id: 0};
 
 const todoSlice = createSlice({
     name: 'currRest',

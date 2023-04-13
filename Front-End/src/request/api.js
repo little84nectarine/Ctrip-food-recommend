@@ -2,7 +2,14 @@
 import service from './index'
 import axios from 'axios';
 
+//------ GET ------
+//获取所有餐厅列表
 export const restaruantApi = () => service.get('api/restaurantList');
+export const bannerApi = () => service.get('api/bannerList');
+export const singlefilter = (urlkey) => service.get(`api/${urlkey}`)
+
+//------ POST ------
+//获取餐厅详情
 export const restaurantdetailApi = function (body = {}) {
     return axios({
         method: 'post',
@@ -10,4 +17,3 @@ export const restaurantdetailApi = function (body = {}) {
         data: body
     })
 }
-export const bannerApi = () => service.get('api/bannerList');
