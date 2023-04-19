@@ -1,7 +1,8 @@
 const express = require('express')
-const locationfilter = require('./locationfilter')
-const stylefilter = require('./stylefilter')
-const sortfilter = require('./sortfilter')
+const locationfilter = require('./filterfunction/locationfilter')
+const stylefilter = require('./filterfunction/stylefilter')
+const sortfilter = require('./filterfunction/sortfilter')
+const multifilter = require('./filterfunction/multifilter')
 const app = new express()
 
 //导入餐厅列表json
@@ -11,11 +12,12 @@ const bannerlist = require('./mock/banner.json')
 //非菜系叶子节点列表
 const notleafstyle = ["火锅系列", "外国菜", "粉面", "地方菜", "快餐简餐", "火锅", "西餐", "日本料理", "小吃", "韩国料理"]
 //当前筛选是否在用
-let currentfilter = ["不限", "不限", "不限", "默认"]
+let currentfilter = ["不限", "不限", [[],[]], "默认"]
 //所有项列表
 let list = Object.values(restaruant.data)
 const filterfunc = ()=>{
-    let result = list;
+    let result = Object.values(restaruant.data);
+    result = multifilter(currentfilter[2][0],currentfilter[2][1],result)
     result = locationfilter(currentfilter[0],result)
     result = stylefilter(currentfilter[1],result)
     result = sortfilter(currentfilter[3],result)
@@ -66,7 +68,15 @@ app.get("/sortfilter", function (req, res) {
 
 //多选筛选
 app.post("/multifilter", express.json(), function (req, res) {
-
+    let rankarr = req.body?.rank
+    let pricearr = req.body?.price
+    if(rankarr){
+        currentfilter[2][0] = rankarr
+    }
+    if(pricearr){
+        currentfilter[2][1] = pricearr
+    }
+    res.json(filterfunc())
 })
 
 app.listen(5500, function () {

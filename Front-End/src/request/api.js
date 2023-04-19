@@ -17,3 +17,11 @@ export const restaurantdetailApi = function (body = {}) {
         data: body
     })
 }
+//多项筛选
+export const multifilterApi = function (body = {}) {
+    return axios({
+        method: 'post',
+        url: '/api/multifilter',
+        data: body
+    })
+}

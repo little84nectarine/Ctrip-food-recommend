@@ -11,6 +11,7 @@
 			"score": 3.1,
 			"reviews": 201,
 			"avgPrice": 521,
+			"rank":2,
 			"exactPosition": "天钥桥路333号",
 			"generalPosition": "徐汇区/天钥桥路",
 			"style": "小龙虾",
@@ -39,6 +40,7 @@
 			"score": 4.3,
 			"reviews": 982,
 			"avgPrice": 468,
+			"rank": 3,
 			"exactPosition": "天钥桥路580号星游城4层409A",
 			"generalPosition": "徐汇区/天钥桥路",
 			"style": "鱼火锅",
@@ -67,6 +69,7 @@
 			"score": 4.8,
 			"reviews": 627,
 			"avgPrice": 50,
+			"rank": 4,
 			"exactPosition": "卢湾区思南路36号2",
 			"generalPosition": "黄浦区/思南路",
 			"style": "面食",
@@ -95,6 +98,7 @@
 			"score": 3.5,
 			"reviews": 819,
 			"avgPrice": 353,
+			"rank": 5,
 			"exactPosition": "奉贤路288号2楼",
 			"generalPosition": "静安区/奉贤路",
 			"style": "居酒屋",
@@ -123,6 +127,7 @@
 			"score": 4.9,
 			"reviews": 192,
 			"avgPrice": 694,
+			"rank": 6,
 			"exactPosition": "淮海中路138号上海广场5楼503商铺",
 			"generalPosition": "黄浦区/淮海中路",
 			"style": "江浙菜",
@@ -207,6 +212,7 @@
 			"score": 4.2,
 			"reviews": 313,
 			"avgPrice": 160,
+			"rank":2,
 			"exactPosition": "太仓路181弄新天地北里235号02单元",
 			"generalPosition": "黄浦区/太仓路",
 			"style": "川菜",
@@ -515,6 +521,7 @@
 			"score": 4.6,
 			"reviews": 473,
 			"avgPrice": 995,
+			"rank":2,
 			"exactPosition": "黄浦区南京东路353号悦荟mosaicF6",
 			"generalPosition": "黄浦区/南京东路",
 			"style": "意大利菜",
@@ -1411,6 +1418,7 @@
 			"score": 3.3,
 			"reviews": 993,
 			"avgPrice": 334,
+			"rank":3,
 			"exactPosition": "杨浦区双辽路768号",
 			"generalPosition": "杨浦区/双辽路",
 			"style": "西式快餐",
@@ -1579,6 +1587,7 @@
 			"score": 4.1,
 			"reviews": 377,
 			"avgPrice": 200,
+			"rank":2,
 			"exactPosition": "浦东新区林展路380号",
 			"generalPosition": "浦东新区/林展路",
 			"style": "寿司",
@@ -1775,6 +1784,7 @@
 			"score": 3.7,
 			"reviews": 9,
 			"avgPrice": 330,
+			"rank":4,
 			"exactPosition": "长宁区水城南路333号云古酒店1楼",
 			"generalPosition": "长宁区/水城南路",
 			"style": "居酒屋",
@@ -1915,6 +1925,7 @@
 			"score": 4.1,
 			"reviews": 505,
 			"avgPrice": 773,
+			"rank":5,
 			"exactPosition": "浦东新区松林路357号-1楼",
 			"generalPosition": "浦东新区/松林路",
 			"style": "日式火锅",
@@ -2139,6 +2150,7 @@
 			"score": 4.3,
 			"reviews": 548,
 			"avgPrice": 176,
+			"rank":6,
 			"exactPosition": "黄浦区进贤路169号",
 			"generalPosition": "黄浦区/进贤路",
 			"style": "法国菜",
@@ -2307,6 +2319,7 @@
 			"score": 4.4,
 			"reviews": 300,
 			"avgPrice": 819,
+			"rank":5,
 			"exactPosition": "泰康路248弄田子坊23号甲",
 			"generalPosition": "黄浦区/泰康路",
 			"style": "披萨",
@@ -2419,6 +2432,7 @@
 			"score": 4.6,
 			"reviews": 482,
 			"avgPrice": 756,
+			"rank":3,
 			"exactPosition": "徐汇区乌鲁木齐中路168号",
 			"generalPosition": "徐汇区/乌鲁木齐中路",
 			"style": "湘菜",
@@ -2615,6 +2629,7 @@
 			"score": 4.2,
 			"reviews": 530,
 			"avgPrice": 938,
+			"rank":4,
 			"exactPosition": "黄浦区淮海中路845号",
 			"generalPosition": "黄浦区/淮海中路",
 			"style": "法国菜",
@@ -2800,7 +2815,7 @@
 			"distance": 7752,
 			"video": "https://ak-v.tripcdn.com/videos/1A091t000001i1av39C52.mp4?ts=1622898856678"
 		},
-		"101":{
+		"101": {
 			"id": 101,
 			"imgs": [
 				"https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
@@ -2828,7 +2843,7 @@
 			"distance": 3680,
 			"video": "https://ak-v.tripcdn.com/videos/1A091t000001i1av39C52.mp4?ts=1622898856678"
 		},
-		"102":{
+		"102": {
 			"id": 102,
 			"imgs": [
 				"https://youimg1.c-ctrip.com/target/10030q000000goy0v1E89_D_750_562_Q90.jpg?proc=autoorient",
@@ -2856,5 +2871,5 @@
 			"distance": 200,
 			"video": "https://ak-v.tripcdn.com/videos/1A091t000001i1av39C52.mp4?ts=1622898856678"
 		}
-    }
+	}
 }

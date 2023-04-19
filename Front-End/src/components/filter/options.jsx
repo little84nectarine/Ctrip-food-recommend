@@ -27,18 +27,18 @@ export const rankoptions = [
 export const priceoptions = [
     {
         label: '500以上',
-        value: 'price1',
+        value: '500-10000',
     },
     {
         label: '300-500',
-        value: 'price2',
+        value: '300-500',
     },
     {
         label: '100-300',
-        value: 'price3',
+        value: '100-300',
     },
     {
         label: '100以内',
-        value: 'price4',
+        value: '0-100',
     }
 ]
