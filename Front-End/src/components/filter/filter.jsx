@@ -1,13 +1,16 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import styles from "./filter.module.scss"
 import Filtercard from '../card/filtercard/filtercard'
 import { Dropdown, Selector } from 'antd-mobile'
 import { CheckOutline } from 'antd-mobile-icons'
 import { rankoptions, priceoptions } from './options'
-import { singlefilter, multifilterApi } from '../../request/api'
-import { useDispatch,useSelector } from 'react-redux'
+import { multifilterApi } from '../../request/api'
+import { useDispatch, useSelector } from 'react-redux'
+import { restaruantApi } from '../../request/api'
 import { changeList } from "../../store/currList.slice"
-
+import { changeEnd } from '../../store/islistEnd.slice'
+import { restart } from '../../store/currPagecount.slice'
+import { changefilterlist } from '../../store/currFilter.slice'
 const distancelist = ["不限", "500米内", "1.5公里内", "5公里内", "10公里内"]
 const nationalarea = ["不限", "静安区", "徐汇区", "长宁区", "黄浦区", "虹口区", "宝山区", "浦东新区", "普陀区", "杨浦区", "闵行区", "嘉定区"]
 const caixi = {
@@ -22,11 +25,12 @@ const caixi = {
 }
 const specialfood = ["不限", "火锅系列", "外国菜", "粉面"]
 const sortselect = ["默认", "距离最近", "人均最高", "人均最低"]
-
 const Filter = (props) => {
   const { setHeadercolor } = props
   const dispatch = useDispatch()
   const restlist = useSelector((state) => state.currList.restList)
+  const pagecount = useSelector(state => state.currPagecount.pagecount)
+  const filterlist = useSelector(state => state.currFilter.filterlist)
   //下拉菜单ref
   const dropdownref = useRef()
   //位置筛选相关变量
@@ -39,67 +43,97 @@ const Filter = (props) => {
   const [foodstyle3, setFoodstyle3] = useState("全部")
   const [specialstyle, setSpecialstyle] = useState("不限")
   //筛选相关变量
-  const [slength,setSlength] = useState(0)
+  const [slength, setSlength] = useState(0)
   const [rank, setRank] = useState([])
   const [price, setPrice] = useState([])
-  const [templist,setTemplist] = useState(restlist)
   //智能排序相关变量
   const [sortselection, setSortselection] = useState("默认")
   //点击filter区域自动scroll至其sticky位置
-  const scrolltofilter = () => {
+  const scrolltofilter = useCallback(() => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
-    if (curTop < 149 && restlist.length>=4) {
+    if (curTop < 149 && restlist.length >= 4) {
       document.documentElement.scrollTop = 149
       setHeadercolor("white")
     }
-  }
-  //单向筛选回调，向后端请求筛选后列表，并关闭筛选下拉框
-  const tofilter = (urlkey, item) => {
-    let str = ""
-    if (item === "全部") {
-      str = foodstyle2
+  })
+  //后端判断是否触底
+  const ifend = useCallback((code)=>{
+    if (code === 201) {
+      dispatch(changeEnd(false))
     } else {
-      str = item
+      dispatch(changeEnd(true))
     }
-    singlefilter(`${urlkey}?filter=${str}`).then(res => {
-      dispatch(changeList([...res.data]))
-    })
-    dropdownref.current.close()
-  }
+  })
   //多项筛选回调
-  const confirmselector = (item, arr) => {
-    if (item === "rank") {
-      if(arr[arr.length-1] === "rank1"){
-        arr.length = 0;
-        arr.push("rank1")
-      }else if(arr[arr.length-1] !== "rank1" && arr.includes("rank1")){
-        arr.splice(0,1)
+  const confirmselector = (key, item) => {
+    if (key === "rank") {
+      if (item[item.length - 1] === "rank1") {
+        item.length = 0;
+        item.push("rank1")
+      } else if (item[item.length - 1] !== "rank1" && item.includes("rank1")) {
+        item.splice(0, 1)
       }
-      setRank(arr)
-      multifilterApi({ rank: arr }).then(res => {
+      setRank(item)
+      dispatch(changefilterlist([...filterlist.slice(0, 2), [item, filterlist[2][1]], filterlist[3]]))
+      multifilterApi({ arr: [...filterlist.slice(0, 2), [item, filterlist[2][1]], filterlist[3]] }).then(res => {
+        ifend(res.status)
         setSlength(res.data.length)
-        setTemplist(res.data)
       })
-    } else {
-      setPrice(arr)
-      multifilterApi({ price: arr }).then(res => {
+    } else if (key === "price") {
+      setPrice(item)
+      dispatch(changefilterlist([...filterlist.slice(0, 2), [filterlist[2][0], item], filterlist[3]]))
+      multifilterApi({ arr: [...filterlist.slice(0, 2), [filterlist[2][0], item], filterlist[3]] }).then(res => {
+        ifend(res.status)
         setSlength(res.data.length)
-        setTemplist(res.data)
+      })
+    } else if (key === "location") {
+      dispatch(changefilterlist([item, ...filterlist.slice(1, 4)]))
+      multifilterApi({ arr: [item, ...filterlist.slice(1, 4)] }).then(e => {
+        restaruantApi(0).then(res=>{
+          ifend(res.status)
+          dispatch(changeList([...res.data]))
+        })
+        dropdownref.current.close()
+      })
+    } else if (key === "style") {
+      if (item === "全部") {
+        item = foodstyle2
+      }
+      dispatch(changefilterlist([...filterlist.slice(0, 1), item, ...filterlist.slice(2, 4)]))
+      multifilterApi({ arr: [...filterlist.slice(0, 1), item, ...filterlist.slice(2, 4)] }).then(e => {
+        restaruantApi(0).then(res=>{
+          ifend(res.status)
+          dispatch(changeList([...res.data]))
+        })
+        dropdownref.current.close()
+      })
+    } else if (key === "sort") {
+      dispatch(changefilterlist([...filterlist.slice(0, 3), item]))
+      multifilterApi({ arr: [...filterlist.slice(0, 3), item] }).then(e => {
+        restaruantApi(0).then(res=>{
+          ifend(res.status)
+          dispatch(changeList([...res.data]))
+        })
+        dropdownref.current.close()
       })
     }
+    dispatch(restart())
   }
   //多项筛选重置
   const resetsort = () => {
     setRank([])
     setPrice([])
-    multifilterApi({ price: [],rank:[] }).then(res => {
+    dispatch(changefilterlist([...filterlist.slice(0, 2), [[], []], filterlist[3]]))
+    multifilterApi({ arr:[...filterlist.slice(0, 2), [[], []], filterlist[3]] }).then(res => {
       setSlength(res.data.length)
-      setTemplist(res.data)
     })
   }
   //多项筛选确认
   const confirmsort = () => {
-    dispatch(changeList([...templist]))
+    restaruantApi(0).then(res=>{
+      ifend(res.status)
+      dispatch(changeList([...res.data]))
+    })
     dropdownref.current.close()
   }
   return (
@@ -107,7 +141,7 @@ const Filter = (props) => {
       {/* 位置、菜系、筛选、智能排序 */}
       <div style={{ flexBasis: '50%', paddingRight: '0.3rem' }} onClick={scrolltofilter}>
         <Dropdown style={{ backgroundColor: 'rgb(250,250,250)' }} ref={dropdownref}>
-          <Dropdown.Item key='location' title={distance === "不限" ? (area === "不限" ? "位置" : area) : distance} highlight={distance !== "不限" || area !== "不限"}>
+          <Dropdown.Item key='location' title={filterlist[0]==="不限"?"位置":filterlist[0]} highlight={filterlist[0] !== "不限"}>
             <div className={styles.dropdownbox}>
               {/* 左一列选择距离还是行政区 */}
               <div className={styles.locationandstyleleft}>
@@ -119,13 +153,13 @@ const Filter = (props) => {
                 {location === "距离" ?
                   distancelist.map((item, index) => {
                     return <div key={index}>
-                      <div className={distance === item ? styles.boxrightselect : styles.boxright} onClick={() => { setDistance(item); setArea("不限"); tofilter("locationfilter", item) }}><span>{item}</span>{distance === item ? <CheckOutline style={{ margin: '1rem 1.2rem 0 0' }} /> : <></>}</div>
+                      <div className={distance === item ? styles.boxrightselect : styles.boxright} onClick={() => { setDistance(item); setArea("不限"); confirmselector("location", item) }}><span>{item}</span>{distance === item ? <CheckOutline style={{ margin: '1rem 1.2rem 0 0' }} /> : <></>}</div>
                       {(index !== distancelist.length - 1) ? <div style={{ height: '0.05rem', marginLeft: '1.4rem', marginTop: '0.12rem', backgroundColor: '#e8e8e8' }}></div> : <></>}
                     </div>
                   }) :
                   nationalarea.map((item, index) => {
                     return <div key={index}>
-                      <div className={area === item ? styles.boxrightselect : styles.boxright} onClick={() => { setArea(item); setDistance("不限"); tofilter("locationfilter", item) }}><span>{item}</span>{area === item ? <CheckOutline style={{ margin: '1rem 1.2rem 0 0' }} /> : <></>}</div>
+                      <div className={area === item ? styles.boxrightselect : styles.boxright} onClick={() => { setArea(item); setDistance("不限"); confirmselector("location", item) }}><span>{item}</span>{area === item ? <CheckOutline style={{ margin: '1rem 1.2rem 0 0' }} /> : <></>}</div>
                       {(index !== nationalarea.length - 1) ? <div style={{ height: '0.05rem', marginLeft: '1.4rem', marginTop: '0.12rem', backgroundColor: '#e8e8e8' }}></div> : <></>}
                     </div>
                   })
@@ -133,7 +167,7 @@ const Filter = (props) => {
               </div>
             </div>
           </Dropdown.Item>
-          <Dropdown.Item key='foodkind' title={specialstyle === "不限" ? (foodstyle2 === "不限" ? "菜系" : foodstyle3 === "全部" ? foodstyle2 : foodstyle3) : specialstyle} highlight={specialstyle !== "不限" || foodstyle2 !== "不限"}>
+          <Dropdown.Item key='foodkind' title={filterlist[1]==="不限"?"菜系":filterlist[1]} highlight={filterlist[1] !== "不限"}>
             <div className={styles.dropdownbox}>
               {/* 左一列选择菜系还是特色菜 */}
               <div className={styles.locationandstyleleft}>
@@ -148,14 +182,14 @@ const Filter = (props) => {
                       foodstyle1 === "菜系" ?
                         Object.keys(caixi).map((item, index) => {
                           return <div key={index}>
-                            <div className={foodstyle2 === item ? foodstyle2 === "不限" ? styles.boxrightselect : styles.locationandstyleleftdivselect : styles.locationandstyleleftdiv} onClick={() => { setFoodstyle2(item); if (item === "不限") { tofilter("stylefilter", item) } }}><span>{item}</span></div>
+                            <div className={foodstyle2 === item ? foodstyle2 === "不限" ? styles.boxrightselect : styles.locationandstyleleftdivselect : styles.locationandstyleleftdiv} onClick={() => { setFoodstyle2(item); if (item === "不限") { confirmselector("style", item) } }}><span>{item}</span></div>
                             <div style={{ height: '0.05rem', marginLeft: '1.4rem', marginTop: '0.12rem', backgroundColor: '#e8e8e8' }}></div>
                           </div>
                         })
                         :
                         specialfood.map((item, index) => {
                           return <div key={index}>
-                            <div className={specialstyle === item ? styles.boxrightselect : styles.boxright} onClick={() => { setSpecialstyle(item); setFoodstyle2("不限"); setFoodstyle3("全部"); tofilter("stylefilter", item) }}><span>{item}</span></div>
+                            <div className={specialstyle === item ? styles.boxrightselect : styles.boxright} onClick={() => { setSpecialstyle(item); setFoodstyle2("不限"); setFoodstyle3("全部"); confirmselector("style", item) }}><span>{item}</span></div>
                             {(index !== specialfood.length - 1) ? <div style={{ height: '0.05rem', marginLeft: '1.4rem', marginTop: '0.12rem', backgroundColor: '#e8e8e8' }}></div> : <></>}
                           </div>
                         })
@@ -168,7 +202,7 @@ const Filter = (props) => {
                         caixi[foodstyle2].length !== 0 ?
                           caixi[foodstyle2].map((item, index) => {
                             return <div key={index}>
-                              <div className={foodstyle3 === item ? styles.boxrightselect : styles.boxright} onClick={() => { setFoodstyle3(item); setSpecialstyle("不限"); tofilter("stylefilter", item) }}><span>{item}</span>{foodstyle3 === item ? <CheckOutline style={{ margin: '1rem 1.2rem 0 0' }} /> : <></>}</div>
+                              <div className={foodstyle3 === item ? styles.boxrightselect : styles.boxright} onClick={() => { setFoodstyle3(item); setSpecialstyle("不限"); confirmselector("style", item) }}><span>{item}</span>{foodstyle3 === item ? <CheckOutline style={{ margin: '1rem 1.2rem 0 0' }} /> : <></>}</div>
                               {(index !== caixi[foodstyle2].length - 1) ? <div style={{ height: '0.05rem', marginLeft: '1.4rem', marginTop: '0.12rem', backgroundColor: '#e8e8e8' }}></div> : <></>}
                             </div>
                           })
@@ -182,7 +216,7 @@ const Filter = (props) => {
               </div>
             </div>
           </Dropdown.Item>
-          <Dropdown.Item key='select' title='筛选'>
+          <Dropdown.Item key='select' title='筛选' highlight={(filterlist[2][0].length === 0 && filterlist[2][1].length === 0)?false:true}>
             <div className={styles.dropdownbox}>
               <div className={styles.sortbox}>
                 <div style={{ fontSize: '0.9rem', marginBottom: '0.7rem', marginLeft: '0.1rem' }}>等级</div>
@@ -233,12 +267,12 @@ const Filter = (props) => {
               </div>
             </div>
           </Dropdown.Item>
-          <Dropdown.Item key='sort' title={sortselection === "默认" ? '智能排序' : sortselection} highlight={sortselection !== "默认"}>
+          <Dropdown.Item key='sort' title={filterlist[3]==="默认"?"智能排序":filterlist[3]} highlight={filterlist[3] !== "默认"}>
             <div className={styles.dropdownbox} style={{ padding: '0', height: '22rem', flexDirection: 'column' }}>
               {
                 sortselect.map((item, index) => {
                   return <div key={index}>
-                    <div className={sortselection === item ? styles.boxrightselect : styles.boxright} onClick={() => { setSortselection(item); tofilter("sortfilter", item) }}><span>{item}</span>{sortselection === item ? <CheckOutline style={{ margin: '1rem 1.2rem 0 0' }} /> : <></>}</div>
+                    <div className={sortselection === item ? styles.boxrightselect : styles.boxright} onClick={() => { setSortselection(item); confirmselector("sort", item) }}><span>{item}</span>{sortselection === item ? <CheckOutline style={{ margin: '1rem 1.2rem 0 0' }} /> : <></>}</div>
                     {(index !== sortselect.length - 1) ? <div style={{ height: '0.05rem', marginLeft: '1.4rem', marginTop: '0.12rem', backgroundColor: '#e8e8e8' }}></div> : <></>}
                   </div>
                 })
@@ -260,5 +294,4 @@ const Filter = (props) => {
     </div>
   )
 }
-
 export default Filter

@@ -3,11 +3,17 @@ import { configureStore } from '@reduxjs/toolkit'
 // 导入 Reducer 进行使用
 import currRestReducer from './currRest.slice'
 import currListReducer from "./currList.slice"
+import islistEndReducer from "./islistEnd.slice"
+import currPagecountReducer from "./currPagecount.slice"
+import currFilterReducer from "./currFilter.slice"
  
 const store = configureStore({
   reducer: {
     currRest: currRestReducer,
-    currList: currListReducer
+    currList: currListReducer,
+    islistEnd:islistEndReducer,
+    currPagecount:currPagecountReducer,
+    currFilter:currFilterReducer
   },
 })
  

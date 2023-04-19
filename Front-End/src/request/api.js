@@ -4,9 +4,8 @@ import axios from 'axios';
 
 //------ GET ------
 //获取所有餐厅列表
-export const restaruantApi = () => service.get('api/restaurantList');
+export const restaruantApi = (page) => service.get(`api/restaurantList?page=${page}`);
 export const bannerApi = () => service.get('api/bannerList');
-export const singlefilter = (urlkey) => service.get(`api/${urlkey}`)
 
 //------ POST ------
 //获取餐厅详情
