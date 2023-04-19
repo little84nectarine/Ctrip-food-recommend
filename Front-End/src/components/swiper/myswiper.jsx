@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import styles from "./swiper.module.scss"
 import { Swiper, Popup } from 'antd-mobile'
 import { DownFill, PlayOutline } from 'antd-mobile-icons'
@@ -6,6 +6,7 @@ import { DownFill, PlayOutline } from 'antd-mobile-icons'
 
 const Myswiper = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef(null)
   console.log('====================================');
   console.log('aaaa', data);
   console.log('====================================');
@@ -20,17 +21,23 @@ const Myswiper = ({ data }) => {
             return index === 0 ?
               <Swiper.Item key={index} >
                 <div className={styles.content}>
-                  <div className={styles.playBtn} onClick={() => setIsPlaying(true)} >
+                  <div className={styles.playBtn} onClick={() => {
+                    setIsPlaying(true)
+                    videoRef?.current?.play()
+                  }} >
                     <PlayOutline />
                   </div>
                   <img style={{ zIndex: '1' }} src={data[1]} width="100%" alt="" />
                   <Popup
                     visible={isPlaying}
-                    onMaskClick={() => setIsPlaying(false)}
+                    onMaskClick={() => {
+                      setIsPlaying(false)
+                      videoRef?.current.pause()
+                    }}
                     bodyStyle={{ height: "90vh" }}
                   >
                     <div style={{height: '100%', overflow:'hidden'}}>
-                      <video autoPlay src={img} controls style={{
+                      <video ref={videoRef} src={img} controls style={{
                         position:'absolute', width: '100%', height: "100%", objectFit: 'cover',bottom: '0'
                        }} />
                     </div>

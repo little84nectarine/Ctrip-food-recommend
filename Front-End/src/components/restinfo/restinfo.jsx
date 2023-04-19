@@ -44,7 +44,6 @@ const Restinfo = ({ data }) => {
             <div>电话</div>
             {/* 电话弹出层 */}
             <Popup
-
               visible={telVisible}
               onMaskClick={() => setTelVisible(false)}
               bodyStyle={{ height: "18vh" }}
