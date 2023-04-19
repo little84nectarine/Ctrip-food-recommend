@@ -66,7 +66,6 @@ const Food = () => {
     restaurantdetailApi({ id: id }).
       then(res => {
         setData({ ...res.data })
-
       })
   }, [])
 

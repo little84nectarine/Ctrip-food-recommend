@@ -6,6 +6,8 @@ import { StarFill} from 'antd-mobile-icons'
 import { useDispatch } from 'react-redux'
 import { changeCurr } from '../../../store/currRest.slice'
 
+const ranklist = [,,"黑钻","钻石","铂金","金牌","银牌"]
+
 const Restcard = ({ data }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -29,10 +31,10 @@ const Restcard = ({ data }) => {
           <span className={styles.split}> | </span>
           <span className={styles.secondRow}>￥{data.avgPrice}/人</span>
         </div>
-        <div className={styles.tag}>
+        {data.rank?<div className={styles.tag}>
           <StarFill style={{marginRight:'0.1rem'}}/>
-          美食林黑钻
-        </div>
+          {`美食林${ranklist[data.rank]}`}
+        </div>:<></>}
         <div className={styles.lastRow}>
           <div style={{textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap'}}>
             <span style={{ display: "inline-block", marginRight: "0.3rem" }}>{data.style}</span>
@@ -40,6 +42,7 @@ const Restcard = ({ data }) => {
           </div>
           <div style={{flexBasis:'5.2rem',flexShrink:'0'}}>距市中心{data.distance>=1000?(data.distance/1000).toFixed(1)+"k":data.distance}m</div>
         </div>
+        {data.rank?<></>:<div style={{height:'0.8rem'}}></div>}
       </div>
     </div>
   )
