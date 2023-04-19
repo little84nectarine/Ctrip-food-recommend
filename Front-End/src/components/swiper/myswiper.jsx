@@ -23,7 +23,7 @@ const Myswiper = ({ data }) => {
                 <div className={styles.content}>
                   <div className={styles.playBtn} onClick={() => {
                     setIsPlaying(true)
-                    videoRef.current.play()
+                    videoRef?.current?.play()
                   }} >
                     <PlayOutline />
                   </div>
@@ -32,7 +32,7 @@ const Myswiper = ({ data }) => {
                     visible={isPlaying}
                     onMaskClick={() => {
                       setIsPlaying(false)
-                      videoRef.current.pause()
+                      videoRef?.current.pause()
                     }}
                     bodyStyle={{ height: "90vh" }}
                   >

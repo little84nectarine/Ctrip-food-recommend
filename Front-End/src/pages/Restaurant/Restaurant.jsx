@@ -65,6 +65,7 @@ const Food = () => {
     console.log('====================================');
     restaurantdetailApi({ id: id }).
       then(res => {
+        console.log(res.data);
         setData({ ...res.data })
       })
   }, [])

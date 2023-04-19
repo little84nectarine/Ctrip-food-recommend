@@ -7,6 +7,7 @@ const app = new express()
 
 //导入餐厅列表json
 const restaruant = require('./mock/restruant.json')
+const userComments = require('./mock/user.json')
 //导入banner列表json
 const bannerlist = require('./mock/banner.json')
 //非菜系叶子节点列表
@@ -30,6 +31,30 @@ app.get("/restaurantList", function (req, res) {
 
 //返回餐厅详情页
 app.post("/restaurantdetail", express.json(), function (req, res) {
+    let restlen = list.length
+    let id = req.body.id
+    if (id > 0 && id <= restlen) {
+        let result = restaruant.data[id]
+        // 将前三条评论数据一起返回
+        let comments = userComments.data[id].comments
+        if(comments.length <= 3){
+            result.comments = userComments.data[id].comments
+        }else{
+            let temp = []
+            for(let i = 0; i < 3; i++){
+                temp.push(comments[i])
+            }
+            result.comments = temp
+        }
+        res.json(result)
+    } else {
+        res.send(404)
+        return
+    }
+})
+
+//返回餐厅详情页
+app.post("/restComments", express.json(), function (req, res) {
     let restlen = list.length
     let id = req.body.id
     if (id > 0 && id <= restlen) {
