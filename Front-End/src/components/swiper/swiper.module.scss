@@ -10,6 +10,22 @@
         align-items: center;
         font-size: 48px;
         user-select: none;
+
+        .playBtn{
+            z-index: 2;
+            position: absolute;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 2rem;
+            background-color: #d6d6d6a6;
+            line-height: 4rem;
+            text-align: center;
+        }
+        .videoContainer{
+            background-color: #537FE7;
+            // object-fit: cover;
+            padding: 3rem;
+        }
     }
 
     .tag{

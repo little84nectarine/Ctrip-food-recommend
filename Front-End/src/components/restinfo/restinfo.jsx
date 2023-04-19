@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "./restinfo.module.scss"
 import { DownFill, DownOutline, PhoneFill } from 'antd-mobile-icons'
+import { Popup, Button } from 'antd-mobile'
 
-const timeMapper = function(arr){
-  
+const timeMapper = function (arr) {
+
 }
 
 const Restinfo = ({ data }) => {
-  // console.log(data.duration);
+  const [telVisible, setTelVisible] = useState(false)
 
   return (
     <div className={styles.infobox}>
@@ -36,9 +37,33 @@ const Restinfo = ({ data }) => {
         <div className={styles.tail}>
           <DownOutline style={{ transform: "rotateZ(-90deg)" }} />
           <span >|</span>
-          <div>
+          <div onClick={() => {
+            setTelVisible(true)
+          }}>
             <PhoneFill className={styles.icon} />
             <div>电话</div>
+            {/* 电话弹出层 */}
+            <Popup
+
+              visible={telVisible}
+              onMaskClick={() => setTelVisible(false)}
+              bodyStyle={{ height: "18vh" }}
+            >
+              <div style={{ padding: '1rem' }}>
+                <Button style={{ marginBottom: "0.5rem" }} block color='primary' size='large'
+                  onClick={
+                    () => window.location.href = `tel:${data.tel}`
+                  }
+                >
+                  tel:{data.tel}
+                </Button>
+                <Button style={{ margin: '1rem 0' }} block color='primary' size='large'
+                  onClick={() => setTelVisible(false)}
+                >
+                  取消
+                </Button>
+              </div>
+            </Popup>
           </div>
         </div>
       </div>

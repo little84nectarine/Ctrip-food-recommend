@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./swiper.module.scss"
-import { Swiper } from 'antd-mobile'
-import { DownFill } from 'antd-mobile-icons'
+import { Swiper, Popup } from 'antd-mobile'
+import { DownFill, PlayOutline } from 'antd-mobile-icons'
 
 
-const Myswiper = ({data}) => {
-
+const Myswiper = ({ data }) => {
+  const [isPlaying, setIsPlaying] = useState(false)
+  console.log('====================================');
+  console.log('aaaa', data);
+  console.log('====================================');
   useEffect(() => {
   }, [])
 
@@ -16,8 +19,23 @@ const Myswiper = ({data}) => {
           data.map((img, index) => {
             return index === 0 ?
               <Swiper.Item key={index} >
-                <div className={styles.content}>1</div>
-                {/* <div datatype='video' dataUrl={img}>22</div> */}
+                <div className={styles.content}>
+                  <div className={styles.playBtn} onClick={() => setIsPlaying(true)} >
+                    <PlayOutline />
+                  </div>
+                  <img style={{ zIndex: '1' }} src={data[1]} width="100%" alt="" />
+                  <Popup
+                    visible={isPlaying}
+                    onMaskClick={() => setIsPlaying(false)}
+                    bodyStyle={{ height: "90vh" }}
+                  >
+                    <div style={{height: '100%', overflow:'hidden'}}>
+                      <video autoPlay src={img} controls style={{
+                        position:'absolute', width: '100%', height: "100%", objectFit: 'cover',bottom: '0'
+                       }} />
+                    </div>
+                  </Popup>
+                </div>
               </Swiper.Item>
               : <Swiper.Item key={index}>
                 <div className={styles.content}>
@@ -29,9 +47,9 @@ const Myswiper = ({data}) => {
       </Swiper>
 
       <div className={styles.tag}>
-        <span>相册{data.length} </span><span className={styles.icon}> <DownFill/></span>
-        <span style={{paddingRight: '0.3rem', paddingLeft: '0.3rem', color: "rgb(162, 162, 162)"}}> | </span>
-        <span>达人晒图 </span><span className={styles.icon}><DownFill/></span>
+        <span>相册{data.length} </span><span className={styles.icon}> <DownFill /></span>
+        <span style={{ paddingRight: '0.3rem', paddingLeft: '0.3rem', color: "rgb(162, 162, 162)" }}> | </span>
+        <span>达人晒图 </span><span className={styles.icon}><DownFill /></span>
       </div>
     </div>
   )

@@ -46,9 +46,6 @@ const Food = () => {
     //滚动超过70则显示header，小于70隐藏
 
     let el = document.getElementsByClassName("Restaurant_tabsContainer__PZI+9")[0]
-    console.log('====================================');
-    console.log(el);
-    console.log('====================================');
 
     if (curTop > 70) {
       setHeaderv("visible")
@@ -61,9 +58,21 @@ const Food = () => {
 
   const id = (useSelector(store => store.currRest)).id
 
+  // 请求页面餐厅信息
+  useEffect(() => {
+    console.log('====================================');
+    console.log({ id: id });
+    console.log('====================================');
+    restaurantdetailApi({ id: id }).
+      then(res => {
+        setData({ ...res.data })
+
+      })
+  }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', addTabs)
+
     return () => {
       window.removeEventListener('scroll', addTabs)
     }
@@ -75,12 +84,6 @@ const Food = () => {
     document.documentElement.scrollTop = 0
     window.addEventListener("scroll", addheader)
 
-    restaurantdetailApi({ id: id }).
-      then(res => {
-        setData({ ...res.data })
-
-      })
-
     return () => {
       window.removeEventListener('scroll', addheader);
     }
@@ -88,10 +91,10 @@ const Food = () => {
 
   return (
     <>
-    {/* tab栏 */}
-      <div className={styles.tabsContainer} style={{ visibility: "hidden"}}>
+      {/* tab栏 */}
+      <div className={styles.tabsContainer} style={{ visibility: "hidden" }}>
         <Tabs
-          style={{'--active-line-color':'red', "--active-title-color": "red"}
+          style={{ '--active-line-color': 'red', "--active-title-color": "red" }
           }
           activeKey={activeKey}
           onChange={key => {
