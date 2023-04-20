@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./bannercard.module.scss"
+import styles from "./Bannercard.module.scss"
 
 const Bannercard = (props) => {
     const { imgurl, text } = props

@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react'
-import styles from "./header.module.scss"
+import styles from "./Header.module.scss"
 
 const Header = () => {
-  useEffect(() => {
-    
-  })
-
   return (
     <div className={styles.headerbox}>
       <div className={styles.fixedheader}></div>

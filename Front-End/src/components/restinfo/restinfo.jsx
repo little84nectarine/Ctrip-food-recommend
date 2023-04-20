@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from "./restinfo.module.scss"
+import styles from "./Restinfo.module.scss"
 import { DownFill, DownOutline, PhoneFill } from 'antd-mobile-icons'
 import { Popup, Button } from 'antd-mobile'
 
