@@ -7,6 +7,7 @@ import Banner from '../../components/banner/banner'
 import Filter from '../../components/filter/filter'
 import Restcard from "../../components/card/restcard/restcard"
 import Filterdelecard from "../../components/card/filterdelecard/filterdelecard"
+import Search from '../../components/Search/Search'
 //引入自定义节流hook
 import useThrottle from '../../hooks/useThrottle'
 //获取餐厅listapi
@@ -25,9 +26,10 @@ const Home = () => {
   const pagecount = useSelector(state => state.currPagecount.pagecount)
   const filterlist = useSelector(state => state.currFilter.filterlist)
   const isloading = useSelector(state => state.listLoading.isloading)
+  const modalshow = useSelector(state => state.showModal.modalshow)
   const dispatch = useDispatch()
   const [headercolor, setHeadercolor] = useState("transparent")
-  const addheader = useThrottle(() => {
+  const addheader = useThrottle((e) => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
     //滚动超过70则显示header，小于70隐藏
     if (curTop > 10) {
@@ -89,14 +91,15 @@ const Home = () => {
   }
   return (
     <>
+      {modalshow?<Search />:<></>}
       <Header />
-      <HeaderFixed color={headercolor} />
+      <HeaderFixed color={headercolor}/>
       <div className={styles.content}>
         <Banner />
         <Filter setHeadercolor={setHeadercolor} />
         <div style={{ backgroundColor: 'rgb(250, 250, 250)', padding: '0 0.7rem' }}>
           {isloading ?
-            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '1rem'}}>
               <DotLoading color='primary' />
             </div>
             : <List>

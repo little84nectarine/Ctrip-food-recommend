@@ -5,7 +5,12 @@ import axios from 'axios';
 //------ GET ------
 //获取所有餐厅列表
 export const restaruantApi = (page) => service.get(`api/restaurantList?page=${page}`);
+//获取所有banner列表
 export const bannerApi = () => service.get('api/bannerList');
+//获取热门榜单列表
+export const hotApi = ()=> service.get('api/hotlist');
+//query搜索餐厅
+export const searchApi = (search) => service.get(`api/searchrest?search=${search}`);
 
 //------ POST ------
 //获取餐厅详情

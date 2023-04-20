@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Restaurant.module.scss'
 import Myswiper from '../../components/swiper/myswiper'
-import Restinfo from "../../components/restinfo/restinfo"
+import Restinfo from '../../components/restinfo/restinfo'
 import Usercomment from '../../components/usercomment/usercomment'
 import Waterfall from '../../components/waterfall/waterfall'
 import { LeftOutline } from 'antd-mobile-icons'

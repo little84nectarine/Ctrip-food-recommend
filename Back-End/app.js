@@ -10,6 +10,8 @@ const restaruant = require('./mock/restruant.json')
 const userComments = require('./mock/user.json')
 //导入banner列表json
 const bannerlist = require('./mock/banner.json')
+//导入热门榜单列表
+const hotlist = require('./mock/hotsearchrank.json')
 //非菜系叶子节点列表
 const notleafstyle = ["火锅系列", "外国菜", "粉面", "地方菜", "快餐简餐", "火锅", "西餐", "日本料理", "小吃", "韩国料理"]
 //所有项列表
@@ -25,6 +27,7 @@ const filterfunc = (arr)=>{
     currentlist = result
     return result
 }
+//------------- GET -------------
 //返回餐厅列表
 app.get("/restaurantList", function (req, res) {
     let start = req.query.page
@@ -34,7 +37,28 @@ app.get("/restaurantList", function (req, res) {
         res.json(currentlist.slice(start*10,start*10+10))
     }
 })
-
+//返回banner列表
+app.get("/bannerList", function (req, res) {
+    currentlist = Object.values(restaruant.data)
+    res.json(bannerlist.data);
+})
+//返回热门榜单
+app.get("/hotlist",function(req,res){
+    res.json(hotlist.data)
+})
+//搜索餐厅
+app.get("/searchrest",function(req,res){
+    let search = req.query.search
+    if(search.length === 0){
+        res.json("no")
+    }else{
+        let result = list.filter((item)=>{
+            return (item.name+item.style).includes(search)
+        })
+        res.json(result)
+    }
+})
+//------------- POST -------------
 //返回餐厅详情页
 app.post("/restaurantdetail", express.json(), function (req, res) {
     let restlen = list.length
@@ -58,7 +82,6 @@ app.post("/restaurantdetail", express.json(), function (req, res) {
         return
     }
 })
-
 //返回餐厅详情页
 app.post("/restComments", express.json(), function (req, res) {
     let restlen = list.length
@@ -71,18 +94,13 @@ app.post("/restComments", express.json(), function (req, res) {
         return
     }
 })
-
-//返回banner列表
-app.get("/bannerList", function (req, res) {
-    currentlist = Object.values(restaruant.data)
-    res.json(bannerlist.data);
-})
-
 //筛选整合
 app.post("/multifilter", express.json(), function (req, res) {
     let arr = req.body.arr
     res.json(filterfunc(arr))
 })
+
+//
 
 app.listen(5500, function () {
     console.log('服务器运行在  http://127.0.0.1:5500');

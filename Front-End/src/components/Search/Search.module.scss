@@ -1,0 +1,33 @@
+.searchbox{
+    position: fixed;
+    top:0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    touch-action: none;
+    .barbox{
+        padding: 0.5rem 0.5rem 0.5rem 1rem;
+        width: 75%;
+        height: 2.4rem;
+        flex: 1;
+        display: inline-block;
+    }
+}
+
+.listpage{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 101;
+    background-color: #fff;
+    overflow-y: auto;
+    .listbox{
+        width: 100%;
+        padding: 0.4rem 0.8rem 0 0.8rem;
+        box-sizing: border-box;
+        margin-top: 3.4rem;
+    }
+}

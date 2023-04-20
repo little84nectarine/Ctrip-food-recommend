@@ -277,12 +277,10 @@ const Filter = (props) => {
       {/* 快筛 */}
       <div className={styles.fastsortbox}>
         <Filtercard text={"2022榜单餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
+        <Filtercard text={"川菜"} />
+        <Filtercard text={"西餐"} />
+        <Filtercard text={"人均100-300"} />
+        <Filtercard text={"火锅系列"} />
       </div>
     </div>
   )

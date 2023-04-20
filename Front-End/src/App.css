@@ -1,4 +1,4 @@
-*{
+* {
   padding: 0;
   margin: 0;
 }
@@ -6,23 +6,23 @@
 .App {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(250,250,250);
+  background-color: rgb(250, 250, 250);
 }
 
 /* 修改antd下拉框选中颜色 */
 .adm-dropdown-item-highlight {
-  color: rgb(200,55,55) !important;
+  color: rgb(200, 55, 55) !important;
 }
 
-.adm-space-item{
+.adm-space-item {
   margin-right: 10px !important;
 }
 
-.adm-list-body{
-  background-color: rgb(250,250,250) !important;
+.adm-list-body {
+  background-color: rgb(250, 250, 250) !important;
 }
 
-.adm-list{
+.adm-list {
   --border-inner: 0 !important;
   --border-top: 0 !important;
   --border-bottom: 0 !important;
