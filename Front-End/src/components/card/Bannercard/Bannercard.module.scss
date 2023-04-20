@@ -1,0 +1,29 @@
+.bannercardbox{
+    width: 6.6rem;
+    height: 100%;
+    flex-shrink: 0;
+    margin-right: 0.4rem;
+}
+
+.imgbox{
+    height: 100%;
+	width: 6.6rem;
+    border-radius: 0.4rem;
+	overflow: hidden;
+    position: relative;
+}
+
+.bannertextbox{
+    position: absolute;
+    height:32%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.1);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 0.4rem 0.4rem;
+    color:#fff
+}

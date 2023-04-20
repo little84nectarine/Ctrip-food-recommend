@@ -1,0 +1,54 @@
+.swiperbox {
+    height: 13.6rem;
+    background-color: #537FE7;
+
+    .content {
+        height: 13rem;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+        user-select: none;
+
+        .playBtn{
+            z-index: 2;
+            position: absolute;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 2rem;
+            background-color: #d6d6d6a6;
+            line-height: 4rem;
+            text-align: center;
+        }
+    }
+
+    .tag{
+        width: fit-content;
+        background-color: #000000;
+        position: relative;
+        top: -2rem;
+        left: 2rem;
+        height: 1.2rem;
+        color: white;
+        font-size: 0.5rem;
+        border-radius: 0.75rem;
+        line-height: 1.23rem;
+        padding: 0 0.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+
+        .icon{
+            // display: inline-block;
+            // background-color: white;
+            // width: 0.7rem;
+            // height: 0.7rem;
+            // margin: 0 0.3rem;
+            transform: rotateZ(-90deg);
+        }
+    }
+
+    
+}

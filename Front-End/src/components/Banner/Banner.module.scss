@@ -1,0 +1,22 @@
+.bannerbox{
+    padding: 0.5rem 0.7rem;
+    box-sizing: border-box;
+    height: 7.5rem;
+    border-radius: 0.7rem 0.7rem 0 0;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(250,250,250);
+}
+
+.horizonbox{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 80%;
+    overflow-x: scroll;
+    padding-top: 0.6rem;
+    //隐藏滚动条
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
