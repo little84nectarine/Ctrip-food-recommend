@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./Usercomment.module.scss"
+import styles from "./usercomment.module.scss"
 
 const Usercomment = () => {
   return (

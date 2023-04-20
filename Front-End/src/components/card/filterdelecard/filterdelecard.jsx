@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./Filterdelecard.module.scss"
+import styles from "./filterdelecard.module.scss"
 import { DeleteOutline, CloseOutline } from 'antd-mobile-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { changefilterlist } from '../../../store/currFilter.slice'

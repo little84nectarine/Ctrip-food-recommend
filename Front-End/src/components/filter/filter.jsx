@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import styles from "./Filter.module.scss"
-import Filtercard from '../card/Filtercard/Filtercard'
+import styles from "./filter.module.scss"
+import Filtercard from '../card/filtercard/filtercard'
 import { Dropdown, Selector } from 'antd-mobile'
 import { CheckOutline } from 'antd-mobile-icons'
 import { rankoptions, priceoptions } from './options'

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./Home.module.scss"
 //引入组件
-import Header from '../../components/Header/Header'
-import HeaderFixed from '../../components/Header_fixed/Header_fixed'
-import Banner from '../../components/Banner/Banner'
-import Filter from '../../components/Filter/Filter'
-import Restcard from "../../components/card/Restcard/Restcard"
-import Filterdelecard from "../../components/card/Filterdelecard/Filterdelecard"
+import Header from '../../components/header/header'
+import HeaderFixed from '../../components/header_fixed/header_fixed'
+import Banner from '../../components/banner/banner'
+import Filter from '../../components/filter/filter'
+import Restcard from "../../components/card/restcard/restcard"
+import Filterdelecard from "../../components/card/filterdelecard/filterdelecard"
 //引入自定义节流hook
 import useThrottle from '../../hooks/useThrottle'
 //获取餐厅listapi

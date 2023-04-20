@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./Filtercard.module.scss"
+import styles from "./filtercard.module.scss"
 
 const Filtercard = (props) => {
   const {text} = props

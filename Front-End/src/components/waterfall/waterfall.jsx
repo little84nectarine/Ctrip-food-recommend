@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./Waterfall.module.scss"
+import styles from "./waterfall.module.scss"
 
 const Waterfall = () => {
   return (

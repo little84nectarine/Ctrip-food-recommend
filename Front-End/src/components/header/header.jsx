@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import styles from "./Header.module.scss"
+import styles from "./header.module.scss"
 
 const Header = () => {
   return (
