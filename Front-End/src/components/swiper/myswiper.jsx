@@ -7,9 +7,6 @@ import { DownFill, PlayOutline } from 'antd-mobile-icons'
 const Myswiper = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const videoRef = useRef(null)
-  console.log('====================================');
-  console.log('aaaa', data);
-  console.log('====================================');
   useEffect(() => {
   }, [])
 
