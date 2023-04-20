@@ -8,6 +8,7 @@ import { restaruantApi } from '../../../request/api'
 import { changeEnd } from '../../../store/islistEnd.slice'
 import { restart } from '../../../store/currPagecount.slice'
 import { multifilterApi } from '../../../request/api'
+import { changelistloading } from '../../../store/listloading.slice'
 
 const optionobj = {
     "rank1": '全部美食林',
@@ -35,10 +36,13 @@ const Filterdelecard = (props) => {
                 }
                 dispatch(changeList([...res.data]))
                 dispatch(restart())
+                dispatch(changelistloading(false))
             })
         })
+        document.documentElement.scrollTop = 149
     }
     const clearfilter = () => {
+        dispatch(changelistloading(true))
         if (text === "全部清空") {
             dispatch(changefilterlist(["不限", "不限", [[], []], "默认"]))
             sendreload(["不限", "不限", [[], []], "默认"])

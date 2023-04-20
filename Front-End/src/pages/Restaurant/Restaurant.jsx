@@ -45,7 +45,7 @@ const Food = () => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
     //滚动超过70则显示header，小于70隐藏
 
-    let el = document.getElementsByClassName("Restaurant_tabsContainer__PZI+9")[0]
+    let el = document.getElementById("tabid")
 
     if (curTop > 70) {
       setHeaderv("visible")
@@ -92,7 +92,7 @@ const Food = () => {
   return (
     <>
       {/* tab栏 */}
-      <div className={styles.tabsContainer} style={{ visibility: "hidden" }}>
+      <div className={styles.tabsContainer} style={{ visibility: "hidden" }} id="tabid">
         <Tabs
           style={{ '--active-line-color': 'red', "--active-title-color": "red" }
           }

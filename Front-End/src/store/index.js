@@ -6,6 +6,7 @@ import currListReducer from "./currList.slice"
 import islistEndReducer from "./islistEnd.slice"
 import currPagecountReducer from "./currPagecount.slice"
 import currFilterReducer from "./currFilter.slice"
+import listloadingReducer from "./listloading.slice"
  
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     currList: currListReducer,
     islistEnd:islistEndReducer,
     currPagecount:currPagecountReducer,
-    currFilter:currFilterReducer
+    currFilter:currFilterReducer,
+    listLoading:listloadingReducer
   },
 })
  
