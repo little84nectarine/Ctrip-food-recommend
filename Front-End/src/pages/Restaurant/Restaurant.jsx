@@ -22,7 +22,7 @@ const Food = () => {
   const tabItems = [
     { key: '1', title: '图片', elment: (<Myswiper data={data.imgs ? [data.video, ...data.imgs] : []} />) },
     { key: '2', title: '概览', elment: (<Restinfo data={data} />) },
-    { key: '3', title: '客户评论', elment: (<Usercomment />) },
+    { key: '3', title: '客户评论', elment: (<Usercomment score={data.score} comments={data.comments} rvNum={data.reviews}/>) },
     { key: '4', title: '瀑布流', elment: (<Waterfall />) },
   ]
 
@@ -45,7 +45,7 @@ const Food = () => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
     //滚动超过70则显示header，小于70隐藏
 
-    let el = document.getElementById("tabid")
+    let el = document.getElementById("tabId")
 
     if (curTop > 70) {
       setHeaderv("visible")
@@ -60,9 +60,6 @@ const Food = () => {
 
   // 请求页面餐厅信息
   useEffect(() => {
-    console.log('====================================');
-    console.log({ id: id });
-    console.log('====================================');
     restaurantdetailApi({ id: id }).
       then(res => {
         console.log(res.data);
@@ -92,7 +89,7 @@ const Food = () => {
   return (
     <>
       {/* tab栏 */}
-      <div className={styles.tabsContainer} style={{ visibility: "hidden" }} id="tabid">
+      <div className={styles.tabsContainer} style={{ visibility: "hidden" }} id='tabId'>
         <Tabs
           style={{ '--active-line-color': 'red', "--active-title-color": "red" }
           }
@@ -119,7 +116,7 @@ const Food = () => {
             </div>
           ))
         }
-        <div style={{ position: "fixed", top: '0px', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '2.8rem', width: "100%", backgroundColor: '#fff', visibility: headerv }}>
+        <div style={{ position: "fixed", top: '0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '2.8rem', width: "100%", backgroundColor: '#fff', visibility: headerv }}>
           <LeftOutline style={{ position: 'absolute', top: '1rem', left: '1rem', fontSize: '16px', visibility: 'visible' }} onClick={() => navigate('/')} />
           <span style={{ fontSize: '17px' }}>餐厅详情</span>
         </div>
