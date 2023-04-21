@@ -5,7 +5,8 @@ import { cityoptions } from "./cityoptions"
 import { Swiper, Picker } from 'antd-mobile'
 
 import { changemodal } from '../../store/showModal.slice'
-import { useDispatch } from 'react-redux'
+import { changestext } from '../../store/currswipertext.slice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const textlist = ["和平饭店", "上海老饭店", "大董", "炳胜公馆"]
 
@@ -32,6 +33,10 @@ const Header_fixed = (props) => {
         dispatch(changemodal(true))
     }
 
+    const getswipertext = (e)=>{
+        dispatch(changestext(textlist[e]))
+    }
+
     return (
         <div className={styles.fixedheader} style={{ backgroundColor: color === "white" ? "rgb(250,250,250)" : color, color: color === "white" ? "#444" : 'white' }}>
             <div className={styles.fixedheaderleft}>
@@ -49,7 +54,7 @@ const Header_fixed = (props) => {
                     </div>
                     {/* 轮播 */}
                     <div className={styles.searchboxright} onClick={toSearchpage}>
-                        <Swiper direction='vertical' style={{ '--height': '2rem' }} autoplay allowTouchMove={false} loop={true} indicator={() => null} >
+                        <Swiper direction='vertical' style={{ '--height': '2rem' }} autoplay allowTouchMove={false} loop={true} indicator={() => null} onIndexChange={getswipertext}>
                             {verticalItems}
                         </Swiper>
                     </div>

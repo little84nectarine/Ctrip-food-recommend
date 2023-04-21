@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./Search.module.scss"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { changemodal } from '../../store/showModal.slice'
 import { SearchBar, Skeleton, ErrorBlock } from 'antd-mobile'
 import Filtercard from '../card/filtercard/filtercard'
@@ -12,18 +12,17 @@ import useDebounce from "../../hooks/useDebounce"
 const fastsearch = ["2022美食林榜单餐厅", "限时抢购", "预约订座", "生煎", "上海小笼包", "葱油拌面", "青团", "外滩"]
 const Search = () => {
   const dispatch = useDispatch()
+  const stext = useSelector((state) => state.currSwipertext.stext)
   const [hotlist, setHotlist] = useState([])
   const [isloading, setIsloading] = useState(true)
   const [searchlist, setSearchlist] = useState([])
-  const [searchkey,setSearchkey] = useState("")
+  const [swipertext,setSwipertext] = useState(stext)
   const searchrest = useDebounce(e => {
     searchApi(e).then(res => {
-      console.log(res);
       setSearchlist(res.data)
     })
   }, 800)
   const searchrestd = (e) => {
-    setSearchkey(e)
     searchrest(e)
   }
 
@@ -44,7 +43,7 @@ const Search = () => {
             {searchlist.length === 0 ? <ErrorBlock status='empty' style={{ marginTop: '4.4rem' }} /> : <div className={styles.listbox}>
               {searchlist.map((item, index) => {
                 return <div key={item.id}>
-                  <Searchcard data={item} searchkey={searchkey}/>
+                  <Searchcard data={item}/>
                   {index === searchlist.length - 1 ? <></> : <div style={{ height: '0.05rem', margin: '0.5rem -0.8rem 0.8rem 0', backgroundColor: '#e8e8e8' }}></div>}
                 </div>
               })}
@@ -55,7 +54,7 @@ const Search = () => {
         <div className={styles.barbox}>
           <SearchBar
             className={styles.searchbar}
-            placeholder='请输入内容'
+            placeholder={swipertext}
             style={{
               '--height': "2.4rem",
               '--border-radius': '1.5rem'

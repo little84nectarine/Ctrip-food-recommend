@@ -18,8 +18,8 @@ import { changeList } from '../../store/currList.slice'
 import { changeEnd } from '../../store/islistEnd.slice'
 import { increasecount } from '../../store/currPagecount.slice'
 import { changelistloading } from '../../store/listloading.slice'
-
 import { InfiniteScroll, List, DotLoading } from 'antd-mobile'
+import { UpOutline } from 'antd-mobile-icons'
 const Home = () => {
   const restlist = useSelector((state) => state.currList.restList)
   const hasMore = useSelector((state) => state.islistEnd.isend)
@@ -29,13 +29,20 @@ const Home = () => {
   const modalshow = useSelector(state => state.showModal.modalshow)
   const dispatch = useDispatch()
   const [headercolor, setHeadercolor] = useState("transparent")
+  const [totop,setTotop] = useState(false)
   const addheader = useThrottle((e) => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
     //滚动超过70则显示header，小于70隐藏
     if (curTop > 10) {
+      if(curTop>1000){
+        setTotop(true)
+      }else if(curTop<=1000)(
+        setTotop(false)
+      )
       setHeadercolor("white")
     } else if (curTop <= 10) {
       setHeadercolor("transparent")
+      setTotop(false)
     }
   }, 100)
   useEffect(() => {
@@ -92,6 +99,10 @@ const Home = () => {
   return (
     <>
       {modalshow?<Search />:<></>}
+      {totop?<div className={styles.totop} onClick={()=>{document.documentElement.scrollTop = 149}}>
+        <UpOutline style={{fontSize:'1rem'}}/>
+        <div style={{fontSize:'0.1rem',transform:["scale(0.8)"],marginTop:'-0.2rem'}}>回顶部</div>
+      </div>:<></>}
       <Header />
       <HeaderFixed color={headercolor}/>
       <div className={styles.content}>

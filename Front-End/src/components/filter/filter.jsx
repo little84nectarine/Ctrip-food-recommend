@@ -129,6 +129,10 @@ const Filter = (props) => {
     })
     dropdownref.current.close()
   }
+  useEffect(()=>{
+    setRank(filterlist[2][0])
+    setPrice(filterlist[2][1])
+  },[filterlist])
   return (
     <div className={styles.filterbox}>
       {/* 位置、菜系、筛选、智能排序 */}
