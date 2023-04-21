@@ -30,6 +30,7 @@ const Home = () => {
   const dispatch = useDispatch()
   const [headercolor, setHeadercolor] = useState("transparent")
   const [totop,setTotop] = useState(false)
+  const [filterlength,setFilterlength] = useState(-1)
   const addheader = useThrottle((e) => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
     //滚动超过70则显示header，小于70隐藏
@@ -50,7 +51,6 @@ const Home = () => {
       dispatch(changeList([...res.data]))
       dispatch(changelistloading(false))
     })
-
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
     window.addEventListener("scroll", addheader)
@@ -83,11 +83,11 @@ const Home = () => {
             {(filterlist[0] === "不限" && filterlist[1] === "不限" && filterlist[2][0].length === 0 && filterlist[2][1].length === 0) ? <></> : <div>请修改条件重新查询</div>}
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: "center", marginTop: '1rem' }}>
               {<>
-                {(filterlist[0] === "不限" && filterlist[1] === "不限" && filterlist[2][0].length === 0 && filterlist[2][1].length === 0) ? <></> : <Filterdelecard text={"全部清空"} />}
-                {filterlist[0] === "不限" ? <></> : <Filterdelecard text={filterlist[0]} fclass={0} />}
-                {filterlist[1] === "不限" ? <></> : <Filterdelecard text={filterlist[1]} fclass={1} />}
-                {filterlist[2][0].map((item, index) => <Filterdelecard text={item} key={index} fclass={2} />)}
-                {filterlist[2][1].map((item, index) => <Filterdelecard text={item} key={index} fclass={3} />)}
+                {(filterlist[0] === "不限" && filterlist[1] === "不限" && filterlist[2][0].length === 0 && filterlist[2][1].length === 0) ? <></> : <Filterdelecard text={"全部清空"} setFilterlength={setFilterlength}/>}
+                {filterlist[0] === "不限" ? <></> : <Filterdelecard text={filterlist[0]} fclass={0} setFilterlength={setFilterlength}/>}
+                {filterlist[1] === "不限" ? <></> : <Filterdelecard text={filterlist[1]} fclass={1} setFilterlength={setFilterlength}/>}
+                {filterlist[2][0].map((item, index) => <Filterdelecard text={item} key={index} fclass={2} setFilterlength={setFilterlength}/>)}
+                {filterlist[2][1].map((item, index) => <Filterdelecard text={item} key={index} fclass={3} setFilterlength={setFilterlength}/>)}
               </>
               }
             </div>
@@ -107,7 +107,7 @@ const Home = () => {
       <HeaderFixed color={headercolor}/>
       <div className={styles.content}>
         <Banner />
-        <Filter setHeadercolor={setHeadercolor} />
+        <Filter setHeadercolor={setHeadercolor} filterlength={filterlength}/>
         <div style={{ backgroundColor: 'rgb(250, 250, 250)', padding: '0 0.7rem' }}>
           {isloading ?
             <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '1rem'}}>

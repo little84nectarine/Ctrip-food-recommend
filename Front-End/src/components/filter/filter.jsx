@@ -13,8 +13,9 @@ import { restart } from '../../store/currPagecount.slice'
 import { changefilterlist } from '../../store/currFilter.slice'
 import { changelistloading } from '../../store/listloading.slice'
 import {distancelist,nationalarea,caixi,specialfood,sortselect} from "./static"
+import { resetfilter } from './resetfilter'
 const Filter = (props) => {
-  const { setHeadercolor } = props
+  const { setHeadercolor ,filterlength} = props
   const dispatch = useDispatch()
   const restlist = useSelector((state) => state.currList.restList)
   const filterlist = useSelector(state => state.currFilter.filterlist)
@@ -132,6 +133,10 @@ const Filter = (props) => {
   useEffect(()=>{
     setRank(filterlist[2][0])
     setPrice(filterlist[2][1])
+    resetfilter(filterlist,setLocation,setDistance,setArea,setFoodstyle1,setFoodstyle2,setFoodstyle3,setSpecialstyle,setSortselection)
+    if(filterlength!==-1){
+      setSlength(filterlength)
+    }
   },[filterlist])
   return (
     <div className={styles.filterbox}>

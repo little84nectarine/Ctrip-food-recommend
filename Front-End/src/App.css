@@ -27,3 +27,7 @@
   --border-top: 0 !important;
   --border-bottom: 0 !important;
 }
+
+.adm-swiper-indicator{
+  bottom: 20px !important;;
+}
