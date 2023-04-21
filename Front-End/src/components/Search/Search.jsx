@@ -15,7 +15,7 @@ const Search = () => {
   const [hotlist, setHotlist] = useState([])
   const [isloading, setIsloading] = useState(true)
   const [searchlist, setSearchlist] = useState([])
-
+  const [searchkey,setSearchkey] = useState("")
   const searchrest = useDebounce(e => {
     searchApi(e).then(res => {
       console.log(res);
@@ -23,6 +23,7 @@ const Search = () => {
     })
   }, 800)
   const searchrestd = (e) => {
+    setSearchkey(e)
     searchrest(e)
   }
 
@@ -43,7 +44,7 @@ const Search = () => {
             {searchlist.length === 0 ? <ErrorBlock status='empty' style={{ marginTop: '4.4rem' }} /> : <div className={styles.listbox}>
               {searchlist.map((item, index) => {
                 return <div key={item.id}>
-                  <Searchcard data={item} />
+                  <Searchcard data={item} searchkey={searchkey}/>
                   {index === searchlist.length - 1 ? <></> : <div style={{ height: '0.05rem', margin: '0.5rem -0.8rem 0.8rem 0', backgroundColor: '#e8e8e8' }}></div>}
                 </div>
               })}
