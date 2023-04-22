@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styles from "./Search.module.scss"
 import { useDispatch, useSelector } from 'react-redux'
 import { changemodal } from '../../store/showModal.slice'
-import { SearchBar, Skeleton, ErrorBlock } from 'antd-mobile'
+import { changecomparelist } from '../../store/comparelist.slice'
+import { SearchBar, Skeleton, ErrorBlock ,Toast, SwipeAction} from 'antd-mobile'
 import Filtercard from '../card/filtercard/filtercard'
 import Hotcard from '../card/Hotcard/Hotcard'
 import Searchcard from '../card/Searchcard/Searchcard'
@@ -13,17 +14,50 @@ const fastsearch = ["2022美食林榜单餐厅", "限时抢购", "预约订座",
 const Search = () => {
   const dispatch = useDispatch()
   const stext = useSelector((state) => state.currSwipertext.stext)
+  const comparelist = useSelector(state => state.compareList.comparelist)
   const [hotlist, setHotlist] = useState([])
   const [isloading, setIsloading] = useState(true)
   const [searchlist, setSearchlist] = useState([])
   const [swipertext,setSwipertext] = useState(stext)
+  const [searchkey,setSearchkey] = useState("")
   const searchrest = useDebounce(e => {
     searchApi(e).then(res => {
+      setSearchkey(e)
       setSearchlist(res.data)
     })
   }, 800)
   const searchrestd = (e) => {
     searchrest(e)
+  }
+
+  const rightActions = [
+    {
+      key: 'compare',
+      text: '加入对比',
+      color: 'primary',
+    }
+  ]
+  const addcompare = (id, name, img) => {
+    if (comparelist.length <= 1 && comparelist.length >= 0) {
+      if (comparelist.length === 1 && id === comparelist[0].id) {
+        Toast.show({
+          icon: 'fail',
+          content: '请勿重复添加',
+        })
+      } else {
+        let temp = { id, name, img }
+        dispatch(changecomparelist([...comparelist, temp]))
+        Toast.show({
+          icon: 'success',
+          content: '添加成功',
+        })
+      }
+    } else {
+      Toast.show({
+        icon: 'fail',
+        content: '列表已满',
+      })
+    }
   }
 
   useEffect(() => {
@@ -42,10 +76,14 @@ const Search = () => {
             <div style={{ height: '3.4rem', width: '100%', backgroundColor: '#fff', position: "fixed" }}></div>
             {searchlist.length === 0 ? <ErrorBlock status='empty' style={{ marginTop: '4.4rem' }} /> : <div className={styles.listbox}>
               {searchlist.map((item, index) => {
-                return <div key={item.id}>
-                  <Searchcard data={item}/>
+                return <SwipeAction
+                  key={index}
+                  rightActions={rightActions}
+                  onAction={() => addcompare(item.id, item.name, item.imgs[0])}
+                >
+                  <Searchcard data={item} searchkey={searchkey}/>
                   {index === searchlist.length - 1 ? <></> : <div style={{ height: '0.05rem', margin: '0.5rem -0.8rem 0.8rem 0', backgroundColor: '#e8e8e8' }}></div>}
-                </div>
+                </SwipeAction>
               })}
             </div>}
           </div>

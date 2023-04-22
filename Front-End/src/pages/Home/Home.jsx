@@ -103,7 +103,9 @@ const Home = () => {
     if (index === 0) {
       dispatch(changecomparelist([...comparelist.slice(1, 2)]))
     } else {
-      dispatch(changecomparelist([...comparelist.slice(0, 1)]))
+      if(comparelist.length !== 0){
+        dispatch(changecomparelist([...comparelist.slice(0, 1)]))
+      }
     }
   }
   const tocompare = () => {
