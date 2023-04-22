@@ -9,6 +9,7 @@ import currFilterReducer from "./currFilter.slice"
 import listloadingReducer from "./listloading.slice"
 import modalShowReducer from "./showModal.slice"
 import currswipertextReducer from "./currswipertext.slice"
+import comparelistReducer from "./comparelist.slice"
  
 const store = configureStore({
   reducer: {
@@ -19,7 +20,8 @@ const store = configureStore({
     currFilter:currFilterReducer,
     listLoading:listloadingReducer,
     showModal:modalShowReducer,
-    currSwipertext:currswipertextReducer
+    currSwipertext:currswipertextReducer,
+    compareList:comparelistReducer
   },
 })
  
