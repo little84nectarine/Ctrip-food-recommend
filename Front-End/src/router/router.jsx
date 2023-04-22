@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import HomePage from "../pages/Home/Home"
 import FoodPage from "../pages/Restaurant/Restaurant"
+import ComparePage from "../pages/Compare/Compare"
 
 const router = () => {
   return <div className="page" >
@@ -13,6 +14,9 @@ const router = () => {
           ></Route>
           <Route element={<FoodPage />}
             path="/food"
+          ></Route>
+          <Route element={<ComparePage />}
+            path="/compare"
           ></Route>
         </Routes>
       </BrowserRouter>

@@ -1,0 +1,21 @@
+.searchcardbox{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 4.2rem;
+    .firstline{
+        font-size: 1rem;
+    }
+    .secondline{
+        font-size: 0.8rem;
+        color:#999;
+        margin-left: 1.5rem;
+    }
+    .thirdline{
+        font-size: 0.8rem;
+        color:#999;
+        display: flex;
+        align-items: center;
+        margin-left: 1.5rem;
+    }
+}

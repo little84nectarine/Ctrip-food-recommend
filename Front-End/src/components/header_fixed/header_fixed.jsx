@@ -4,6 +4,10 @@ import { LeftOutline, HeartOutline, DownFill, SearchOutline, HeartFill } from 'a
 import { cityoptions } from "./cityoptions"
 import { Swiper, Picker } from 'antd-mobile'
 
+import { changemodal } from '../../store/showModal.slice'
+import { changestext } from '../../store/currswipertext.slice'
+import { useDispatch, useSelector } from 'react-redux'
+
 const textlist = ["和平饭店", "上海老饭店", "大董", "炳胜公馆"]
 
 const verticalItems = textlist.map((text, index) => (
@@ -16,12 +20,21 @@ const verticalItems = textlist.map((text, index) => (
 
 const Header_fixed = (props) => {
     const { color } = props
+    const dispatch = useDispatch()
     const [heart, setHeart] = useState(false)
     const [pickervisible, setPickervisible] = useState(false)
     const [pickervalue,setPickervalue] = useState(["上海"])
 
     const changecity = () => {
         setPickervisible(true)
+    }
+
+    const toSearchpage = ()=>{
+        dispatch(changemodal(true))
+    }
+
+    const getswipertext = (e)=>{
+        dispatch(changestext(textlist[e]))
     }
 
     return (
@@ -40,8 +53,8 @@ const Header_fixed = (props) => {
                         <div style={{ display: 'inline-block' }}><SearchOutline style={{ fontSize: '1rem', marginBottom: '-0.1rem', marginRight: '0.2rem' }} /></div>
                     </div>
                     {/* 轮播 */}
-                    <div className={styles.searchboxright}>
-                        <Swiper direction='vertical' style={{ '--height': '2rem' }} autoplay allowTouchMove={false} loop={true} indicator={() => null} >
+                    <div className={styles.searchboxright} onClick={toSearchpage}>
+                        <Swiper direction='vertical' style={{ '--height': '2rem' }} autoplay allowTouchMove={false} loop={true} indicator={() => null} onIndexChange={getswipertext}>
                             {verticalItems}
                         </Swiper>
                     </div>

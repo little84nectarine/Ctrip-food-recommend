@@ -7,6 +7,9 @@ import islistEndReducer from "./islistEnd.slice"
 import currPagecountReducer from "./currPagecount.slice"
 import currFilterReducer from "./currFilter.slice"
 import listloadingReducer from "./listloading.slice"
+import modalShowReducer from "./showModal.slice"
+import currswipertextReducer from "./currswipertext.slice"
+import comparelistReducer from "./comparelist.slice"
  
 const store = configureStore({
   reducer: {
@@ -15,7 +18,10 @@ const store = configureStore({
     islistEnd:islistEndReducer,
     currPagecount:currPagecountReducer,
     currFilter:currFilterReducer,
-    listLoading:listloadingReducer
+    listLoading:listloadingReducer,
+    showModal:modalShowReducer,
+    currSwipertext:currswipertextReducer,
+    compareList:comparelistReducer
   },
 })
  

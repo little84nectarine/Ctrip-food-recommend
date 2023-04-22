@@ -1,0 +1,48 @@
+.mainbox {
+    width: 100vw;
+    height: 94vh;
+    position: fixed;
+    top: 6vh;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .topbox {
+        width: 100%;
+        flex-basis: 49.5%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+
+    .line {
+        flex-basis: 1%;
+        width: 100%;
+        background-color: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bottombox {
+        width: 100%;
+        flex-basis: 49.5%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #e1e1e1;
+}

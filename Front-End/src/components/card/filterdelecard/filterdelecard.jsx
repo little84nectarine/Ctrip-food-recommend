@@ -22,7 +22,7 @@ const optionobj = {
 }
 
 const Filterdelecard = (props) => {
-    const { text, fclass } = props
+    const { text, fclass, setFilterlength } = props
     const filterlist = useSelector(state => state.currFilter.filterlist)
     const dispatch = useDispatch()
 
@@ -37,6 +37,11 @@ const Filterdelecard = (props) => {
                 dispatch(changeList([...res.data]))
                 dispatch(restart())
                 dispatch(changelistloading(false))
+                if (filterlist[2][0].length !== 0 || filterlist[2][1].length !== 0) {
+                    setFilterlength(res.data.length)
+                } else {
+                    setFilterlength(-1)
+                }
             })
         })
         document.documentElement.scrollTop = 149

@@ -1,0 +1,29 @@
+.hotcardbox{
+    width: 90%;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.96rem;
+    padding-bottom: 1.6rem;
+    .tag{
+        font-size: 0.8rem;
+        flex-basis: 2rem;
+        padding: 0.05rem 0.1rem;
+        background-color: #dd2626;
+        color:#fff;
+        width: fit-content;
+        margin: 0 1rem 0 0.4rem;
+    }
+    .text{
+        flex:1;
+    }
+    .score{
+        flex-basis: 2.4rem;
+        font-size: 0.8rem;
+        color: #999;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}

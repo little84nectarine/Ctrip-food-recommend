@@ -3,16 +3,13 @@ import styles from "./swiper.module.scss"
 import { Swiper, Popup } from 'antd-mobile'
 import { DownFill, PlayOutline } from 'antd-mobile-icons'
 
-
 const Myswiper = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const videoRef = useRef(null)
-  useEffect(() => {
-  }, [])
 
   return (
     <div className={styles.swiperbox}>
-      <Swiper loop>
+      <Swiper loop autoplay>
         {
           data.map((img, index) => {
             return index === 0 ?

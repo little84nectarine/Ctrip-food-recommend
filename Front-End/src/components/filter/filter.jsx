@@ -13,8 +13,9 @@ import { restart } from '../../store/currPagecount.slice'
 import { changefilterlist } from '../../store/currFilter.slice'
 import { changelistloading } from '../../store/listloading.slice'
 import {distancelist,nationalarea,caixi,specialfood,sortselect} from "./static"
+import { resetfilter } from './resetfilter'
 const Filter = (props) => {
-  const { setHeadercolor } = props
+  const { setHeadercolor ,filterlength} = props
   const dispatch = useDispatch()
   const restlist = useSelector((state) => state.currList.restList)
   const filterlist = useSelector(state => state.currFilter.filterlist)
@@ -129,6 +130,14 @@ const Filter = (props) => {
     })
     dropdownref.current.close()
   }
+  useEffect(()=>{
+    setRank(filterlist[2][0])
+    setPrice(filterlist[2][1])
+    resetfilter(filterlist,setLocation,setDistance,setArea,setFoodstyle1,setFoodstyle2,setFoodstyle3,setSpecialstyle,setSortselection)
+    if(filterlength!==-1){
+      setSlength(filterlength)
+    }
+  },[filterlist])
   return (
     <div className={styles.filterbox}>
       {/* 位置、菜系、筛选、智能排序 */}
@@ -277,12 +286,10 @@ const Filter = (props) => {
       {/* 快筛 */}
       <div className={styles.fastsortbox}>
         <Filtercard text={"2022榜单餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
-        <Filtercard text={"老牌餐厅"} />
+        <Filtercard text={"川菜"} />
+        <Filtercard text={"西餐"} />
+        <Filtercard text={"人均100-300"} />
+        <Filtercard text={"火锅系列"} />
       </div>
     </div>
   )
