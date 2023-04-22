@@ -54,7 +54,7 @@ const Restinfo = ({ data }) => {
                     () => window.location.href = `tel:${data.tel}`
                   }
                 >
-                  tel:{data.tel}
+                  {data.tel}
                 </Button>
                 <Button style={{ margin: '1rem 0' }} block color='primary' size='large'
                   onClick={() => setTelVisible(false)}

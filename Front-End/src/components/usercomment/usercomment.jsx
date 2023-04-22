@@ -30,6 +30,7 @@ const Usercomment = ({ comments, rvNum, score }) => {
         </div>
       </div>
 
+    {/* 遍历渲染评论卡片 */}
     {
       comments && comments.length > 0 ?
       comments.map((comment, index)=>{

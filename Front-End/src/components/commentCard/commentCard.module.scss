@@ -78,20 +78,22 @@
             align-items: center;
 
             .imgBox {
-                height: 7.5rem;
-                width: 7.5rem;
-                border-radius: 0.4rem;
+                border-radius: 10%;
                 overflow: hidden;
+                padding: 0.2rem;
+                flex-basis: 30%;
+                flex-shrink: 1;
+                flex-grow: 1;
             }
+            
 
-            .imgCount{
+            .imgCount {
                 position: absolute;
-                right: 0.5rem;
-                bottom: 0.5rem;
-                z-index: 999;
+                right: 0.6rem;
+                bottom: 0.8rem;
                 background-color: rgba(0, 0, 0, 0.625);
                 color: white;
-                padding: 0.05rem 0.3rem ;
+                padding: 0.05rem 0.3rem;
                 line-height: 1rem;
                 border-radius: 20%;
             }
@@ -103,10 +105,9 @@
             align-items: center;
 
             .imgBox {
-                height: 7.5rem;
-                width: 7.5rem;
-                border-radius: 0.4rem;
-                margin-right: 0.45rem;
+                flex: 30% 0 1;
+                border-radius: 10%;
+                padding: 0.2rem;
                 overflow: hidden;
             }
         }

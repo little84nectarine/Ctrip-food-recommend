@@ -3,7 +3,7 @@ import { useCallback, useRef } from "react";
 export default function useThrottle(fn, delay) {
   const timer = useRef(-1);
   // console.log("timer:", timer);
-  const throttle = useCallback(() => {
+  const throttle = () => {
     if (timer.current > -1) {
       return;
     }
@@ -12,6 +12,6 @@ export default function useThrottle(fn, delay) {
       timer.current = -1;
       clearTimeout(timer.current);
     }, delay);
-  }, [fn, delay]);
+  };
   return throttle;
 }

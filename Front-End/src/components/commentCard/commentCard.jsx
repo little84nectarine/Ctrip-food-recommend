@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './commentCard.module.scss'
 
 export default function CommentCard({ data }) {
-    console.log(data);
 
     return (
         <div className={styles.content}>
@@ -31,12 +30,12 @@ export default function CommentCard({ data }) {
                 data.userImgs.length > 0 ?
                     <div className={styles.imgsContainer}>
                         {
-                            data.userImgs.length > 3 ?
+                            data.userImgs.length >= 3 ?
                                 <div className={styles.case1}>
                                     {
                                         data.userImgs.slice(0, 3).map((imgUrl, index) => {
                                             return <div key={index} className={styles.imgBox}>
-                                                <img src={imgUrl} height='100%' alt="" />
+                                                <img src={imgUrl} height='auto' width='100%' alt="" />
                                             </div>
                                         })
                                     }
@@ -47,7 +46,7 @@ export default function CommentCard({ data }) {
                                     {
                                         data.userImgs.map((imgUrl, index) => {
                                             return <div key={index} className={styles.imgBox}>
-                                                <img src={imgUrl} height='100%' alt="" />
+                                                <img src={imgUrl} height='auto' width='100%' alt="" />
                                             </div>
                                         })
                                     }

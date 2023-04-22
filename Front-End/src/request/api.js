@@ -24,3 +24,11 @@ export const multifilterApi = function (body = {}) {
         data: body
     })
 }
+//请求瀑布流列表
+export const waterfallApi = function (body = {}) {
+    return axios({
+        method: 'post',
+        url: '/api/waterfall',
+        data: body
+    })
+}

@@ -8,6 +8,8 @@ const app = new express()
 //导入餐厅列表json
 const restaruant = require('./mock/restruant.json')
 const userComments = require('./mock/user.json')
+//导入瀑布流列表
+const waterfall = require('./mock/waterfall.json')
 //导入banner列表json
 const bannerlist = require('./mock/banner.json')
 //非菜系叶子节点列表
@@ -15,6 +17,7 @@ const notleafstyle = ["火锅系列", "外国菜", "粉面", "地方菜", "快�
 //所有项列表
 let list = Object.values(restaruant.data)
 let currentlist = Object.values(restaruant.data)
+let waterfallList = Object.values(waterfall.data)
 
 const filterfunc = (arr)=>{
     let result = Object.values(restaruant.data);
@@ -69,6 +72,31 @@ app.post("/restComments", express.json(), function (req, res) {
     } else {
         res.send(404)
         return
+    }
+})
+
+//返回下一个瀑布流列表
+// {   请求体
+//     curr : Number,   这一次请求列表的起始位置
+//     len: Number      请求长度
+// }
+app.post("/waterfall", express.json(), function (req, res) {
+    let curr = req.body.curr
+    let len = req.body.len
+    let result = {}
+    if (curr < waterfallList.length) {
+        result.state = 200
+
+        if(curr + len <= waterfallList.length){
+            // 请求的长度没超出界限
+            result.data = waterfallList.slice(curr, curr + len)
+        }else{
+            result.data = waterfallList.slice(curr)
+        }
+        res.json(result)
+    } else {
+        result.state = 404
+        res.json(result)
     }
 })
 
