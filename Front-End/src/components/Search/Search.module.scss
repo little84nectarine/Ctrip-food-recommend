@@ -14,6 +14,7 @@
         height: 2.4rem;
         flex: 1;
         display: inline-block;
+        background-color: #fff;
     }
 }
 
@@ -22,7 +23,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 101;
-    background-color: #fff;
+    background-color: rgb(250,250,250);
     overflow-y: auto;
     .listbox{
         width: 100%;

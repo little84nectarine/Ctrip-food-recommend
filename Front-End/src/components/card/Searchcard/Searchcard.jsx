@@ -12,7 +12,7 @@ import { restart } from '../../../store/currPagecount.slice'
 import { changelistloading } from '../../../store/listloading.slice'
 
 const Searchcard = (props) => {
-    const { data } = props
+    const { data ,searchkey} = props
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const tofoodpage = ()=>{
@@ -34,7 +34,9 @@ const Searchcard = (props) => {
             <div className={styles.searchcardbox} onClick={tofoodpage}>
                 <div className={styles.firstline}>
                     <SmileFill style={{ color: '#dd2626', fontSize: "1.1rem", marginRight: "0.4rem" }} />
-                    <span style={{whiteSpace:"nowrap",overflow:'hidden',textOverflow:'ellipsis'}}>{data.name}</span>
+                    <span>{data.name.split(searchkey)[0]}</span>
+                    <span style={{color: '#dd2626'}}>{searchkey}</span>
+                    <span>{data.name.split(searchkey)[1]}</span>
                 </div>
                 <div className={styles.secondline}>
                     {data.reviews}条点评
