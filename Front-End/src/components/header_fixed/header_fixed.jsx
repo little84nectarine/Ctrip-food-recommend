@@ -23,17 +23,17 @@ const Header_fixed = (props) => {
     const dispatch = useDispatch()
     const [heart, setHeart] = useState(false)
     const [pickervisible, setPickervisible] = useState(false)
-    const [pickervalue,setPickervalue] = useState(["上海"])
+    const [pickervalue, setPickervalue] = useState(["上海"])
 
     const changecity = () => {
         setPickervisible(true)
     }
 
-    const toSearchpage = ()=>{
+    const toSearchpage = () => {
         dispatch(changemodal(true))
     }
 
-    const getswipertext = (e)=>{
+    const getswipertext = (e) => {
         dispatch(changestext(textlist[e]))
     }
 
@@ -46,18 +46,19 @@ const Header_fixed = (props) => {
             {/* 搜索框 */}
             <div className={styles.searchbox}>
                 <div className={styles.search} style={{ background: color === "white" ? 'white' : 'linear-gradient(-20deg, rgba(43,93,118,0.5) 0%, rgba(78,67,118,0.5) 100%)', border: color === "white" ? '1px solid rgb(200,44,44)' : 'none' }}>
-                    <div>
-                        <span style={{ marginLeft: '1rem', fontSize: '0.9rem', marginRight: '0.3rem' }} onClick={changecity}>{pickervalue}</span>
-                        <DownFill style={{ fontSize: '10px', marginBottom: '0.12rem' }} onClick={changecity} />
-                        <span style={{ display: 'inline-block', transform: ["scale(0.5,1.8)"], margin: '0 0.1rem 0.2rem 0.3rem' }}>丨</span>
-                        <div style={{ display: 'inline-block' }}><SearchOutline style={{ fontSize: '1rem', marginBottom: '-0.1rem', marginRight: '0.2rem' }} /></div>
-                    </div>
-                    {/* 轮播 */}
-                    <div className={styles.searchboxright} onClick={toSearchpage}>
-                        <Swiper direction='vertical' style={{ '--height': '2rem' }} autoplay allowTouchMove={false} loop={true} indicator={() => null} onIndexChange={getswipertext}>
-                            {verticalItems}
-                        </Swiper>
-                    </div>
+
+                </div>
+                <div style={{position:"absolute",left:'1rem'}}>
+                    <span style={{ fontSize: '0.9rem', marginRight: '0.3rem' }} onClick={changecity}>{pickervalue}</span>
+                    <DownFill style={{ fontSize: '10px', marginBottom: '0.12rem' }} onClick={changecity} />
+                    <span style={{ display: 'inline-block', transform: ["scale(0.5,1.8)"], margin: '0 0.1rem 0.2rem 0.3rem' }}>丨</span>
+                    <div style={{ display: 'inline-block' }}><SearchOutline style={{ fontSize: '1rem', marginBottom: '-0.1rem', marginRight: '0.2rem' }} /></div>
+                </div>
+                {/* 轮播 */}
+                <div className={styles.searchboxright} onClick={toSearchpage} style={{position:"absolute"}}>
+                    <Swiper direction='vertical' style={{ '--height': '2rem' }} autoplay allowTouchMove={false} loop={true} indicator={() => null} onIndexChange={getswipertext}>
+                        {verticalItems}
+                    </Swiper>
                 </div>
             </div>
             {/* 爱心，点击后改实心爱心的样式 */}

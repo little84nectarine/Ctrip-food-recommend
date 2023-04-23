@@ -18,22 +18,25 @@
 .searchbox{
     flex:1;
     display: flex;
-    justify-content: center;
     align-items: center;
+    position: relative;
     .search{
+        position: relative;
+        z-index: -1;
         border-radius: 1rem;
         height: 2rem;
         width: 90%;
         backdrop-filter: blur(20px);
         display: flex;
         align-items: center;
-        overflow: hidden
+        overflow: hidden;
     }
 }
 
 .searchboxright{
     height: 2rem;
     width: 50%;
+    left:6.5rem;
 }
 
 .fixedheaderright{
