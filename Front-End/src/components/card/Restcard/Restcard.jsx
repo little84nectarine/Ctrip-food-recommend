@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./restcard.module.scss"
+import styles from "./Restcard.module.scss"
 import { useNavigate } from 'react-router'
  
 import { StarFill} from 'antd-mobile-icons'

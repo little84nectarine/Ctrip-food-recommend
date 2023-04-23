@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './commentCard.module.scss'
+import styles from './CommentCard.module.scss'
 
 export default function CommentCard({ data }) {
 

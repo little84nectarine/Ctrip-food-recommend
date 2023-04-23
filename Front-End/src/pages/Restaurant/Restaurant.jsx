@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Restaurant.module.scss'
-import Myswiper from '../../components/swiper/myswiper'
-import Restinfo from '../../components/restinfo/restinfo'
-import Usercomment from '../../components/usercomment/usercomment'
-import Waterfall from '../../components/waterfall/waterfall'
+import Myswiper from '../../components/Swiper/Myswiper'
+import Restinfo from '../../components/Restinfo/Restinfo'
+import Usercomment from '../../components/Usercomment/Usercomment'
+import Waterfall from '../../components/Waterfall/Waterfall'
 import { LeftOutline } from 'antd-mobile-icons'
 import { useNavigate } from 'react-router'
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook

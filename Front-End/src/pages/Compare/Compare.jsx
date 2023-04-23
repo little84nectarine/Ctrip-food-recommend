@@ -13,9 +13,9 @@ import { multifilterApi } from '../../request/api'
 import { restaruantApi } from '../../request/api'
 import { restaurantdetailApi } from '../../request/api'
 import { useLocation } from 'react-router-dom';
-import Myswiper from '../../components/swiper/myswiper'
-import Restinfo from '../../components/restinfo/restinfo'
-import Usercomment from '../../components/usercomment/usercomment'
+import Myswiper from '../../components/Swiper/Myswiper'
+import Restinfo from '../../components/Restinfo/Restinfo'
+import Usercomment from '../../components/Usercomment/Usercomment'
 
 const Compare = () => {
     const dispatch = useDispatch()

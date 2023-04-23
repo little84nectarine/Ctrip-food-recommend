@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react'
-import styles from "./swiper.module.scss"
+import React, { useState, useRef } from 'react'
+import styles from "./Swiper.module.scss"
 import { Swiper, Popup } from 'antd-mobile'
 import { DownFill, PlayOutline } from 'antd-mobile-icons'
 

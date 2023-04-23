@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./filtercard.module.scss"
+import styles from "./Filtercard.module.scss"
 import { useDispatch } from 'react-redux'
 import { changefilterlist } from '../../../store/currFilter.slice'
 import { restaruantApi } from '../../../request/api'

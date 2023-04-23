@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from "./restinfo.module.scss"
+import styles from "./Restinfo.module.scss"
 import { DownFill, DownOutline, PhoneFill, FireFill } from 'antd-mobile-icons'
 import { Popup, Button,Toast } from 'antd-mobile'
 import { useNavigate } from 'react-router-dom'

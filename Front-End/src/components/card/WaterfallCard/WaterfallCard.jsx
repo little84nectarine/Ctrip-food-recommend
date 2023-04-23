@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './waterfallCard.module.scss'
+import styles from './WaterfallCard.module.scss'
 import { Image } from 'antd-mobile'
 
 

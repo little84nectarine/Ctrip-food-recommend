@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import styles from "./banner.module.scss"
-import Bannercard from '../card/bannercard/bannercard'
+import styles from "./Banner.module.scss"
+import Bannercard from '../card/Bannercard/Bannercard'
 import { bannerApi } from '../../request/api'
 
 const Banner = () => {

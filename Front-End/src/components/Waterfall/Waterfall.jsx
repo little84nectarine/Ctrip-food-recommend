@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './waterfall.module.scss';
-import WaterfallCard from '../card/waterfallCard/waterfallCard';
+import styles from './Waterfall.module.scss';
+import WaterfallCard from '../card/WaterfallCard/WaterfallCard';
 import { waterfallApi } from '../../request/api'
 import useThrottle from '../../hooks/useThrottle';
 import { SpinLoading } from 'antd-mobile'

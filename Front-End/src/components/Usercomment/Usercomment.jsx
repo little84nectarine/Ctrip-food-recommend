@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from "./usercomment.module.scss"
+import styles from "./Usercomment.module.scss"
 import { DownOutline } from 'antd-mobile-icons'
-import CommentCard from '../commentCard/commentCard'
+import CommentCard from '../CommentCard/CommentCard'
 
 
 

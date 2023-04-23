@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from "./header_fixed.module.scss"
+import styles from "./Header_fixed.module.scss"
 import { LeftOutline, HeartOutline, DownFill, SearchOutline, HeartFill } from 'antd-mobile-icons'
 import { cityoptions } from "./cityoptions"
 import { Swiper, Picker } from 'antd-mobile'
