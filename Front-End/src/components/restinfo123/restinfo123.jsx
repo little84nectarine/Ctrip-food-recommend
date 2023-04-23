@@ -1,19 +1,45 @@
 import React, { useState } from 'react'
 import styles from "./restinfo.module.scss"
-import { DownFill, DownOutline, PhoneFill } from 'antd-mobile-icons'
-import { Popup, Button } from 'antd-mobile'
+import { DownFill, DownOutline, PhoneFill, FireFill } from 'antd-mobile-icons'
+import { Popup, Button,Toast } from 'antd-mobile'
 import { useNavigate } from 'react-router-dom'
+import { useSelector,useDispatch } from 'react-redux'
+import { changecomparelist } from '../../store/comparelist.slice'
 
 
 const Restinfo = ({ data }) => {
   const [telVisible, setTelVisible] = useState(false)
+  const comparelist = useSelector(state => state.compareList.comparelist)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const addcompare = (id, name, img) => {
+    if (comparelist.length <= 1 && comparelist.length >= 0) {
+      if (comparelist.length === 1 && id === comparelist[0].id) {
+        Toast.show({
+          icon: 'fail',
+          content: '请勿重复添加',
+        })
+      } else {
+        let temp = { id, name, img }
+        dispatch(changecomparelist([...comparelist, temp]))
+        Toast.show({
+          icon: 'success',
+          content: '添加成功',
+        })
+      }
+    } else {
+      Toast.show({
+        icon: 'fail',
+        content: '列表已满',
+      })
+    }
+  }
 
   return (
     <div className={styles.infobox}>
       {/* 标题 */}
       <div className={styles.title}>{data.name}</div>
-
+      <div style={{ position: 'absolute', right: '1.2rem', top: '1.5rem', color: '#dd2626', fontSize: '1.2rem' }} onClick={()=>addcompare(data.id, data.name, data.imgs[0])}><FireFill /></div>
       {/* 第一行：评分、评论人数、人均消费、菜系 */}
       <div className={styles.firstRow}>
         <div className={styles.tag1}>
@@ -69,7 +95,7 @@ const Restinfo = ({ data }) => {
       {/* 第三行：具体位置 */}
       <div className={styles.thirdRow}>
         <span>{data.exactPosition}</span>
-        <DownOutline onClick={()=>navigate('/map')} style={{ transform: "rotateZ(-90deg)" }} />
+        <DownOutline onClick={() => navigate('/map')} style={{ transform: "rotateZ(-90deg)" }} />
       </div>
     </div>
   )

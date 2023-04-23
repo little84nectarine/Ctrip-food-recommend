@@ -1,0 +1,117 @@
+.content {
+    height: fit-content;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+
+    .header {
+        margin: 0.5rem;
+        display: flex;
+        align-items: center;
+
+        .info {
+            margin-left: 0.5rem;
+            flex: 1;
+
+            .score {
+                width: fit-content;
+                height: 1rem;
+                font-weight: 400;
+                margin: 0.4rem 0 0 0.3rem;
+                padding-right: 0.6rem;
+                border-radius: 0.5rem;
+                color: rgb(92, 92, 92);
+                background-color: #fff3ca;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .emoTag {
+                    position: relative;
+                    top: 0.15rem;
+                    display: inline-block;
+                    width: 22px;
+                    height: 22px;
+                    border-radius: 11px;
+                    background: url(https://pages.c-ctrip.com/you/foods/c_cranking_fooddetail_conment_score.png) no-repeat;
+                    background-size: 110px 22px;
+                    background-position-y: 0;
+                    // background-position-x: -66px;
+                    // color: rgb(159, 0, 0);
+                    position: relative;
+                    top: 0;
+                    left: 0;
+
+                    transform: translate(-8px, 0%);
+                }
+            }
+
+        }
+
+        .photo {
+            height: 2rem;
+            width: 2rem;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+    }
+
+    .text {
+        height: 3.1rem;
+
+        p {
+            color: black;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+    }
+
+    .imgsContainer {
+        margin-top: 0.4rem;
+        height: fit-content;
+
+        .case1 {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .imgBox {
+                border-radius: 10%;
+                overflow: hidden;
+                padding: 0.2rem;
+                flex-basis: 30%;
+                flex-shrink: 1;
+                flex-grow: 1;
+            }
+            
+
+            .imgCount {
+                position: absolute;
+                right: 0.5rem;
+                bottom: 0.5rem;
+                background-color: rgba(0, 0, 0, 0.625);
+                color: white;
+                padding: 0.05rem 0.3rem;
+                line-height: 1rem;
+                border-radius: 20%;
+            }
+        }
+
+        .case2 {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .imgBox {
+                flex: 30% 0 1;
+                border-radius: 10%;
+                padding: 0.2rem;
+                overflow: hidden;
+            }
+        }
+
+
+    }
+}

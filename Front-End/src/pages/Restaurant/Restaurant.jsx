@@ -9,15 +9,15 @@ import { useNavigate } from 'react-router'
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
 import { restaurantdetailApi } from '../../request/api'
 import { Tabs } from 'antd-mobile'
-import { useSelector } from 'react-redux'
 import { changemodal } from '../../store/showModal.slice'
 import { changefilterlist } from '../../store/currFilter.slice'
-import { multifilterApi,restaruantApi } from '../../request/api'
+import { multifilterApi, restaruantApi } from '../../request/api'
 import { changeList } from '../../store/currList.slice'
 import { restart } from '../../store/currPagecount.slice'
 import { changelistloading } from '../../store/listloading.slice'
 import { changeEnd } from '../../store/islistEnd.slice'
 import { useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom';
 
 const tabHeight = 42
 
@@ -27,13 +27,14 @@ const Food = () => {
   const [data, setData] = useState({})
   const [activeKey, setActiveKey] = useState('1')   //tab栏
   const dispatch = useDispatch()
-  const id = (useSelector(store => store.currRest)).id
+  const location = useLocation();
+  const { id } = location.state;
 
   const tabItems = [
     { key: '1', title: '图片', elment: (<Myswiper data={data.imgs ? [data.video, ...data.imgs] : []} />) },
     { key: '2', title: '概览', elment: (<Restinfo data={data} />) },
     { key: '3', title: '客户评论', elment: (<Usercomment score={data.score} comments={data.comments} rvNum={data.reviews} />) },
-    { key: '4', title: '更多', elment: (<Waterfall />)},
+    { key: '4', title: '更多', elment: (<Waterfall />) },
   ]
 
   const addTabs = useThrottle(() => {
@@ -56,14 +57,14 @@ const Food = () => {
     multifilterApi({ arr: ["不限", "不限", [[], []], "默认"] }).then(e => {
       restaruantApi(0).then(res => {
         if (res.status === 201) {
-            dispatch(changeEnd(false))
+          dispatch(changeEnd(false))
         } else {
-            dispatch(changeEnd(true))
+          dispatch(changeEnd(true))
         }
         dispatch(changeList([...res.data]))
         dispatch(restart())
         dispatch(changelistloading(false))
-    })
+      })
     })
     document.documentElement.scrollTop = 0
     navigate("/")
@@ -102,7 +103,7 @@ const Food = () => {
     }
   }, [])
 
-  
+
 
   return (
     <>
@@ -134,7 +135,7 @@ const Food = () => {
             </div>
           ))
         }
-        <div style={{ position: "fixed", top: '0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '2.8rem', width: "100%", backgroundColor: '#fff', visibility: headerv ,zIndex:'1'}}>
+        <div style={{ position: "fixed", top: '0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '2.8rem', width: "100%", backgroundColor: '#fff', visibility: headerv, zIndex: '1' }}>
           <LeftOutline style={{ position: 'absolute', top: '1rem', left: '1rem', fontSize: '16px', visibility: 'visible' }} onClick={tohome} />
           <span style={{ fontSize: '17px' }}>餐厅详情</span>
         </div>

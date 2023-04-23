@@ -14,7 +14,10 @@ const Restcard = ({ data }) => {
 
   //跳转到对应商店详情页
   const toRestaurant = () => {
-    navigate('/food')
+    navigate('/food', {
+      replace: false,
+      state: { id: data.id }
+    })
     dispatch(changeCurr(data.id))
   }
   return (
