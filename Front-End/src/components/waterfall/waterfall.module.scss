@@ -1,22 +1,29 @@
-.content {
+.waterfalllayout {
     width: 100vw;
     padding-top: 0.01rem;
     margin-top: 0.3rem;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    background-color:  rgb(250,250,250);
+    background-color: white;
 
+    .title {
+        height: 3rem;
+        font-size: 1.2rem;
+        width: 100vw;
+        font-weight: 700;
+        background-color: white;
+        padding: 0.7rem 0 0 0.7rem;
+        box-sizing: border-box;
+    }
 
-
-    .waterfallbox {
-        margin-top: 0.9rem;
-        background-color: #fff;
-        // padding: 40px;
-        column-count: 2;
-        column-gap: 0rem;
-
+    .cardbox {
         width: 100%;
+        background-color: white;
+        display: flex;
+        flex-wrap: wrap;
+
+        .waterline {
+            flex-basis: 50%;
+            display: flex;
+            flex-direction: column;
+        }
     }
 }

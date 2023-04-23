@@ -4,7 +4,7 @@
     break-inside: avoid; // 关键属性，用来防止断点，防止card被内部截断
     box-sizing: border-box;
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 0.3rem;
     display: flex;
     flex-direction: column;
 
@@ -25,13 +25,9 @@
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 1;
-                font-weight: 600;
-                font-size: 1.5rem;
-            }
-
-            &>p {
-                font-size: 1.3rem;
-                color: red;
+                font-size: 1rem;
+                padding: 0.3rem 0.2rem;
+                box-sizing: border-box;
             }
         }
     }

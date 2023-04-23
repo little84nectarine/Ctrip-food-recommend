@@ -1,92 +1,114 @@
-import React, { useEffect, useState, useRef } from 'react'
-import styles from "./waterfall.module.scss"
-import WaterfallCard from '../card/waterfallCard/waterfallCard'
-import useThrottle from '../../hooks/useThrottle'
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './waterfall.module.scss';
+import WaterfallCard from '../card/waterfallCard/waterfallCard';
 import { waterfallApi } from '../../request/api'
-
-
-
-const preLoadHeight = 280   // 缓冲器提前量
-// 视口高度
-const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-
-//////////////////////////////////////////////////////////////////////////
+import useThrottle from '../../hooks/useThrottle';
+import { SpinLoading } from 'antd-mobile'
 
 const Waterfall = () => {
-  const [dataList, setDataList] = useState([])  //瀑布流数据列表
-  let [ifUpdate, setIfUpdate] = useState(0)     //下拉更新触发器
+  const [leftdata, setLeftdata] = useState([])
+  const [rightdata, setRightdata] = useState([])
+  const [heightDate2, setHeightDate2] = useState([0, 0])
+  const [ifUpdate, setIfUpdate] = useState(0)     //下拉更新触发器
+  const [isloading, setIsloading] = useState(false)
+  const [isdown, setIsdown] = useState(false)
   const wfRef = useRef(null)
 
-  // const [ifReach, setIfReach] = useState(false)
-  let ifReach = false
-  // let loading = false
+  const lazyLoader = useThrottle(() => {
+    if (!isdown) {
+      let elHeight = wfRef.current.offsetHeight
+      const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+      let before = wfRef.current.offsetTop + elHeight - document.documentElement.scrollTop < viewPortHeight + 2
 
-  //滑到底触发更新列表
-  useEffect(() => {
-    console.log('====================================');
-    console.log(111111111111111111111111111);
-    console.log('====================================');
-    waterfallApi({ curr: dataList.length, len: 10 }).then(res => {
-      let state = res.data.state
-      if (state !== 404) {
-        let list = res.data.data
-        let newlist = [...dataList, ...list]
-        setDataList(newlist)
-      } else {
-        console.log('没有新的内容了');
+      if (before === true) {
+        setIsloading(true)
+        waterfallApi({ curr: ifUpdate + 20, len: 20 }).then(res => {
+          if (res.data.state === 404) {
+            setIsdown(true)
+            setIsloading(false)
+            return
+          }
+          let list = res.data.data
+          let heightDate = heightDate2
+          let rightData = []//渲染右侧盒子的数组
+          let leftData = []//渲染左侧盒子的数组
+          list.forEach(item => {
+            let height = 170 / item.ratio;//对url地址进行一个截取，拿到高度
+            let minNum = Math.min.apply(null, heightDate)// 从heighetData筛选最小项
+            let minIndex = heightDate.indexOf(minNum);// 获取 最小项的小标 准备开始进行累加
+            heightDate[minIndex] = heightDate[minIndex] + height;//从 heightData 中找到最小的项后进行累加， 
+            if (minIndex === 0) {//[0]加到left [1]加到 right
+              leftData.push(item)
+            } else {
+              rightData.push(item)
+            }
+          })
+          setHeightDate2([...heightDate])
+          setIsloading(false)
+          setLeftdata([...leftdata, ...leftData])
+          setRightdata([...rightdata, ...rightData])
+          setIfUpdate(ifUpdate + 20)
+        })
       }
-    })
-  }, [ifUpdate])
-
+    }
+  }, 500)
 
   useEffect(() => {
-    // 初次请求10条数据
     waterfallApi({ curr: 0, len: 20 }).then(res => {
       let list = res.data.data
-
-      setDataList(list)
-      window.addEventListener("scroll", lazyLoader)
+      let heightDate = heightDate2;
+      let rightData = []//渲染右侧盒子的数组
+      let leftData = []//渲染左侧盒子的数组
+      list.forEach(item => {
+        let height = 170 / item.ratio;//对url地址进行一个截取，拿到高度
+        let minNum = Math.min.apply(null, heightDate)// 从heighetData筛选最小项
+        let minIndex = heightDate.indexOf(minNum);// 获取 最小项的小标 准备开始进行累加
+        heightDate[minIndex] = heightDate[minIndex] + height;//从 heightData 中找到最小的项后进行累加， 
+        if (minIndex === 0) {//[0]加到left [1]加到 right
+          leftData.push(item)
+        } else {
+          rightData.push(item)
+        }
+      })
+      setHeightDate2([...heightDate])
+      setLeftdata([...leftdata, ...leftData])
+      setRightdata([...rightdata, ...rightData])
     })
-
+  }, [])
+  useEffect(() => {
+    window.addEventListener("scroll", lazyLoader)
     return () => {
       window.removeEventListener('scroll', lazyLoader);
     }
-  }, [])
-
-
-  // 监听滚动时间
-  const lazyLoader = useThrottle(() => {
-    let elHeight = wfRef.current.offsetHeight
-    let before = ifReach
-    ifReach = (wfRef.current.offsetTop + elHeight - document.documentElement.scrollTop < preLoadHeight + viewPortHeight)
-
-    console.log('====================================');
-    console.log(ifReach);
-    if (before !== ifReach && ifReach === true) {
-      console.log('更新');
-      setIfUpdate(ifUpdate++)
-    }
-    console.log('====================================');
-
-  }, 100)
-
+  }, [heightDate2])
   return (
-    <div className={styles.content} ref={wfRef} >
-      <div style={{margin: '0.2rem', fontSize: '1.5rem', color: 'rgb(128, 128, 128)', fontWeight: '700'}}>
-        更多推荐
+    <div className={styles.waterfalllayout} ref={wfRef}>
+      <div className={styles.title}>更多推荐</div>
+      <div className={styles.cardbox}>
+        {/* 左列 */}
+        <div className={styles.waterline}>
+          {
+            leftdata?.map((item, index) => {
+              return <WaterfallCard data={item} key={index}></WaterfallCard>
+            })
+          }
+        </div>
+        {/* 右列 */}
+        <div className={styles.waterline}>
+          {
+            rightdata?.map((item, index) => {
+              return <WaterfallCard data={item} key={index}></WaterfallCard>
+            })
+          }
+        </div>
       </div>
-      <div className={styles.waterfallbox}  id='waterfall'>
-        {
-          dataList.map((item, idx) => {
-            return (
-              <WaterfallCard data={item} key={idx}></WaterfallCard>
-            )
-          })
-
-        }
-      </div>
+      {isloading ?
+        <div style={{ display: 'flex', justifyContent: "center", alignItems: 'center', height: '3rem', backgroundColor: 'white' }}>
+          <SpinLoading color='primary' />
+        </div>
+        : <></>}
     </div>
-  )
-}
+  );
+};
 
-export default Waterfall
+export default Waterfall;
