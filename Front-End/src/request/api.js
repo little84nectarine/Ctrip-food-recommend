@@ -37,3 +37,11 @@ export const waterfallApi = function (body = {}) {
         data: body
     })
 }
+//请求瀑布流列表
+export const locationApi = function (body = {}) {
+    return axios({
+        method: 'post',
+        url: '/api/location',
+        data: body
+    })
+}
