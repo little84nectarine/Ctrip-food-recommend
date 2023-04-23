@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import styles from "./restinfo.module.scss"
 import { DownFill, DownOutline, PhoneFill } from 'antd-mobile-icons'
 import { Popup, Button } from 'antd-mobile'
+import { useNavigate } from 'react-router-dom'
 
-const timeMapper = function (arr) {
-
-}
 
 const Restinfo = ({ data }) => {
   const [telVisible, setTelVisible] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <div className={styles.infobox}>
@@ -70,7 +69,7 @@ const Restinfo = ({ data }) => {
       {/* 第三行：具体位置 */}
       <div className={styles.thirdRow}>
         <span>{data.exactPosition}</span>
-        <DownOutline style={{ transform: "rotateZ(-90deg)" }} />
+        <DownOutline onClick={()=>navigate('/map')} style={{ transform: "rotateZ(-90deg)" }} />
       </div>
     </div>
   )

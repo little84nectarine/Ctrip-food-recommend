@@ -21,12 +21,12 @@ let list = Object.values(restaruant.data)
 let currentlist = Object.values(restaruant.data)
 let waterfallList = Object.values(waterfall.data)
 
-const filterfunc = (arr)=>{
+const filterfunc = (arr) => {
     let result = Object.values(restaruant.data);
-    result = multifilter(arr[2][0],arr[2][1],result)
-    result = locationfilter(arr[0],result)
-    result = stylefilter(arr[1],result)
-    result = sortfilter(arr[3],result)
+    result = multifilter(arr[2][0], arr[2][1], result)
+    result = locationfilter(arr[0], result)
+    result = stylefilter(arr[1], result)
+    result = sortfilter(arr[3], result)
     currentlist = result
     return result
 }
@@ -34,10 +34,10 @@ const filterfunc = (arr)=>{
 //返回餐厅列表
 app.get("/restaurantList", function (req, res) {
     let start = req.query.page
-    if(currentlist.slice(start*10,start*10+10).length<10 || currentlist[start*10+11]===undefined){
-        res.status(201).json(currentlist.slice(start*10,start*10+10))
-    }else{
-        res.json(currentlist.slice(start*10,start*10+10))
+    if (currentlist.slice(start * 10, start * 10 + 10).length < 10 || currentlist[start * 10 + 11] === undefined) {
+        res.status(201).json(currentlist.slice(start * 10, start * 10 + 10))
+    } else {
+        res.json(currentlist.slice(start * 10, start * 10 + 10))
     }
 })
 //返回banner列表
@@ -46,17 +46,17 @@ app.get("/bannerList", function (req, res) {
     res.json(bannerlist.data);
 })
 //返回热门榜单
-app.get("/hotlist",function(req,res){
+app.get("/hotlist", function (req, res) {
     res.json(hotlist.data)
 })
 //搜索餐厅
-app.get("/searchrest",function(req,res){
+app.get("/searchrest", function (req, res) {
     let search = req.query.search
-    if(search.length === 0){
+    if (search.length === 0) {
         res.json("no")
-    }else{
-        let result = list.filter((item)=>{
-            return (item.name+item.style).includes(search)
+    } else {
+        let result = list.filter((item) => {
+            return (item.name + item.style).includes(search)
         })
         res.json(result)
     }
@@ -70,11 +70,11 @@ app.post("/restaurantdetail", express.json(), function (req, res) {
         let result = restaruant.data[id]
         // 将前三条评论数据一起返回
         let comments = userComments.data[id].comments
-        if(comments.length <= 3){
+        if (comments.length <= 3) {
             result.comments = userComments.data[id].comments
-        }else{
+        } else {
             let temp = []
-            for(let i = 0; i < 3; i++){
+            for (let i = 0; i < 3; i++) {
                 temp.push(comments[i])
             }
             result.comments = temp
@@ -110,16 +110,36 @@ app.post("/waterfall", express.json(), function (req, res) {
     if (curr < waterfallList.length) {
         result.state = 200
 
-        if(curr + len <= waterfallList.length){
+        if (curr + len <= waterfallList.length) {
             // 请求的长度没超出界限
             result.data = waterfallList.slice(curr, curr + len)
-        }else{
+        } else {
             result.data = waterfallList.slice(curr)
         }
         res.json(result)
     } else {
         result.state = 404
         res.json(result)
+    }
+})
+
+//返回餐厅地图坐标与信息
+// {   请求体
+//     id : Number,   店铺id
+// }
+app.post("/location", express.json(), function (req, res) {
+    let restlen = list.length
+    let id = req.body.id
+    if (id > 0 && id <= restlen) {
+        let result = {
+            name: restaruant.data[id].name,
+            location: restaruant.data[id].exactPosition,
+            point: { lng: 121 + Number(Math.random().toFixed(2))/2 , lat: 31 + Number(Math.random().toFixed(2))/2 }
+        }
+        res.json(result)
+    } else {
+        res.send(404)
+        return
     }
 })
 
