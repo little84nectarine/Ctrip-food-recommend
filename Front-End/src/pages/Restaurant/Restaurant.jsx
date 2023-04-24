@@ -111,51 +111,54 @@ const Food = () => {
 
   return (
     <>
-      {isloading ?
-        <div style={{ position: "fixed", top: '45vh', left: "50%", transform: ["translateX(-50%)"] }}>
-          加载中
-          <SpinLoading color='primary' style={{ marginTop: '1rem' }} />
-        </div>
-        :
-        (
-          state?.id ?
-            <>
-              {/* tab栏 */}
-              <div className={styles.tabsContainer} style={{ visibility: "hidden" }} id='tabId'>
-                <Tabs
-                  style={{ '--active-line-color': 'red', "--active-title-color": "red" }
-                  }
-                  activeKey={activeKey}
-                  onChange={key => {
-                    document.getElementById(`anchor-${key}`)?.scrollIntoView()
-                    window.scrollTo({
-                      top: window.scrollY - tabHeight,
-                    })
-                  }}
-                >
-                  {/* 生成相应信息组件 */}
-                  {tabItems.map(item => (
-                    <Tabs.Tab title={item.title} key={item.key} />
-                  ))}
-                </Tabs>
+      {
+        state?.id ?
+          <>
+            {isloading ?
+              <div style={{ position: "fixed", top: '45vh', left: "50%", transform: ["translateX(-50%)"] }}>
+                加载中
+                <SpinLoading color='primary' style={{ marginTop: '1rem' }} />
               </div>
-
-              <div style={{ backgroundColor: 'rgb(240,243,246)' }}>
-                {
-                  tabItems.map(item => (
-                    <div key={item.key} id={`anchor-${item.key}`}>
-                      {item.elment}
-                    </div>
-                  ))
-                }
-                <div style={{ position: "fixed", top: '0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '2.8rem', width: "100%", backgroundColor: '#fff', visibility: headerv, zIndex: '1' }}>
-                  <LeftOutline style={{ position: 'absolute', top: '1rem', left: '1rem', fontSize: '16px', visibility: 'visible' }} onClick={tohome} />
-                  <span style={{ fontSize: '17px' }}>餐厅详情</span>
+              :
+              <>
+                {/* tab栏 */}
+                <div className={styles.tabsContainer} style={{ visibility: "hidden" }} id='tabId'>
+                  <Tabs
+                    style={{ '--active-line-color': 'red', "--active-title-color": "red" }
+                    }
+                    activeKey={activeKey}
+                    onChange={key => {
+                      document.getElementById(`anchor-${key}`)?.scrollIntoView()
+                      window.scrollTo({
+                        top: window.scrollY - tabHeight,
+                      })
+                    }}
+                  >
+                    {/* 生成相应信息组件 */}
+                    {tabItems.map(item => (
+                      <Tabs.Tab title={item.title} key={item.key} />
+                    ))}
+                  </Tabs>
                 </div>
-              </div>
-            </>
-            : <ErrorBlock status='empty' style={{ marginTop: '30vh' }} />
-        )}
+
+                <div style={{ backgroundColor: 'rgb(240,243,246)' }}>
+                  {
+                    tabItems.map(item => (
+                      <div key={item.key} id={`anchor-${item.key}`}>
+                        {item.elment}
+                      </div>
+                    ))
+                  }
+                  <div style={{ position: "fixed", top: '0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '2.8rem', width: "100%", backgroundColor: '#fff', visibility: headerv, zIndex: '1' }}>
+                    <LeftOutline style={{ position: 'absolute', top: '1rem', left: '1rem', fontSize: '16px', visibility: 'visible' }} onClick={tohome} />
+                    <span style={{ fontSize: '17px' }}>餐厅详情</span>
+                  </div>
+                </div>
+              </>
+            }
+          </>
+          : <ErrorBlock status='empty' style={{ marginTop: '30vh' }} />
+      }
 
     </>
   )
