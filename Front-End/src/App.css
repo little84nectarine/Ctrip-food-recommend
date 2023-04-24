@@ -45,3 +45,9 @@
 .adm-button{
   font-size: 0.8rem !important;
 }
+
+.adm-list-body{
+  box-shadow: 0 0 5px rgba(200,200,200,0.8);
+  border-radius: 5px;
+  margin-bottom: 1rem !;
+}

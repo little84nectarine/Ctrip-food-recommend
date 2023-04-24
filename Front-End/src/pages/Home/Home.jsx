@@ -24,6 +24,7 @@ import { UpOutline, CloseCircleFill ,StarFill} from 'antd-mobile-icons'
 import { useNavigate } from 'react-router'
 const Home = () => {
   const restlist = useSelector((state) => state.currList.restList)
+  console.log(restlist);
   const hasMore = useSelector((state) => state.islistEnd.isend)
   const pagecount = useSelector(state => state.currPagecount.pagecount)
   const filterlist = useSelector(state => state.currFilter.filterlist)

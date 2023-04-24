@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from "./Collect.module.scss"
-import { LeftOutline } from 'antd-mobile-icons'
+import { LeftOutline ,StarFill} from 'antd-mobile-icons'
 import { useNavigate } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { changemodal } from '../../store/showModal.slice'
@@ -41,7 +41,19 @@ const Collect = () => {
                 <span style={{ fontSize: '17px' }}>我的收藏</span>
             </div>
             <div className={styles.listbox}>
-
+                <Collapse defaultActiveKey={['1']}>
+                    {restcollect.map((item,index) => {
+                        return <Collapse.Panel key={index} title={item.restName} >
+                            {item.dishes.map(i=>{
+                                return <div style={{display:'flex'}}>
+                                    <Image src={i.dishImg} width={30} height={30}/>
+                                    <span style={{fontSize:'1rem',marginLeft:'0.8rem'}}>{i.dishName}</span>
+                                    <StarFill style={{position:'absolute',right:"0.5rem",fontSize:'1.5rem',color:'#f3c743'}}/>
+                                </div>
+                            })}
+                        </Collapse.Panel>
+                    })}
+                </Collapse>
             </div>
         </div>
     )
