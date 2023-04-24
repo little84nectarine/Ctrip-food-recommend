@@ -37,11 +37,20 @@ export const waterfallApi = function (body = {}) {
         data: body
     })
 }
-//请求瀑布流列表
+//请求地图位置信息
 export const locationApi = function (body = {}) {
     return axios({
         method: 'post',
         url: '/api/location',
+        data: body
+    })
+}
+
+//请求餐厅推荐菜
+export const recoDishApi = function (body = {}) {
+    return axios({
+        method: 'post',
+        url: '/api/recoDish',
         data: body
     })
 }

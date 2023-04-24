@@ -10,7 +10,8 @@ const restaruant = require('./mock/restruant.json')
 const userComments = require('./mock/user.json')
 //导入瀑布流列表
 const waterfall = require('./mock/waterfall.json')
-//导入
+//导入推荐菜
+const recoDIsh = require('./mock/recomDish.json')
 //导入banner列表json
 const bannerlist = require('./mock/banner.json')
 //导入热门榜单列表
@@ -135,8 +136,22 @@ app.post("/location", express.json(), function (req, res) {
         let result = {
             name: restaruant.data[id].name,
             location: restaruant.data[id].exactPosition,
-            point: { lng: 121 + Number(Math.random().toFixed(2))/2 , lat: 31 + Number(Math.random().toFixed(2))/2 }
+            point: { lng: 121 + Number(Math.random().toFixed(2)) / 2, lat: 31 + Number(Math.random().toFixed(2)) / 2 }
         }
+        res.json(result)
+    } else {
+        res.send(404)
+        return
+    }
+})
+
+//返回餐厅推荐菜
+app.post("/recoDIsh", express.json(), function (req, res) {
+    let restlen = list.length
+    let id = req.body.id
+    if (id > 0 && id <= restlen) {
+        let result = recoDIsh.data[id]
+        console.log(result);
         res.json(result)
     } else {
         res.send(404)

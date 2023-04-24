@@ -4,6 +4,7 @@ import Myswiper from '../../components/Swiper/Myswiper'
 import Restinfo from '../../components/Restinfo/Restinfo'
 import Usercomment from '../../components/Usercomment/Usercomment'
 import Waterfall from '../../components/Waterfall/Waterfall'
+import RecoDish from '../../components/RecoDish/RecoDish'
 import { LeftOutline } from 'antd-mobile-icons'
 import { useNavigate } from 'react-router'
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
@@ -30,15 +31,13 @@ const Food = () => {
   const location = useLocation();
   const [isloading, setIsloading] = useState(true)
   const state = location.state;
-  console.log('====================================');
-  console.log(location);
-  console.log('====================================');
 
   const tabItems = [
     { key: '1', title: '图片', elment: (<Myswiper data={data.imgs ? [data.video, ...data.imgs] : []} />) },
     { key: '2', title: '概览', elment: (<Restinfo data={data} />) },
-    { key: '3', title: '客户评论', elment: (<Usercomment score={data.score} comments={data.comments} rvNum={data.reviews} />) },
-    { key: '4', title: '更多', elment: (<Waterfall />) },
+    { key: '3', title: '推荐菜', elment: (<RecoDish restId={data.id} />) },
+    { key: '4', title: '客户评论', elment: (<Usercomment score={data.score} comments={data.comments} rvNum={data.reviews} />) },
+    { key: '5', title: '更多', elment: (<Waterfall />) },
   ]
 
   const addTabs = useThrottle(() => {
@@ -76,7 +75,6 @@ const Food = () => {
   const addheader = useThrottle(() => {
     let curTop = document.body.scrollTop || document.documentElement.scrollTop;
     //滚动超过70则显示header，小于70隐藏
-
     let el = document.getElementById("tabId")
 
     if (curTop > 70) {
