@@ -30,6 +30,9 @@ const Food = () => {
   const location = useLocation();
   const [isloading, setIsloading] = useState(true)
   const state = location.state;
+  console.log('====================================');
+  console.log(location);
+  console.log('====================================');
 
   const tabItems = [
     { key: '1', title: '图片', elment: (<Myswiper data={data.imgs ? [data.video, ...data.imgs] : []} />) },
@@ -89,7 +92,6 @@ const Food = () => {
   useEffect(() => {
     restaurantdetailApi({ id: state?.id }).
       then(res => {
-        console.log(res.data);
         setData({ ...res.data })
         setIsloading(false)
       })
@@ -110,10 +112,10 @@ const Food = () => {
   return (
     <>
       {isloading ?
-      <div style={{position:"fixed",top:'45vh',left:"50%",transform:["translateX(-50%)"]}}>
-        加载中
-        <SpinLoading color='primary' style={{marginTop:'1rem'}} />
-      </div>
+        <div style={{ position: "fixed", top: '45vh', left: "50%", transform: ["translateX(-50%)"] }}>
+          加载中
+          <SpinLoading color='primary' style={{ marginTop: '1rem' }} />
+        </div>
         :
         (
           state?.id ?
