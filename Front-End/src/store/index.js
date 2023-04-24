@@ -10,6 +10,7 @@ import listloadingReducer from "./listloading.slice"
 import modalShowReducer from "./showModal.slice"
 import currswipertextReducer from "./currswipertext.slice"
 import comparelistReducer from "./comparelist.slice"
+import collectlistReducer from "./collectlist.slice"
  
 const store = configureStore({
   reducer: {
@@ -21,7 +22,8 @@ const store = configureStore({
     listLoading:listloadingReducer,
     showModal:modalShowReducer,
     currSwipertext:currswipertextReducer,
-    compareList:comparelistReducer
+    compareList:comparelistReducer,
+    collectList:collectlistReducer
   },
 })
  

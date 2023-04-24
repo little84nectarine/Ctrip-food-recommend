@@ -20,7 +20,7 @@ import { increasecount } from '../../store/currPagecount.slice'
 import { changelistloading } from '../../store/listloading.slice'
 import { changecomparelist } from '../../store/comparelist.slice'
 import { InfiniteScroll, List, DotLoading, SwipeAction, Image, Toast, Popup, Button } from 'antd-mobile'
-import { UpOutline, CloseCircleFill } from 'antd-mobile-icons'
+import { UpOutline, CloseCircleFill ,StarFill} from 'antd-mobile-icons'
 import { useNavigate } from 'react-router'
 const Home = () => {
   const restlist = useSelector((state) => state.currList.restList)
@@ -151,6 +151,9 @@ const Home = () => {
   }
   return (
     <>
+      <div className={styles.collecticon} onClick={()=>navigate("/Collect")}>
+        <StarFill style={{ fontSize: '2rem' ,color:"#f15656"}}/>
+      </div>
       {modalshow ? <Search /> : <></>}
       {totop ? <div className={styles.totop} onClick={() => {
         document.documentElement.scrollTop = 149;
