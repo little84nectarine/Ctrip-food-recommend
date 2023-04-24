@@ -8,7 +8,7 @@ import { LeftOutline } from 'antd-mobile-icons'
 import { useNavigate } from 'react-router'
 import useThrottle from '../../hooks/useThrottle'    //引入自定义节流hook
 import { restaurantdetailApi } from '../../request/api'
-import { Tabs } from 'antd-mobile'
+import { Tabs, ErrorBlock, SpinLoading } from 'antd-mobile'
 import { changemodal } from '../../store/showModal.slice'
 import { changefilterlist } from '../../store/currFilter.slice'
 import { multifilterApi, restaruantApi } from '../../request/api'
@@ -28,7 +28,8 @@ const Food = () => {
   const [activeKey, setActiveKey] = useState('1')   //tab栏
   const dispatch = useDispatch()
   const location = useLocation();
-  const { id } = location.state;
+  const [isloading, setIsloading] = useState(true)
+  const state = location.state;
 
   const tabItems = [
     { key: '1', title: '图片', elment: (<Myswiper data={data.imgs ? [data.video, ...data.imgs] : []} />) },
@@ -86,10 +87,11 @@ const Food = () => {
 
   //清除页面跳转后滚动条位置缓存
   useEffect(() => {
-    restaurantdetailApi({ id: id }).
+    restaurantdetailApi({ id: state?.id }).
       then(res => {
         console.log(res.data);
         setData({ ...res.data })
+        setIsloading(false)
       })
 
     document.body.scrollTop = 0
@@ -107,39 +109,52 @@ const Food = () => {
 
   return (
     <>
-      {/* tab栏 */}
-      <div className={styles.tabsContainer} style={{ visibility: "hidden" }} id='tabId'>
-        <Tabs
-          style={{ '--active-line-color': 'red', "--active-title-color": "red" }
-          }
-          activeKey={activeKey}
-          onChange={key => {
-            document.getElementById(`anchor-${key}`)?.scrollIntoView()
-            window.scrollTo({
-              top: window.scrollY - tabHeight,
-            })
-          }}
-        >
-          {/* 生成相应信息组件 */}
-          {tabItems.map(item => (
-            <Tabs.Tab title={item.title} key={item.key} />
-          ))}
-        </Tabs>
+      {isloading ?
+      <div style={{position:"fixed",top:'45vh',left:"50%",transform:["translateX(-50%)"]}}>
+        加载中
+        <SpinLoading color='primary' style={{marginTop:'1rem'}} />
       </div>
+        :
+        (
+          state?.id ?
+            <>
+              {/* tab栏 */}
+              <div className={styles.tabsContainer} style={{ visibility: "hidden" }} id='tabId'>
+                <Tabs
+                  style={{ '--active-line-color': 'red', "--active-title-color": "red" }
+                  }
+                  activeKey={activeKey}
+                  onChange={key => {
+                    document.getElementById(`anchor-${key}`)?.scrollIntoView()
+                    window.scrollTo({
+                      top: window.scrollY - tabHeight,
+                    })
+                  }}
+                >
+                  {/* 生成相应信息组件 */}
+                  {tabItems.map(item => (
+                    <Tabs.Tab title={item.title} key={item.key} />
+                  ))}
+                </Tabs>
+              </div>
 
-      <div style={{ backgroundColor: 'rgb(240,243,246)' }}>
-        {
-          tabItems.map(item => (
-            <div key={item.key} id={`anchor-${item.key}`}>
-              {item.elment}
-            </div>
-          ))
-        }
-        <div style={{ position: "fixed", top: '0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '2.8rem', width: "100%", backgroundColor: '#fff', visibility: headerv, zIndex: '1' }}>
-          <LeftOutline style={{ position: 'absolute', top: '1rem', left: '1rem', fontSize: '16px', visibility: 'visible' }} onClick={tohome} />
-          <span style={{ fontSize: '17px' }}>餐厅详情</span>
-        </div>
-      </div>
+              <div style={{ backgroundColor: 'rgb(240,243,246)' }}>
+                {
+                  tabItems.map(item => (
+                    <div key={item.key} id={`anchor-${item.key}`}>
+                      {item.elment}
+                    </div>
+                  ))
+                }
+                <div style={{ position: "fixed", top: '0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '2.8rem', width: "100%", backgroundColor: '#fff', visibility: headerv, zIndex: '1' }}>
+                  <LeftOutline style={{ position: 'absolute', top: '1rem', left: '1rem', fontSize: '16px', visibility: 'visible' }} onClick={tohome} />
+                  <span style={{ fontSize: '17px' }}>餐厅详情</span>
+                </div>
+              </div>
+            </>
+            : <ErrorBlock status='empty' style={{ marginTop: '30vh' }} />
+        )}
+
     </>
   )
 }

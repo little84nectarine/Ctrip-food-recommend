@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./Restinfo.module.scss"
 import { DownFill, DownOutline, PhoneFill, FireFill } from 'antd-mobile-icons'
 import { Popup, Button,Toast } from 'antd-mobile'
@@ -10,6 +10,7 @@ import { changecomparelist } from '../../store/comparelist.slice'
 const Restinfo = ({ data }) => {
   const [telVisible, setTelVisible] = useState(false)
   const comparelist = useSelector(state => state.compareList.comparelist)
+  const [currtime,setCurrtime] = useState(0)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const addcompare = (id, name, img) => {
@@ -34,7 +35,13 @@ const Restinfo = ({ data }) => {
       })
     }
   }
-
+  useEffect(()=>{
+    let date = new Date()
+    let h = date.getHours()
+    let m = date.getMinutes()
+    let time = h+m/60;
+    setCurrtime(time)
+  },[])
   return (
     <div className={styles.infobox}>
       {/* 标题 */}
@@ -55,9 +62,11 @@ const Restinfo = ({ data }) => {
       {/* 第二行：营业时间 、电话*/}
       <div className={styles.secondRow}>
         <div>
-          <span>营业中</span>
-          <span>11:00-13:30</span>
-          <span>17:00-21:00</span>
+          <span>{data.duration&&((currtime>=data.duration[0][0]&&currtime<=data.duration[0][1])||(currtime>=data.duration[1][0]&&currtime<=data.duration[1][1])?"营业中":"休息中")}</span>
+          <span>{data.duration&&data?.duration[0][0].toString().split(".")[0]}:{data.duration&&(data?.duration[0][0].toString().includes(".")?data?.duration[0][0].toString().split(".").slice(-1)*6:"00")}
+          -{data.duration&&data?.duration[0][1].toString().split(".")[0]}:{data.duration&&(data?.duration[0][1].toString().includes(".")?data?.duration[0][1].toString().split(".").slice(-1)*6:"00")}</span>
+          <span>{data.duration&&data?.duration[1][0].toString().split(".")[0]}:{data.duration&&(data?.duration[1][0].toString().includes(".")?data?.duration[1][0].toString().split(".").slice(-1)*6:"00")}
+          -{data.duration&&data?.duration[1][1].toString().split(".")[0]}:{data.duration&&(data?.duration[1][1].toString().includes(".")?data?.duration[1][1].toString().split(".").slice(-1)*6:"00")}</span>
         </div>
         <div className={styles.tail}>
           <DownOutline style={{ transform: "rotateZ(-90deg)" }} />

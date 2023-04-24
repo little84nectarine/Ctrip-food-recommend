@@ -35,7 +35,7 @@ const Searchcard = (props) => {
                 <div className={styles.firstline}>
                     <SmileFill style={{ color: '#dd2626', fontSize: "1.1rem", marginRight: "0.4rem" }} />
                     <span>{data.name.split(searchkey)[0]}</span>
-                    <span style={{color: '#dd2626'}}>{searchkey}</span>
+                    {data.name.includes(searchkey)?<span style={{color: '#dd2626'}}>{searchkey}</span>:<></>}
                     <span>{data.name.split(searchkey)[1]}</span>
                 </div>
                 <div className={styles.secondline}>
