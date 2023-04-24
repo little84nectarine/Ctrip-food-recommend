@@ -26,7 +26,11 @@ const Searchcard = (props) => {
             })
         })
         document.documentElement.scrollTop = 0
-        navigate('/food')
+        navigate('/food',{
+            state:{
+                id:data.id
+            }
+        })
         dispatch(changeCurr(data.id))
     }
     return (

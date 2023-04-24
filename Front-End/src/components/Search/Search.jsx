@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from "./Search.module.scss"
 import { useDispatch, useSelector } from 'react-redux'
 import { changemodal } from '../../store/showModal.slice'
 import { changecomparelist } from '../../store/comparelist.slice'
-import { SearchBar, Skeleton, ErrorBlock ,Toast, SwipeAction} from 'antd-mobile'
+import { SearchBar, Skeleton, ErrorBlock, Toast, SwipeAction } from 'antd-mobile'
 import Filtercard from '../card/Filtercard/Filtercard'
 import Hotcard from '../card/Hotcard/Hotcard'
 import Searchcard from '../card/Searchcard/Searchcard'
@@ -13,13 +13,14 @@ import useDebounce from "../../hooks/useDebounce"
 const fastsearch = ["2022美食林榜单餐厅", "限时抢购", "预约订座", "生煎", "上海小笼包", "葱油拌面", "青团", "外滩"]
 const Search = () => {
   const dispatch = useDispatch()
+  const searchref = useRef()
   const stext = useSelector((state) => state.currSwipertext.stext)
   const comparelist = useSelector(state => state.compareList.comparelist)
   const [hotlist, setHotlist] = useState([])
   const [isloading, setIsloading] = useState(true)
   const [searchlist, setSearchlist] = useState([])
-  const [swipertext,setSwipertext] = useState(stext)
-  const [searchkey,setSearchkey] = useState("")
+  const [swipertext, setSwipertext] = useState(stext)
+  const [searchkey, setSearchkey] = useState("")
   const searchrest = useDebounce(e => {
     searchApi(e).then(res => {
       setSearchkey(e)
@@ -61,6 +62,7 @@ const Search = () => {
   }
 
   useEffect(() => {
+    searchref.current.focus()
     setSearchlist("no")
     hotApi().then(res => {
       setHotlist(res.data)
@@ -81,7 +83,7 @@ const Search = () => {
                   rightActions={rightActions}
                   onAction={() => addcompare(item.id, item.name, item.imgs[0])}
                 >
-                  <Searchcard data={item} searchkey={searchkey}/>
+                  <Searchcard data={item} searchkey={searchkey} />
                   {index === searchlist.length - 1 ? <></> : <div style={{ height: '0.05rem', margin: '0.5rem -0.8rem 0.8rem 0', backgroundColor: '#e8e8e8' }}></div>}
                 </SwipeAction>
               })}
@@ -91,6 +93,7 @@ const Search = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: '1000' }}>
         <div className={styles.barbox}>
           <SearchBar
+            ref={searchref}
             className={styles.searchbar}
             placeholder={swipertext}
             style={{

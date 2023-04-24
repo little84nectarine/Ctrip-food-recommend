@@ -124,6 +124,7 @@ const Filter = (props) => {
   const confirmsort = () => {
     dispatch(changelistloading(true))
     restaruantApi(0).then(res=>{
+      console.log(res);
       ifend(res.status)
       dispatch(changeList([...res.data]))
       dispatch(changelistloading(false))
