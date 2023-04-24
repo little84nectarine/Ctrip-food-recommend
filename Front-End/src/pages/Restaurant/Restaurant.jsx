@@ -35,7 +35,7 @@ const Food = () => {
   const tabItems = [
     { key: '1', title: '图片', elment: (<Myswiper data={data.imgs ? [data.video, ...data.imgs] : []} />) },
     { key: '2', title: '概览', elment: (<Restinfo data={data} />) },
-    { key: '3', title: '推荐菜', elment: (<RecoDish restId={data.id} />) },
+    { key: '3', title: '推荐菜', elment: (<RecoDish restId={data.id} restname={data.name}/>) },
     { key: '4', title: '客户评论', elment: (<Usercomment score={data.score} comments={data.comments} rvNum={data.reviews} />) },
     { key: '5', title: '更多', elment: (<Waterfall />) },
   ]

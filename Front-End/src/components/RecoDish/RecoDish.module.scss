@@ -10,6 +10,7 @@
 }
 
 .horizonbox{
+    position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -19,5 +20,18 @@
     //隐藏滚动条
     &::-webkit-scrollbar {
         display: none;
+    }
+
+    .dish{
+        position: relative;
+
+        .tag{
+            z-index: 33;
+            margin-right: 0.5rem;
+            margin-top: 0.3rem;
+            right: 0;
+            color: rgb(220, 104, 104);
+            position: absolute;
+        }
     }
 }

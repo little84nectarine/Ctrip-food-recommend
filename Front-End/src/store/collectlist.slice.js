@@ -26,7 +26,7 @@ const todoSlice = createSlice({
     initialState,
     reducers: {
         changecollectobj: (state, action) => {
-            state.collectlist = [...action.payload]
+            state.collectobj = [...action.payload]
         }
     }
 });
