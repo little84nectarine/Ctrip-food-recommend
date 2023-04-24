@@ -33,7 +33,7 @@ export default function BdMap() {
   return (
     <div className={styles.content}>
       <div className={styles.back}>
-        <LeftOutline className={styles.tag} onClick={() => navigate('/food')} />
+        <LeftOutline className={styles.tag} onClick={() => navigate('/food',{state:{id:id}})} />
       </div>
       {/* 地图 */}
       <div className={styles.mainbox}>
@@ -48,7 +48,7 @@ export default function BdMap() {
         <div className={styles.footer}>
           <div className={styles.name}>{info.name}</div>
           <div className={styles.location}>{info.location}</div>
-          <div className={styles.btn} onClick={() => navigate('/food')} >查看攻略</div>
+          <div className={styles.btn} onClick={() => navigate('/food',{state:{id:id}})} >查看攻略</div>
         </div>
       </div>
 
