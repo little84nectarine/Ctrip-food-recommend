@@ -3,10 +3,8 @@ import styles from "./Usercomment.module.scss"
 import { DownOutline } from 'antd-mobile-icons'
 import CommentCard from '../CommentCard/CommentCard'
 
-
-
 const Usercomment = ({ comments, rvNum, score }) => {
-  // console.log(comments);
+  console.log(comments);
 
   return (
     <div className={styles.usercommentbox}>

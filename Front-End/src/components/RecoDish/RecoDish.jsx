@@ -5,9 +5,11 @@ import { recoDishApi } from '../../request/api'
 import { HeartFill } from 'antd-mobile-icons'
 import { changecollectobj } from '../../store/collectlist.slice'
 import { useDispatch, useSelector } from 'react-redux'
+import { Toast } from 'antd-mobile'
 
 
 const RecoDish = ({ restId, restname }) => {
+  console.log(restId);
   const [bannerlist, setBannerlist] = useState([])
   const collectlist = useSelector((state)=>state.collectList.collectobj)
   const dispatch = useDispatch()
@@ -23,11 +25,15 @@ const RecoDish = ({ restId, restname }) => {
       <div style={{ fontSize: '1.3rem', fontWeight: '600' }}>推荐菜</div>
       <div className={styles.horizonbox}>
         {
+          restId &&
           bannerlist.map((item) => {
             return <div  key={item.dishId} className={styles.dish}>
               <div className={styles.tag} onClick={
                 ()=>{
-                  console.log(collectlist);
+                  Toast.show({
+                    icon: 'success',
+                    content: '收藏成功',
+                  })
                   let temp=-1;
                   collectlist.forEach((e, index)=>{
                     if(e.restName === restname){

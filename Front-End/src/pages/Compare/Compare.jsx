@@ -16,6 +16,7 @@ import { useLocation } from 'react-router-dom';
 import Myswiper from '../../components/Swiper/Myswiper'
 import Restinfo from '../../components/Restinfo/Restinfo'
 import Usercomment from '../../components/Usercomment/Usercomment'
+import RecoDish from '../../components/RecoDish/RecoDish'
 
 const Compare = () => {
     const dispatch = useDispatch()
@@ -59,22 +60,30 @@ const Compare = () => {
                 <span style={{ fontSize: '17px' }}>餐厅对比</span>
             </div>
             <div className={styles.mainbox}>
-                {/* 上面餐厅 */}
-                <div className={styles.topbox}>
-                    <Myswiper data={data1.imgs ? [data1.video, ...data1.imgs] : []} />
-                    <Restinfo data={data1} />
-                    <Usercomment score={data1.score} comments={data1.comments} rvNum={data1.reviews} />
-                </div>
+                {/* 上面餐厅 */}{
+                    JSON.stringify(data1)=="{}" ?<></> :<div className={styles.topbox}>
+                        <Myswiper data={data1.imgs ? [data1.video, ...data1.imgs] : []} />
+                        <Restinfo data={data1} />
+                        <RecoDish restId={data1.id} restname={data1.name} />
+                        <Usercomment score={data1.score} comments={data1.comments} rvNum={data1.reviews} />
+                    </div>
+                }
+
                 {/* 分割层 */}
                 <div className={styles.line}>
-                    <MoreOutline style={{color:'rgb(22,119,255)',transform:['scale(2)']}}/>
+                    <MoreOutline style={{ color: 'rgb(22,119,255)', transform: ['scale(2)'] }} />
                 </div>
                 {/* 下面餐厅 */}
-                <div className={styles.bottombox}>
-                    <Myswiper data={data2.imgs ? [data2.video, ...data2.imgs] : []} />
-                    <Restinfo data={data2} />
-                    <Usercomment score={data2.score} comments={data2.comments} rvNum={data2.reviews} />
-                </div>
+                {
+                    JSON.stringify(data2)=="{}"?<></>:
+                    <div className={styles.bottombox}>
+                        <Myswiper data={data2.imgs ? [data2.video, ...data2.imgs] : []} />
+                        <Restinfo data={data2} />
+                        <RecoDish restId={data2.id} restname={data2.name} />
+                        <Usercomment score={data2.score} comments={data2.comments} rvNum={data2.reviews} />
+                    </div>
+                }
+
             </div>
         </>
     )

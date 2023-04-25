@@ -149,6 +149,7 @@ app.post("/location", express.json(), function (req, res) {
 app.post("/recoDIsh", express.json(), function (req, res) {
     let restlen = list.length
     let id = req.body.id
+    console.log(id);
     if (id > 0 && id <= restlen) {
         let result = recoDIsh.data[id]
         console.log(result);
