@@ -12,7 +12,7 @@ const todoSlice = createSlice({
             state.pagecount = state.pagecount+1
         },
         restart:(state)=>{
-            state.pagecount = 1
+            state.pagecount = 0
         }
     }
 });

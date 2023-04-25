@@ -17,8 +17,8 @@ const Filtercard = (props) => {
       document.documentElement.scrollTop = 149
       switch (text) {
         case "2022榜单餐厅":
-          dispatch(changefilterlist(["不限", "不限", [['rank1'], []], "默认"]))
-          multifilterApi({ arr:["不限", "不限", [['rank1'], []], "默认"] }).then(e => {
+          dispatch(changefilterlist(["0-不限", "0-不限", [['rank1'], []], "默认"]))
+          multifilterApi({ arr:["0-不限", "0-不限", [['rank1'], []], "默认"] }).then(e => {
             restaruantApi(0).then(res => {
               if (res.status === 201) {
                 dispatch(changeEnd(false))
@@ -32,8 +32,8 @@ const Filtercard = (props) => {
           })
           break;
         case "川菜":
-          dispatch(changefilterlist(["不限", "川菜", [[], []], "默认"]))
-          multifilterApi({ arr:["不限", "川菜", [[], []], "默认"] }).then(e => {
+          dispatch(changefilterlist(["0-不限", "0-地方菜-川菜", [[], []], "默认"]))
+          multifilterApi({ arr:["0-不限", "0-地方菜-川菜", [[], []], "默认"] }).then(e => {
             restaruantApi(0).then(res => {
               if (res.status === 201) {
                 dispatch(changeEnd(false))
@@ -47,8 +47,8 @@ const Filtercard = (props) => {
           })
           break;
         case "西餐":
-          dispatch(changefilterlist(["不限", "西餐", [[], []], "默认"]))
-          multifilterApi({ arr:["不限", "西餐", [[], []], "默认"] }).then(e => {
+          dispatch(changefilterlist(["0-不限", "0-西餐", [[], []], "默认"]))
+          multifilterApi({ arr:["0-不限", "0-西餐", [[], []], "默认"] }).then(e => {
             restaruantApi(0).then(res => {
               if (res.status === 201) {
                 dispatch(changeEnd(false))
@@ -62,8 +62,8 @@ const Filtercard = (props) => {
           })
           break;
         case "人均100-300":
-          dispatch(changefilterlist(["不限", "不限", [[], ['100-300']], "默认"]))
-          multifilterApi({ arr:["不限", "不限", [[], ['100-300']], "默认"] }).then(e => {
+          dispatch(changefilterlist(["0-不限", "0-不限", [[], ['100-300']], "默认"]))
+          multifilterApi({ arr:["0-不限", "0-不限", [[], ['100-300']], "默认"] }).then(e => {
             restaruantApi(0).then(res => {
               if (res.status === 201) {
                 dispatch(changeEnd(false))
@@ -77,8 +77,8 @@ const Filtercard = (props) => {
           })
           break;
         case "火锅系列":
-          dispatch(changefilterlist(["不限", "火锅系列", [[], []], "默认"]))
-          multifilterApi({ arr:["不限", "火锅系列", [[], []], "默认"] }).then(e => {
+          dispatch(changefilterlist(["0-不限", "8-火锅系列", [[], []], "默认"]))
+          multifilterApi({ arr:["0-不限", "8-火锅系列", [[], []], "默认"] }).then(e => {
             restaruantApi(0).then(res => {
               if (res.status === 201) {
                 dispatch(changeEnd(false))

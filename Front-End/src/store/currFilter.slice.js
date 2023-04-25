@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-    filterlist : ["不限", "不限", [[],[]], "默认"]
+    filterlist : ["0-不限", "0-不限", [[],[]], "默认"]
 };
 
 const todoSlice = createSlice({

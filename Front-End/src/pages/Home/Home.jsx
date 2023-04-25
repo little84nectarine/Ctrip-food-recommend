@@ -24,7 +24,6 @@ import { UpOutline, CloseCircleFill ,StarFill} from 'antd-mobile-icons'
 import { useNavigate } from 'react-router'
 const Home = () => {
   const restlist = useSelector((state) => state.currList.restList)
-  console.log(restlist);
   const hasMore = useSelector((state) => state.islistEnd.isend)
   const pagecount = useSelector(state => state.currPagecount.pagecount)
   const filterlist = useSelector(state => state.currFilter.filterlist)
@@ -55,7 +54,6 @@ const Home = () => {
   useEffect(() => {
     restaruantApi(0).then(res => {
       dispatch(changeList([...res.data]))
-      dispatch(changelistloading(false))
     })
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
@@ -72,6 +70,7 @@ const Home = () => {
     }
     const append = res.data
     dispatch(changeList([...restlist, ...append]))
+    dispatch(changelistloading(false))
     dispatch(changeEnd(append.length > 0))
     dispatch(increasecount())
   }
@@ -134,12 +133,12 @@ const Home = () => {
         ) : (
           <div style={{ display: 'flex', width: '100%', flexDirection: 'column', alignItems: 'center' }}>
             <div style={{ fontSize: '1rem', color: '#333', marginBottom: '0.3rem' }}>没有更多符合条件的美食了</div>
-            {(filterlist[0] === "不限" && filterlist[1] === "不限" && filterlist[2][0].length === 0 && filterlist[2][1].length === 0) ? <></> : <div>请修改条件重新查询</div>}
+            {(filterlist[0] === "0-不限" && filterlist[1] === "0-不限" && filterlist[2][0].length === 0 && filterlist[2][1].length === 0) ? <></> : <div>请修改条件重新查询</div>}
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: "center", marginTop: '1rem' }}>
               {<>
-                {(filterlist[0] === "不限" && filterlist[1] === "不限" && filterlist[2][0].length === 0 && filterlist[2][1].length === 0) ? <></> : <Filterdelecard text={"全部清空"} setFilterlength={setFilterlength} />}
-                {filterlist[0] === "不限" ? <></> : <Filterdelecard text={filterlist[0]} fclass={0} setFilterlength={setFilterlength} />}
-                {filterlist[1] === "不限" ? <></> : <Filterdelecard text={filterlist[1]} fclass={1} setFilterlength={setFilterlength} />}
+                {(filterlist[0] === "0-不限" && filterlist[1] === "0-不限" && filterlist[2][0].length === 0 && filterlist[2][1].length === 0) ? <></> : <Filterdelecard text={"全部清空"} setFilterlength={setFilterlength} />}
+                {filterlist[0] === "0-不限" ? <></> : <Filterdelecard text={filterlist[0].split("-").slice(-1)} fclass={0} setFilterlength={setFilterlength} />}
+                {filterlist[1] === "0-不限" ? <></> : <Filterdelecard text={filterlist[1].split("-").slice(-1)} fclass={1} setFilterlength={setFilterlength} />}
                 {filterlist[2][0].map((item, index) => <Filterdelecard text={item} key={index} fclass={2} setFilterlength={setFilterlength} />)}
                 {filterlist[2][1].map((item, index) => <Filterdelecard text={item} key={index} fclass={3} setFilterlength={setFilterlength} />)}
               </>

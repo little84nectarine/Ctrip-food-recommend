@@ -9,7 +9,6 @@ import { Toast } from 'antd-mobile'
 
 
 const RecoDish = ({ restId, restname }) => {
-  console.log(restId);
   const [bannerlist, setBannerlist] = useState([])
   const collectlist = useSelector((state)=>state.collectList.collectobj)
   const dispatch = useDispatch()

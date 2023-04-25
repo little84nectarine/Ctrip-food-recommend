@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const todoSlice = createSlice({
-    name: 'currList',
+    name: 'restList',
     initialState,
     reducers: {
         changeList: (state, action) => {

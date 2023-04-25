@@ -13,9 +13,9 @@ module.exports = (rankarr, pricearr, list) => {
                 })
             } else {
                 for (let i = 0; i < rankarr.length; i++) {
-                    let rank = rankarr[i].match(/\d+(\.\d+)?/g)
+                    let rank = rankarr[i].slice(-1)*1
                     let temp = list.filter(item => {
-                        return item.rank === Number(rank)
+                        return item.rank === rank
                     })
                     result.push(...temp)
                 }

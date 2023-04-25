@@ -1,16 +1,8 @@
-.collectbox{
+.collectbox {
     height: 100vh;
-    width:100vw;
+    width: 100vw;
     background-color: #fff;
     display: flex;
     flex-direction: column;
-}
-.listbox{
-    position: relative;
-    box-sizing: border-box;
-    padding: 1rem;
-    top:2.8rem;
-    background-color: rgb(250,250,250);
-    width: 100%;
-    flex:1;
+    position: absolute;
 }

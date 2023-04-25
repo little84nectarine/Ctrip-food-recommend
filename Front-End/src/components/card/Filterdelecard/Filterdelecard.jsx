@@ -49,14 +49,14 @@ const Filterdelecard = (props) => {
     const clearfilter = () => {
         dispatch(changelistloading(true))
         if (text === "全部清空") {
-            dispatch(changefilterlist(["不限", "不限", [[], []], "默认"]))
-            sendreload(["不限", "不限", [[], []], "默认"])
+            dispatch(changefilterlist(["0-不限", "0-不限", [[], []], "默认"]))
+            sendreload(["0-不限", "0-不限", [[], []], "默认"])
         } else if (fclass === 0) {
-            dispatch(changefilterlist(["不限", ...filterlist.slice(1, 4)]))
-            sendreload(["不限", ...filterlist.slice(1, 4)])
+            dispatch(changefilterlist(["0-不限", ...filterlist.slice(1, 4)]))
+            sendreload(["0-不限", ...filterlist.slice(1, 4)])
         } else if (fclass === 1) {
-            dispatch(changefilterlist([filterlist[0], "不限", ...filterlist.slice(2, 4)]))
-            sendreload([filterlist[0], "不限", ...filterlist.slice(2, 4)])
+            dispatch(changefilterlist([filterlist[0], "0-不限", ...filterlist.slice(2, 4)]))
+            sendreload([filterlist[0], "0-不限", ...filterlist.slice(2, 4)])
         } else if (fclass === 2) {
             let temp = new Set(filterlist[2][0])
             temp = Array.from(temp)

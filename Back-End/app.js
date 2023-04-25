@@ -36,7 +36,7 @@ const filterfunc = (arr) => {
 //返回餐厅列表
 app.get("/restaurantList", function (req, res) {
     let start = req.query.page
-    if (currentlist.slice(start * 10, start * 10 + 10).length < 10 || currentlist[start * 10 + 11] === undefined) {
+    if (currentlist.slice(start * 10, start * 10 + 10).length < 10 || currentlist[start * 10 + 10] === undefined) {
         res.status(201).json(currentlist.slice(start * 10, start * 10 + 10))
     } else {
         res.json(currentlist.slice(start * 10, start * 10 + 10))
@@ -149,10 +149,8 @@ app.post("/location", express.json(), function (req, res) {
 app.post("/recoDIsh", express.json(), function (req, res) {
     let restlen = list.length
     let id = req.body.id
-    console.log(id);
     if (id > 0 && id <= restlen) {
         let result = recoDIsh.data[id]
-        console.log(result);
         res.json(result)
     } else {
         res.send(404)

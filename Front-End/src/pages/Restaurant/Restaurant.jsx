@@ -56,8 +56,8 @@ const Food = () => {
   }, 300)
   const tohome = () => {
     dispatch(changemodal(false))
-    dispatch(changefilterlist(["不限", "不限", [[], []], "默认"]))
-    multifilterApi({ arr: ["不限", "不限", [[], []], "默认"] }).then(e => {
+    dispatch(changefilterlist(["0-不限", "0-不限", [[], []], "默认"]))
+    multifilterApi({ arr: ["0-不限", "0-不限", [[], []], "默认"] }).then(e => {
       restaruantApi(0).then(res => {
         if (res.status === 201) {
           dispatch(changeEnd(false))
@@ -79,10 +79,10 @@ const Food = () => {
 
     if (curTop > 70) {
       setHeaderv("visible")
-      el.style.visibility = 'visible'
+      el && (el.style.visibility = 'visible')
     } else if (curTop <= 70) {
       setHeaderv("hidden")
-      el.style.visibility = 'hidden'
+      el && (el.style.visibility = 'hidden')
     }
   }, 100)
 

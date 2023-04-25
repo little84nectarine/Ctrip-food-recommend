@@ -1,12 +1,11 @@
-const notleafstyle = ["火锅系列", "外国菜", "粉面", "地方菜", "快餐简餐", "火锅", "西餐", "日本料理", "小吃", "韩国料理"]
 module.exports = (str,list)=>{
     let result;
-    if (str === "不限") {
+    if (str.includes("不限")) {
         result = list;
-    } else if (notleafstyle.includes(str)) {
+    } else if (str.startsWith("8")) {
         //根据具体的一级菜系去判断
-        switch (str) {
-            case "火锅系列" || "火锅":
+        switch (str.split("-")[1]) {
+            case "火锅系列":
                 result = list.filter(item=>{
                     return item.style.includes("火锅")
                 });
@@ -21,6 +20,9 @@ module.exports = (str,list)=>{
                     return ["面食","米粉/米线"].includes(item.style)
                 });
                 break;
+        }
+    } else if(str.split("-").length===2){
+        switch(str.split("-")[1]){
             case "地方菜":
                 result = list.filter(item=>{
                     return ["江浙菜","川菜","粤菜","湘菜"].includes(item.style)
@@ -52,9 +54,9 @@ module.exports = (str,list)=>{
                 });
                 break;
         }
-    } else {
+    }else{
         result = list.filter(item => {
-            return item.style === str
+            return item.style === str.split("-")[2]
         })
     }
     return result
